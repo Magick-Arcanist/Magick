@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:diamond_block"
+  },
+  "result": "magick:diamond_dust",
+  "count": 36
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:quartz_tag_2"
+  },
+  "result": "magick:quartz_dust",
+  "count": 2
+}

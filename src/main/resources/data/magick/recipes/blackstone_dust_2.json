@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:blackstone_tag_2"
+  },
+  "result": "magick:blackstone_dust",
+  "count": 2
+}

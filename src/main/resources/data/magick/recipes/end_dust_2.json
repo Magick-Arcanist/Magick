@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:endstone_tag_2"
+  },
+  "result": "magick:end_dust",
+  "count": 2
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:nether_tag_16"
+  },
+  "result": "magick:nether_dust",
+  "count": 16
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "item": "minecraft:chorus_fruit"
+    }
+  },
+
+  "result": {
+    "item": "minecraft:ender_pearl",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:quartz",
+    "minecraft:granite_slab",
+    "minecraft:polished_granite_slab",
+    "minecraft:diorite_slab",
+    "minecraft:polished_diorite_slab",
+    "minecraft:smooth_quartz_slab"
+  ]
+}

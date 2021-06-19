@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "item": "minecraft:prismarine_shard"
+    }
+  },
+
+  "result": {
+    "item": "magick:water_pearl",
+    "count": 1
+  }
+}

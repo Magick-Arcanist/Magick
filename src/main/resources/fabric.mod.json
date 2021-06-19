@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "magick",
+  "version": "${version}",
+
+  "name": "Magick: Potions and Pearls",
+  "description": "Adds 22 new base potions, making potions for most vanilla status effects as well as 12 new status effects. Also adds 10 new Pearl items similar to ender-pearls but with varying effects",
+  "authors": [
+    "Arcanist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/magick/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.arcanist.magick.Magick"
+    ],
+    "client": [
+      "com.arcanist.magick.client.MagickClient"
+    ]
+  },
+  "mixins": [
+    "magick.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

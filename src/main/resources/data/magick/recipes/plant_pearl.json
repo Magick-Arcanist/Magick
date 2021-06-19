@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "tag": "magick:saplings_tag"
+    }
+  },
+
+  "result": {
+    "item": "magick:plant_pearl",
+    "count": 1
+  }
+}

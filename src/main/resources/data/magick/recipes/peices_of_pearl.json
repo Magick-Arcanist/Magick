@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:pearl_tag"
+  },
+  "result": "magick:piece_of_pearl",
+  "count": 8
+}

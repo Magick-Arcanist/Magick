@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "item": "minecraft:blue_ice"
+    }
+  },
+
+  "result": {
+    "item": "magick:ice_pearl",
+    "count": 1
+  }
+}

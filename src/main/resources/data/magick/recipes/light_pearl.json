@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "item": "minecraft:glow_berries"
+    }
+  },
+
+  "result": {
+    "item": "magick:light_pearl",
+    "count": 1
+  }
+}

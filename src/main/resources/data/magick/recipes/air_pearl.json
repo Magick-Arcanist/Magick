@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:piece_of_pearl"
+    },
+    "X": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+
+  "result": {
+    "item": "magick:air_pearl",
+    "count": 1
+  }
+}

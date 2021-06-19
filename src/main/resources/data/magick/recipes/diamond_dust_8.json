@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:diamond_tag_8"
+  },
+  "result": "magick:diamond_dust",
+  "count": 8
+}

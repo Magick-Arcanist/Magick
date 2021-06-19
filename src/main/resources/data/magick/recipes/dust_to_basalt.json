@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X",
+    "X#"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:blackstone_dust"
+    },
+    "X": {
+      "item": "magick:stone_dust"
+    }
+  },
+  "result": {
+    "item": "minecraft:basalt",
+    "count": 1
+  }
+}

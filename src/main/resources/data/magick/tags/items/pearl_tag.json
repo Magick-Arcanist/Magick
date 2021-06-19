@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "magick:air_pearl",
+    "magick:bomb_pearl",
+    "magick:earth_pearl",
+    "magick:fire_pearl",
+    "magick:ice_pearl",
+    "magick:lightning_pearl",
+    "magick:light_pearl",
+    "magick:plant_pearl",
+    "magick:vac_pearl",
+    "magick:warp_pearl",
+    "magick:water_pearl",
+    "magick:web_pearl",
+    "minecraft:ender_pearl",
+    "minecraft:ender_eye"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.arcanist.magick.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "BrewingRecipeRegistryAccessor",
+    "LivingEntityMixin",
+    "TemptGoalMixin",
+    "EscapeDangerGoalMixin",
+    "BrewRegistryMixin",
+    "LightningRodMixin"
+  ],
+  "client": [
+    "BrewingRecipeRegistryAccessor",
+    "LivingEntityMixin",
+    "TemptGoalMixin",
+    "EscapeDangerGoalMixin",
+    "BrewRegistryMixin",
+    "LightningRodMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
