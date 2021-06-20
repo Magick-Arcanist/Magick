@@ -8,8 +8,8 @@ public class FearStatusEffect extends StatusEffect {
 
     public FearStatusEffect() {
         super(
-                StatusEffectType.HARMFUL, // whether beneficial or harmful for entities
-                0xedff24); // color in RGB
+                StatusEffectType.HARMFUL,
+                0xedff24);
     }
 
     // This method is called every tick to check weather it should apply the status effect or not
@@ -19,7 +19,6 @@ public class FearStatusEffect extends StatusEffect {
         return true;
     }
 
-    // This method is called when it applies the status effect. We implement custom functionality here.
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 

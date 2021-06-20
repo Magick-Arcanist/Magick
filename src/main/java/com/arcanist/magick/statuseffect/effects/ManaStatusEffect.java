@@ -11,7 +11,7 @@ public class ManaStatusEffect extends StatusEffect {
     public ManaStatusEffect() {
         super(
                 StatusEffectType.BENEFICIAL,
-                0x5100DC// color in RGB
+                0x5100DC
         );
     }
 

@@ -33,7 +33,6 @@ public class ModEffects {
                 Registry.register(Registry.STATUS_EFFECT, new Identifier("magick", "white_light"), WHITE_LIGHT);
                 Registry.register(Registry.STATUS_EFFECT, new Identifier("magick", "love"), LOVE);
                 Registry.register(Registry.STATUS_EFFECT, new Identifier("magick", "mana"), MANA);
-
         }
 }
 

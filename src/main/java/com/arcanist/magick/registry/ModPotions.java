@@ -153,9 +153,6 @@ public final class ModPotions {
 
     }
 
-
-    // everything below this line no touchy
-
     private static Potion register(String id, Potion potion) {
         return Registry.register(Registry.POTION, new Identifier(Magick.MOD_ID, id), potion);
     }

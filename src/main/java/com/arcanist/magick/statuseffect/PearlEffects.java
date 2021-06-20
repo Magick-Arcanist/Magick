@@ -1,17 +1,12 @@
 package com.arcanist.magick.statuseffect;
 
-import com.arcanist.magick.entity.AirPearlEntity;
-import com.arcanist.magick.mixin.LivingEntityMixin;
 import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEffects;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +18,6 @@ import net.minecraft.world.explosion.Explosion;
 import java.util.*;
 
 public class PearlEffects {
-
 
     public float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
@@ -40,15 +34,13 @@ public class PearlEffects {
         else return 1;
     }
 
-
-
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*3;
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).takeKnockback(power(entityWorld, user)*0.6F, entity.getX() - entities.getX() , entity.getZ() - entities.getZ() );
            }
-            entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
+            entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F); // makes the pearl play a sound when the effect happens
         }
     }
 
@@ -119,7 +111,7 @@ public class PearlEffects {
                 }
             }
         }
-        entity.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 2F, 1F); // plays a sound for the entity hit only
+        entity.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 2F, 1F);
     }
 
     public void icePearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {

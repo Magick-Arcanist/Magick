@@ -11,14 +11,14 @@ public class OreSenseStatusEffect extends StatusEffect {
     public OreSenseStatusEffect() {
         super(
                 StatusEffectType.BENEFICIAL,
-                0x000000// color in RGB
+                0x000000
         );
     }
 
     @Override
     public boolean canApplyUpdateEffect(int remainingTicks, int amplifier) {
 
-        return remainingTicks % 30 == 0;
+        return remainingTicks % 30 == 0; // this means the effect isn't applied constantly so you don't hear a constant *DINGDINGDINGDING*
     }
 
     @Override

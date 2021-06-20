@@ -9,21 +9,20 @@ public class LoveStatusEffect extends StatusEffect {
 
     public LoveStatusEffect() {
         super(
-                StatusEffectType.BENEFICIAL, // whether beneficial or harmful for entities
-                0xff546b); // color in RGB
+                StatusEffectType.BENEFICIAL,
+                0xff546b);
     }
 
-    // This method is called every tick to check weather it should apply the status effect or not
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
 
-    // This method is called when it applies the status effect. We implement custom functionality here.
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof AnimalEntity) {
             ((AnimalEntity) entity).setLoveTicks(20);
+            //There are other parts to this effect in the LivingEntityMixin
 
         }
     }

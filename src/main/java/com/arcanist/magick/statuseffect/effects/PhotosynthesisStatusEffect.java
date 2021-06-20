@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
         public PhotosynthesisStatusEffect() {
             super(
                     StatusEffectType.BENEFICIAL,
-                    0x21ff21// color in RGB
+                    0x21ff21
             );
         }
 

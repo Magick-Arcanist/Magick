@@ -40,7 +40,7 @@ public class TempWebBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.empty();
+        return VoxelShapes.fullCube();
     }
 
 

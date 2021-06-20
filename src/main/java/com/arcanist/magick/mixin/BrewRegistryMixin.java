@@ -22,8 +22,13 @@ public abstract class BrewRegistryMixin {
 		registerPotionRecipe(Potions.LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.SLOW_FALLING);
 		registerPotionRecipe(Potions.LONG_LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.LONG_SLOW_FALLING);
 		registerPotionRecipe(Potions.STRONG_LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.SLOW_FALLING);
+
 		registerPotionRecipe(Potions.NIGHT_VISION, Items.FERMENTED_SPIDER_EYE, ModPotions.BLINDNESS);
 		registerPotionRecipe(Potions.LONG_NIGHT_VISION, Items.FERMENTED_SPIDER_EYE, ModPotions.LONG_BLINDNESS);
+
+		registerPotionRecipe(Potions.POISON, Items.FERMENTED_SPIDER_EYE, ModPotions.NAUSEA);
+		registerPotionRecipe(Potions.LONG_POISON, Items.FERMENTED_SPIDER_EYE, ModPotions.LONG_NAUSEA);
+		registerPotionRecipe(Potions.STRONG_POISON, Items.FERMENTED_SPIDER_EYE, ModPotions.NAUSEA);
 	}
 	
 }

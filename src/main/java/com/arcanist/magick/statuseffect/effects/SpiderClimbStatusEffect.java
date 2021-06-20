@@ -8,19 +8,18 @@ public class SpiderClimbStatusEffect extends StatusEffect {
 
     public SpiderClimbStatusEffect() {
         super(
-                StatusEffectType.BENEFICIAL, // whether beneficial or harmful for entities
+                StatusEffectType.BENEFICIAL, // whether beneficial or harmful for entities, honestly not sure what difference this makes from a practical standpoint
                 0xffaa00); // color in RGB
     }
 
-    // This method is called every tick to check weather it should apply the status effect or not
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
-    }
+    } // This method is called every tick to check weather it should apply the status effect or not
 
-    // This method is called when it applies the status effect. We implement custom functionality here.
+
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-
+        // This method is called when it applies the status effect. We implement custom functionality here. in this case there is none because its called from the LivingEntityMixin
     }
 }

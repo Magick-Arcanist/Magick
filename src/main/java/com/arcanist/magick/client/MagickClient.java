@@ -29,7 +29,6 @@ import java.util.UUID;
 public class MagickClient implements ClientModInitializer {
     public static final Identifier PacketID = new Identifier(Magick.MOD_ID, "spawn_packet");
 
-
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.INSTANCE.register(ModEntities.AirPearlEntityType, FlyingItemEntityRenderer::new);

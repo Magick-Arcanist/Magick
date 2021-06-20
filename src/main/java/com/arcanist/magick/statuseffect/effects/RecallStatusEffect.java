@@ -18,8 +18,8 @@ public class RecallStatusEffect extends StatusEffect {
 
     public RecallStatusEffect() {
         super(
-                StatusEffectType.NEUTRAL, // whether beneficial or harmful for entities
-                0xc457ff); // color in RGB
+                StatusEffectType.NEUTRAL,
+                0xc457ff);
     }
 
     @Override

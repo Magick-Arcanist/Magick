@@ -14,14 +14,13 @@ public class GravityStatusEffect extends StatusEffect {
         public GravityStatusEffect() {
             super(
                     StatusEffectType.HARMFUL,
-                    0x5400ad// color in RGB
+                    0x5400ad
             );
 
         }
 
         @Override
         public boolean canApplyUpdateEffect(int duration, int amplifier) {
-            // In our case, we just make it return true so that it applies the status effect every tick.
             return true;
         }
 

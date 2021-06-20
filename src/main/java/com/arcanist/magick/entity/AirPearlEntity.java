@@ -51,7 +51,7 @@ public class AirPearlEntity extends ThrownItemEntity {
         super.onCollision(hitResult);
         new PearlEffects().airPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
             wait(20,0);
-            { // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread
+            { // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread.
                 this.discard();}
         }
     }
