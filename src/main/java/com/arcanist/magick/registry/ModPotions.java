@@ -20,7 +20,7 @@ public final class ModPotions {
 
     private ModPotions() {}
 
-    private static final Collection<RecipeToInit> RECIPES = new ArrayList<RecipeToInit>();
+    private static final Collection<RecipeToInit> RECIPES = new ArrayList<>();
 
     public static final Potion LEVITATION = register("levitation", new Potion(new StatusEffectInstance(StatusEffects.LEVITATION, 160)), ModItems.END_DUST, Potions.AWKWARD);
     public static final Potion LONG_LEVITATION = register("long_levitation", new Potion(new StatusEffectInstance(StatusEffects.LEVITATION, 400)));
@@ -92,7 +92,7 @@ public final class ModPotions {
     public static final Potion LOVE = register("love", new Potion(new StatusEffectInstance(ModEffects.LOVE, 400 )), Items.WHEAT, Potions.AWKWARD);
     public static final Potion LONG_LOVE = register("long_love", new Potion(new StatusEffectInstance(ModEffects.LOVE, 800 )));
 
-    public static final Potion MANA  = register("mana", new Potion(new StatusEffectInstance(ModEffects.MANA, 1800 ,1)), Items.LAPIS_LAZULI, Potions.AWKWARD);
+    public static final Potion MANA  = register("mana", new Potion(new StatusEffectInstance(ModEffects.MANA, 1800 )), Items.LAPIS_LAZULI, Potions.AWKWARD);
 
 
     //mapPotions(POTION BASE, INGREDIENT, RESULT);

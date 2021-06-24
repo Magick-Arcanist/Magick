@@ -21,12 +21,11 @@ public class PearlEffects {
 
     public float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
-            float amplifier = (((LivingEntity) owner).getStatusEffect(ModEffects.MANA).getAmplifier());
-            float amp2 = amplifier+1;
+            float amplifier = ((((LivingEntity) owner).getStatusEffect(ModEffects.MANA).getAmplifier())+2);
             if (entityWorld.getDimension().hasEnderDragonFight()){
-                return amp2*1.5F;
+                return amplifier*1.5F;
             }
-            else return amp2;
+            else return amplifier;
         }
         if (entityWorld.getDimension().hasEnderDragonFight()){
             return 1.5F;
@@ -38,7 +37,7 @@ public class PearlEffects {
         double radius = power(entityWorld, user)*3;
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(power(entityWorld, user)*0.6F, entity.getX() - entities.getX() , entity.getZ() - entities.getZ() );
+                ((LivingEntity) entities).takeKnockback(radius*0.2F,entityX - entities.getX(),entityZ - entities.getZ());
            }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F); // makes the pearl play a sound when the effect happens
         }
@@ -46,19 +45,18 @@ public class PearlEffects {
 
 
     public void bombPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user){
-        float radius = power(entityWorld, user);
-        if (!entity.world.isClient) {
-            entity.world.createExplosion(null, entity.getX(), entity.getY(), entity.getZ(), radius, false, Explosion.DestructionType.BREAK);
+       if (!entity.world.isClient) {
+            entity.world.createExplosion(null, entityX, entityY, entityZ, power(entityWorld, user), false, Explosion.DestructionType.BREAK);
         }
     }
 
     public void earthPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*1.5;
+        double radius = power(entityWorld, user)+1;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getDimension().isUltrawarm()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ((entityWorld.getDimension().isUltrawarm()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         switch (new Random().nextInt(4 - 1 + 1) + 1) {
                             case 1:
                                 entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
@@ -68,8 +66,8 @@ public class PearlEffects {
                                 break;
                         }
                     }
-                    else if ((entityWorld.getDimension().hasEnderDragonFight()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        switch (new Random().nextInt(5 - 1 + 1) + 1) {
+                    else if ((entityWorld.getDimension().hasEnderDragonFight()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                        switch (new Random().nextInt(4 - 1 + 1) + 1) {
                             case 1:
                                 entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
                                 break;
@@ -78,21 +76,16 @@ public class PearlEffects {
                                 break;
                         }
                     }
-                    else if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    else if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         switch (new Random().nextInt(4 - 1 + 1) + 1) {
                             case 1:
-                                entityWorld.setBlockState(blockPos, Blocks.GRAVEL.getDefaultState());
-                                break;
-                            case 2:
-                                entityWorld.setBlockState(blockPos, Blocks.ANDESITE.getDefaultState());
+                                entityWorld.setBlockState(blockPos, Blocks.STONE.getDefaultState());
                                 break;
                             default:
-                                entityWorld.setBlockState(blockPos, Blocks.SAND.getDefaultState());
+                                entityWorld.setBlockState(blockPos, Blocks.DIRT.getDefaultState());
                                 break;
                         }
                     }
-
-
                 }
             }
         }
@@ -100,7 +93,7 @@ public class PearlEffects {
     }
 
     public void firePearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*2;
+        double radius = power(entityWorld, user)+1;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
@@ -121,7 +114,7 @@ public class PearlEffects {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
                     if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        if (entityWorld.getBlockState(blockPos).isAir() && !entityWorld.getBlockState(new BlockPos(entityX + x, (entityY + y) - 1, entityZ + z)).isAir()) {
+                        if (entityWorld.getBlockState(blockPos).isAir()) {
                             entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
                         } else if (entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.ICE.getDefaultState());
@@ -137,7 +130,7 @@ public class PearlEffects {
 
     public void lightningPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user)  {
         BlockPos blockPos = new BlockPos(entityX, entityY, entityZ);
-        if ((entity.world.isThundering()) || (power(entityWorld, user)>1.5) && entity.world.isSkyVisible(blockPos)) {
+        if (((entity.world.isThundering()) || (power(entityWorld, user)>1.5)) && entity.world.isSkyVisible(blockPos)) {
             LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(entity.world);
             lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(blockPos));
             entity.world.spawnEntity(lightningEntity);
@@ -191,7 +184,7 @@ public class PearlEffects {
         double radius = power(entityWorld, user)*3;
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(power(entityWorld, user)*0.6F, entities.getX() - entity.getX(), entities.getZ() - entity.getZ());
+                ((LivingEntity) entities).takeKnockback(radius*0.2F, entities.getX() - entityX, entities.getZ() - entityZ);
             }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
         }
@@ -209,7 +202,7 @@ public class PearlEffects {
     }
 
     public void waterPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*1;
+        double radius = power(entityWorld, user);
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
@@ -218,11 +211,7 @@ public class PearlEffects {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
                         entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
                     }
-                    if (entityWorld.getDimension().isUltrawarm()){
-                        entityWorld.addParticle(ParticleTypes.LARGE_SMOKE, entity.getX(), entity.getY(), entity.getZ(), 0.0D, 0.0D, 0.0D);
-                        entity.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1F, 1F);
-
-                    }
+                    else entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
                 }
             }
         }

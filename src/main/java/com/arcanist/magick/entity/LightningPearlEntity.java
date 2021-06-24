@@ -7,6 +7,9 @@ import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.block.AbstractFireBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LightningRodBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -51,6 +55,15 @@ public class LightningPearlEntity extends ThrownItemEntity {
                 this.discard(); // kills the projectile
     }
 
+    protected void onBlockHit(BlockHitResult blockHitResult) {
+        super.onBlockHit(blockHitResult);
+        BlockPos blockPos = blockHitResult.getBlockPos();
+        BlockState blockState = this.world.getBlockState(blockPos);
+        if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
+            ((LightningRodBlock)blockState.getBlock()).setPowered(blockState, this.world, blockPos);
+            this.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 0.5F, 1F);
+        }
+    }
 
 
 }

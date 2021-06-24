@@ -8,16 +8,14 @@
     "LivingEntityMixin",
     "TemptGoalMixin",
     "EscapeDangerGoalMixin",
-    "BrewRegistryMixin",
-    "LightningRodMixin"
+    "BrewRegistryMixin"
   ],
   "client": [
     "BrewingRecipeRegistryAccessor",
     "LivingEntityMixin",
     "TemptGoalMixin",
     "EscapeDangerGoalMixin",
-    "BrewRegistryMixin",
-    "LightningRodMixin"
+    "BrewRegistryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
