@@ -6,7 +6,6 @@ import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +18,7 @@ import java.util.*;
 
 public class PearlEffects {
 
-    public float power(World entityWorld, Entity owner){
+    public static float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
             float amplifier = ((((LivingEntity) owner).getStatusEffect(ModEffects.MANA).getAmplifier())+2);
             if (entityWorld.getDimension().hasEnderDragonFight()){

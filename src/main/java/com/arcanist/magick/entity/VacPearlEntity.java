@@ -10,6 +10,7 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
@@ -37,26 +38,22 @@ public class VacPearlEntity extends ThrownItemEntity {
         return EntitySpawnPacket.create(this, MagickClient.PacketID);
     }
 
+    public Entity user = this.getOwner();
 
-    public static void wait(int ms, int ns)
-    {
-        try
-        {
-            Thread.sleep(ms, ns);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
+    public float power = PearlEffects.power(this.world, user)*3;
+
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        Entity entity = entityHitResult.getEntity();
+        if(entity instanceof LivingEntity) {
+            ((LivingEntity) entity).takeKnockback(power*0.2F, entity.getX() - this.getX(), entity.getZ() - this.getZ());
         }
     }
-
-    public Entity user = this.getOwner();
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         new PearlEffects().vacPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
-            wait(20,0);{ // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread
-                this.discard();}
+                this.discard();
         }
     }
 }

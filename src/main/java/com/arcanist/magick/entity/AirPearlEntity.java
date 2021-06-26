@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.*;
 
@@ -33,26 +34,23 @@ public class AirPearlEntity extends ThrownItemEntity {
         return EntitySpawnPacket.create(this, MagickClient.PacketID);
     }
 
-    public static void wait(int ms, int ns)
-    {
-        try
-        {
-            Thread.sleep(ms, ns);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
+    public Entity user = this.getOwner();
+
+    public float power = PearlEffects.power(this.world, user)*3;
+
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        Entity entity = entityHitResult.getEntity();
+        if(entity instanceof LivingEntity) {
+            ((LivingEntity) entity).takeKnockback(power*0.2F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
         }
     }
-
-    public Entity user = this.getOwner();
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         new PearlEffects().airPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
-            wait(20,0);
-            { // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread.
-                this.discard();}
+             // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread.
+                this.discard();
         }
     }
 }
