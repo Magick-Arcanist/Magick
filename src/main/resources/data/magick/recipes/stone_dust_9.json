@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "magick:slate_tag_2"
+    "tag": "magick:stone_tag_9"
   },
   "result": "magick:stone_dust",
-  "count": 4
+  "count": 9
 }

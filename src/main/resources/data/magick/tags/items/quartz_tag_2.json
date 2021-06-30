@@ -2,6 +2,11 @@
   "replace": false,
   "values": [
     "minecraft:daylight_detector",
+    "minecraft:andesite",
+    "minecraft:andesite_stairs",
+    "minecraft:andesite_wall",
+    "minecraft:polished_andesite",
+    "minecraft:polished_andesite_stairs",
     "minecraft:granite",
     "minecraft:granite_stairs",
     "minecraft:granite_wall",

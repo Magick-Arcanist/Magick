@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "magick:blackstone_dust"
+      "item": "magick:calcite_dust"
     }
   },
   "result": {
-    "item": "minecraft:basalt",
+    "item": "minecraft:calcite",
     "count": 1
   }
 }

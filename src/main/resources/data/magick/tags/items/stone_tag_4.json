@@ -31,6 +31,14 @@
     "minecraft:diorite_stairs",
     "minecraft:diorite_wall",
     "minecraft:polished_diorite",
-    "minecraft:polished_diorite_stairs"
+    "minecraft:polished_diorite_stairs",
+    "minecraft:deepslate_brick_slab",
+    "minecraft:deepslate_tile_slab",
+    "minecraft:polished_deepslate_slab",
+    "minecraft:cobbled_deepslate_slab",
+    "minecraft:stone_sword",
+    "minecraft:stone_pickaxe",
+    "minecraft:stone_axe",
+    "minecraft:stone_hoe"
   ]
 }

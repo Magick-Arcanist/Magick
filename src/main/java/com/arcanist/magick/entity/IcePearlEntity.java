@@ -9,10 +9,14 @@ import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
@@ -39,12 +43,23 @@ public class IcePearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    protected void onCollision(HitResult hitResult) { // called on collision with a block
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        Entity entity = entityHitResult.getEntity();
+        int i = entity instanceof BlazeEntity ? 8 : 0;
+        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float) i + 1);
+        if (entity instanceof LivingEntity) {
+            entity.extinguish();
+            entity.playSound(SoundEvents.ENTITY_GENERIC_SPLASH, 1F, 1F);
+        }
+    }
+
+    protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         {
             new PearlEffects().icePearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
         }
-        this.discard(); // kills the projectile
+        this.discard();
     }
 
 }

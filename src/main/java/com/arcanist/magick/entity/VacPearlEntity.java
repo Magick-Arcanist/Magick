@@ -47,6 +47,7 @@ public class VacPearlEntity extends ThrownItemEntity {
         Entity entity = entityHitResult.getEntity();
         if(entity instanceof LivingEntity) {
             ((LivingEntity) entity).takeKnockback(power*0.2F, entity.getX() - this.getX(), entity.getZ() - this.getZ());
+            entity.damage(DamageSource.thrownProjectile(this, user), 0);
         }
     }
 

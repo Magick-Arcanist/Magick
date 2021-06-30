@@ -9,6 +9,7 @@ import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
@@ -46,11 +47,12 @@ public class EarthPearlEntity extends ThrownItemEntity {
         this.discard(); // kills the projectile
     }
 
-    protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
+    protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
-        if (entity instanceof LivingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
+        Entity entity = entityHitResult.getEntity();
+        if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).takeKnockback(1.5F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
+            entity.damage(DamageSource.thrownProjectile(this, user), 0);
         }
     }
 

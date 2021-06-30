@@ -13,6 +13,7 @@ import net.minecraft.block.LightningRodBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
@@ -63,6 +64,12 @@ public class LightningPearlEntity extends ThrownItemEntity {
             ((LightningRodBlock)blockState.getBlock()).setPowered(blockState, this.world, blockPos);
             this.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 0.5F, 1F);
         }
+    }
+
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        Entity entity = entityHitResult.getEntity();
+        entity.damage(DamageSource.thrownProjectile(this, user), 0);
     }
 
 

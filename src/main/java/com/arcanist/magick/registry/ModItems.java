@@ -33,12 +33,14 @@ public class ModItems {
     public static final Item NETHER_DUST = new Item( new Item.Settings().group(ItemGroup.MISC));
     public static final Item STONE_DUST = new Item( new Item.Settings().group(ItemGroup.MISC));
     public static final Item END_DUST = new Item( new Item.Settings().group(ItemGroup.MISC));
+    public static final Item CALCITE_DUST = new Item( new Item.Settings().group(ItemGroup.MISC));
 
     public static final Item PIECE_OF_PEARL = new Item( new Item.Settings().group(ItemGroup.MISC));
 
     //Block items
 
     public static void registerItems() {
+        Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "calcite_dust"), CALCITE_DUST);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "emerald_dust"), EMERALD_DUST);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "diamond_dust"), DIAMOND_DUST);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "quartz_dust"), QUARTZ_DUST);

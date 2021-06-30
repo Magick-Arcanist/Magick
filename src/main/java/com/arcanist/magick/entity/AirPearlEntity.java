@@ -7,6 +7,7 @@ import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.entity.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
@@ -43,13 +44,13 @@ public class AirPearlEntity extends ThrownItemEntity {
         Entity entity = entityHitResult.getEntity();
         if(entity instanceof LivingEntity) {
             ((LivingEntity) entity).takeKnockback(power*0.2F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
+            entity.damage(DamageSource.thrownProjectile(this, user), 0);
         }
     }
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         new PearlEffects().airPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
-             // *FIX* without the wait the box deletes before affecting the player, but this waits the whole thread.
                 this.discard();
         }
     }

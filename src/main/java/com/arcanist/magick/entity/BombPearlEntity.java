@@ -10,6 +10,7 @@ import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
@@ -47,7 +48,8 @@ public class BombPearlEntity extends ThrownItemEntity {
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        new PearlEffects().bombPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
+        Entity entity = entityHitResult.getEntity();
+        entity.damage(DamageSource.thrownProjectile(this, user), 0);
     }
 
 }

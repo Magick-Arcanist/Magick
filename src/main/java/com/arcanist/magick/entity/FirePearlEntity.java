@@ -9,10 +9,14 @@ import com.arcanist.magick.statuseffect.PearlEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.BlazeEntity;
+import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -39,6 +43,8 @@ public class FirePearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
+    public float damage = PearlEffects.power(this.world, user);
+
     protected void onCollision(HitResult hitResult) { // called on collision with a block
         super.onCollision(hitResult);
         {
@@ -49,10 +55,11 @@ public class FirePearlEntity extends ThrownItemEntity {
 
     protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
         super.onEntityHit(entityHitResult);
-            Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
-               if (entity instanceof LivingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
-                entity.setOnFireFor(200);
-            }
+        Entity entity = entityHitResult.getEntity();
+        int i = entity instanceof SnowGolemEntity ? 6 : 0;
+        entity.damage(DamageSource.thrownProjectile(this, user), (float) i + damage);
+        if (entity instanceof LivingEntity) {
+            entity.setOnFireFor(200);
+        }
     }
-
 }

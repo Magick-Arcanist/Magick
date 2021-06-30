@@ -11,14 +11,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TemptGoal.class)
 public abstract class TemptGoalMixin {
-	
-	@Shadow protected PlayerEntity closestPlayer;
-	
+	@Shadow
+	protected PlayerEntity closestPlayer;
+
 	@Inject(method = "isTemptedBy", at = @At(value = "HEAD"), cancellable = true)
 	public void loveCheck(CallbackInfoReturnable<Boolean> info) {
 		if (closestPlayer != null && closestPlayer.getStatusEffect(ModEffects.LOVE) != null) {
 			info.setReturnValue(true);
 		}
 	}
-	
+
 }

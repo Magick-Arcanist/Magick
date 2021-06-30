@@ -6,6 +6,10 @@ import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -34,9 +38,11 @@ public class PearlEffects {
 
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*3;
+        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).takeKnockback(radius*0.2F,entityX - entities.getX(),entityZ - entities.getZ());
+                entities.damage(damageSource, 0);
            }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F); // makes the pearl play a sound when the effect happens
         }
@@ -44,8 +50,10 @@ public class PearlEffects {
 
 
     public void bombPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user){
-       if (!entity.world.isClient) {
-            entity.world.createExplosion(null, entityX, entityY, entityZ, power(entityWorld, user), false, Explosion.DestructionType.BREAK);
+        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
+        float radius = power(entityWorld, user);
+        if (!entity.world.isClient) {
+            entity.world.createExplosion(null, damageSource, null, entityX, entityY, entityZ, radius, false, Explosion.DestructionType.BREAK);
         }
     }
 
@@ -181,9 +189,11 @@ public class PearlEffects {
 
     public void vacPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         double radius = power(entityWorld, user)*3;
+        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).takeKnockback(radius*0.2F, entities.getX() - entityX, entities.getZ() - entityZ);
+                entities.damage(damageSource, 0);
             }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
         }
@@ -191,9 +201,10 @@ public class PearlEffects {
 
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         float radius = power(entityWorld, user);
+         DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                entities.damage(DamageSource.MAGIC, radius*3);
+                entities.damage(damageSource, radius*3);
                 entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
             }
 
@@ -230,8 +241,6 @@ public class PearlEffects {
             }
         }
     }
-
-
 
     // other radius based effects below
 
@@ -293,4 +302,26 @@ public class PearlEffects {
         }
     }
 
+    public void fearEffect(int amplifier, LivingEntity user, double entityX, double entityY, double entityZ, World entityWorld) {
+        double radius = amplifier + 3;
+        DamageSource damageSource = DamageSource.magic(user, user);
+        for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
+            if(entities instanceof LivingEntity) {
+                ((LivingEntity) entities).setAttacker(user);
+            }
+            if(entities instanceof VillagerEntity) {
+                entities.damage(damageSource, 0);
+            }
+        }
+    }
+
+    public void loveEffect(int amplifier, LivingEntity user, double entityX, double entityY, double entityZ, World entityWorld) {
+        double radius = amplifier + 3;
+        PlayerEntity player = ((PlayerEntity) user);
+        for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
+            if(entities instanceof TameableEntity && !((TameableEntity) entities).isTamed()) {
+                ((TameableEntity) entities).setOwner(player);
+            }
+        }
+    }
 }

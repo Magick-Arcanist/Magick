@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "magick:calcite_tag_4"
+  },
+  "result": "magick:calcite_dust",
+  "count": 4
+}

@@ -7,14 +7,12 @@
     "BrewingRecipeRegistryAccessor",
     "LivingEntityMixin",
     "TemptGoalMixin",
-    "EscapeDangerGoalMixin",
     "BrewRegistryMixin"
   ],
   "client": [
     "BrewingRecipeRegistryAccessor",
     "LivingEntityMixin",
     "TemptGoalMixin",
-    "EscapeDangerGoalMixin",
     "BrewRegistryMixin"
   ],
   "injectors": {
