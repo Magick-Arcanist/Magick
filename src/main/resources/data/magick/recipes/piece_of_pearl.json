@@ -1,13 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
       "item": "magick:quartz_dust"
     },
-    {
+    "X": {
       "item": "magick:obsidian_dust"
     }
-  ],
+  },
   "result": {
     "item": "magick:piece_of_pearl",
     "count": 1

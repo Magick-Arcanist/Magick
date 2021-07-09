@@ -19,9 +19,7 @@ public class EarthPearlItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
-
 		user.getItemCooldownManager().set(this, 5); //Optionally, you can add a cooldown to your item's right-click use, similar to Ender Pearls.
-
         if (!world.isClient) {
             EarthPearlEntity earthPearlEntity = new EarthPearlEntity(world, user);
             earthPearlEntity.setItem(itemStack);

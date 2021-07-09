@@ -1,7 +1,7 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.client.MagickClient;
+import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
@@ -50,8 +50,11 @@ public class AirPearlEntity extends ThrownItemEntity {
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        new PearlEffects().airPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
+        if (!this.world.isClient) {
+        new PearlEffects().airPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
+            {
                 this.discard();
+            }
         }
     }
 }

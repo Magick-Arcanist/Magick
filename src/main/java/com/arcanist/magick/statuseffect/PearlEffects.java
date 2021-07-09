@@ -200,11 +200,11 @@ public class PearlEffects {
     }
 
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
-        float radius = power(entityWorld, user);
+        float radius = power(entityWorld, user)*2;
          DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
-        for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
+        for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
             if(entities instanceof LivingEntity) {
-                entities.damage(damageSource, radius*3);
+                entities.damage(damageSource, radius);
                 entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
             }
 

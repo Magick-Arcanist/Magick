@@ -17,6 +17,7 @@
     "minecraft:cobbled_deepslate_stairs",
     "minecraft:cobbled_deepslate_wall",
     "minecraft:cracked_deepslate_bricks",
-    "minecraft:infested_deepslate"
+    "minecraft:infested_deepslate",
+    "minecraft:furnace"
   ]
 }

@@ -1,17 +1,15 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.client.MagickClient;
+import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.PearlEffects;
-import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
@@ -53,8 +51,9 @@ public class VacPearlEntity extends ThrownItemEntity {
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        new PearlEffects().vacPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);{
-                this.discard();
+        if (!this.world.isClient) {
+        new PearlEffects().vacPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
+        this.discard();
         }
     }
 }

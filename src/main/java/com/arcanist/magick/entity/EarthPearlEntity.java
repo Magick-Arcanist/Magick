@@ -1,7 +1,7 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.client.MagickClient;
+import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
@@ -41,18 +40,20 @@ public class EarthPearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    protected void onCollision(HitResult hitResult) { // called on collision with a block
-        super.onCollision(hitResult);
-        new PearlEffects().earthPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
-        this.discard(); // kills the projectile
-    }
-
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).takeKnockback(1.5F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
             entity.damage(DamageSource.thrownProjectile(this, user), 0);
+        }
+    }
+
+    protected void onCollision(HitResult hitResult) {
+        super.onCollision(hitResult);
+        if (!this.world.isClient) {
+            new PearlEffects().earthPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
+            this.discard();
         }
     }
 

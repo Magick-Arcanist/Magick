@@ -22,7 +22,7 @@
       "com.arcanist.magick.Magick"
     ],
     "client": [
-      "com.arcanist.magick.client.MagickClient"
+      "com.arcanist.magick.MagickClient"
     ]
   },
   "mixins": [

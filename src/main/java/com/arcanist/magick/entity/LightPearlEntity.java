@@ -1,7 +1,7 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.client.MagickClient;
+import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
@@ -42,11 +42,9 @@ public class LightPearlEntity extends ThrownItemEntity {
 
     protected void onCollision(HitResult hitResult) { // called on collision with a block
         super.onCollision(hitResult);
-        {
-            new PearlEffects().lightPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
+        if (!this.world.isClient) {
+            new PearlEffects().lightPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
+            this.discard();
         }
-        this.discard(); // kills the projectile
     }
-
-
 }

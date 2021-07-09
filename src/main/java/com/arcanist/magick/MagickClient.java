@@ -1,4 +1,4 @@
-package com.arcanist.magick.client;
+package com.arcanist.magick;
 
 import com.arcanist.magick.Magick;
 import com.arcanist.magick.entity.AirPearlEntity;

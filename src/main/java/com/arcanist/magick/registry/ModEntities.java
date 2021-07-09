@@ -56,6 +56,7 @@ public class ModEntities {
                     .build()
     );
 
+
     public static final EntityType<EarthPearlEntity> EarthPearlEntityType = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(Magick.MOD_ID, "earth_pearl"),

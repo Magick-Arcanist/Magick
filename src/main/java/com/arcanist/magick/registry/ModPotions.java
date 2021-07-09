@@ -151,6 +151,9 @@ public final class ModPotions {
         mapPotions(LONG_ORE_SENSE, Items.FERMENTED_SPIDER_EYE, LONG_PHOTOSYNTHESIS);
         mapPotions(STRONG_ORE_SENSE, Items.FERMENTED_SPIDER_EYE, STRONG_PHOTOSYNTHESIS);
 
+        mapPotions(Potions.AWKWARD, Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
+        mapPotions(Potions.WEAKNESS, Items.FERMENTED_SPIDER_EYE, Potions.STRENGTH);
+        mapPotions(Potions.LONG_WEAKNESS, Items.FERMENTED_SPIDER_EYE, Potions.LONG_STRENGTH);
     }
 
     private static Potion register(String id, Potion potion) {
