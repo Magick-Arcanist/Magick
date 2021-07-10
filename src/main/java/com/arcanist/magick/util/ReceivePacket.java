@@ -1,4 +1,4 @@
-package com.arcanist.magick;
+package com.arcanist.magick.util;
 
 import com.arcanist.magick.Magick;
 import com.arcanist.magick.entity.AirPearlEntity;
@@ -6,7 +6,6 @@ import com.arcanist.magick.entity.FirePearlEntity;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEntities;
-import com.arcanist.magick.util.ReceivePacket;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -31,34 +30,11 @@ import net.minecraft.util.registry.Registry;
 import java.nio.file.Files;
 import java.util.UUID;
 
-
-public class MagickClient implements ClientModInitializer {
+public class ReceivePacket {
 
     public static final Identifier PacketID = new Identifier(Magick.MOD_ID, "spawn_packet");
 
-      @Override
-    public void onInitializeClient() {
-        EntityRendererRegistry.INSTANCE.register(ModEntities.AirPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.BombPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.EarthPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.FirePearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.IcePearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.LightningPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.LightPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.PlantPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.VacPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.WarpPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.WaterPearlEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.INSTANCE.register(ModEntities.WebPearlEntityType, FlyingItemEntityRenderer::new);
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEMP_WEB_BLOCK, RenderLayer.getCutout());
-          new ReceivePacket().receiveEntityPacket();
-
-        //receiveEntityPacket();
-      }
-
-      // comment out  recieve packet entity for server side version
-/*
-    private void receiveEntityPacket() {
+    public void receiveEntityPacket() {
         ClientSidePacketRegistry.INSTANCE.register(PacketID, (ctx, byteBuf) -> {
             EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
             UUID uuid = byteBuf.readUuid();
@@ -83,5 +59,4 @@ public class MagickClient implements ClientModInitializer {
         });
     }
 
- */
 }

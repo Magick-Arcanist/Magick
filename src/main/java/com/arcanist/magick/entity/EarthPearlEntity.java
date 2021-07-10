@@ -6,6 +6,7 @@ import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.PearlEffects;
+import com.arcanist.magick.util.ReceivePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
