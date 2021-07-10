@@ -3,6 +3,8 @@ package com.arcanist.magick;
 import com.arcanist.magick.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -43,7 +45,6 @@ public class Magick implements ModInitializer {
         ModBlocks.registerBlocks();
         ModPotions.init();
         ModEffects.registerEffects();
-
     }
 
 }

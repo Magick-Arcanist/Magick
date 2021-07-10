@@ -6,6 +6,8 @@ import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.PearlEffects;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,12 +21,12 @@ import net.minecraft.world.World;
 
 
 public class EarthPearlEntity extends ThrownItemEntity {
+
     public EarthPearlEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
     public EarthPearlEntity(World world, LivingEntity owner) {
-
         super(ModEntities.EarthPearlEntityType, owner, world);
     }
 
