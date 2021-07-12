@@ -17,21 +17,21 @@ public class PlantPearlItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
+        ItemStack itemStack = user.getStackInHand(hand);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F);
 
-		user.getItemCooldownManager().set(this, 5); //Optionally, you can add a cooldown to your item's right-click use, similar to Ender Pearls.
+		user.getItemCooldownManager().set(this, 20);
 
         if (!world.isClient) {
             PlantPearlEntity plantPearlEntity = new PlantPearlEntity(world, user);
             plantPearlEntity .setItem(itemStack);
             plantPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
-            world.spawnEntity(plantPearlEntity ); // spawns entity
+            world.spawnEntity(plantPearlEntity );
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1); // decrements itemStack if user is not in creative mode
+            itemStack.decrement(1);
         }
 
         return TypedActionResult.success(itemStack, world.isClient());

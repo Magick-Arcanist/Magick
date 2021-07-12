@@ -1,10 +1,11 @@
 package com.arcanist.magick;
 
-import com.arcanist.magick.registry.*;
+import com.arcanist.magick.registry.ModBlocks;
+import com.arcanist.magick.registry.ModEffects;
+import com.arcanist.magick.registry.ModItems;
+import com.arcanist.magick.registry.ModPotions;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

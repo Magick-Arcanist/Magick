@@ -4,9 +4,11 @@ import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEffects;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +20,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
-import java.util.*;
+import java.util.Random;
 
 public class PearlEffects {
 
@@ -200,7 +202,7 @@ public class PearlEffects {
     }
 
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
-        float radius = power(entityWorld, user)*2;
+        float radius = power(entityWorld, user)*4;
          DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
             if(entities instanceof LivingEntity) {

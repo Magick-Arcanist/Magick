@@ -1,6 +1,8 @@
 package com.arcanist.magick.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;

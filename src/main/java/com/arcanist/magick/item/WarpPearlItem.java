@@ -1,7 +1,6 @@
 package com.arcanist.magick.item;
 
 import com.arcanist.magick.entity.WarpPearlEntity;
-import com.arcanist.magick.entity.WebPearlEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,21 +17,21 @@ public class WarpPearlItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
+        ItemStack itemStack = user.getStackInHand(hand);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F);
 
-		user.getItemCooldownManager().set(this, 5); //Optionally, you can add a cooldown to your item's right-click use, similar to Ender Pearls.
+		user.getItemCooldownManager().set(this, 20);
 
         if (!world.isClient) {
             WarpPearlEntity warpPearlEntity = new WarpPearlEntity(world, user);
             warpPearlEntity .setItem(itemStack);
             warpPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
-            world.spawnEntity(warpPearlEntity ); // spawns entity
+            world.spawnEntity(warpPearlEntity );
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1); // decrements itemStack if user is not in creative mode
+            itemStack.decrement(1);
         }
 
         return TypedActionResult.success(itemStack, world.isClient());

@@ -4,7 +4,6 @@ import com.arcanist.magick.Magick;
 import com.arcanist.magick.mixin.BrewingRecipeRegistryAccessor;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
@@ -93,6 +92,8 @@ public final class ModPotions {
     public static final Potion LONG_LOVE = register("long_love", new Potion(new StatusEffectInstance(ModEffects.LOVE, 800 )));
 
     public static final Potion MANA  = register("mana", new Potion(new StatusEffectInstance(ModEffects.MANA, 1800 )), Items.LAPIS_LAZULI, Potions.AWKWARD);
+    public static final Potion LONG_MANA = register("long_mana", new Potion(new StatusEffectInstance(ModEffects.MANA, 4800 )));
+    public static final Potion STRONG_MANA = register("strong_mana", new Potion(new StatusEffectInstance(ModEffects.MANA, 900, 1 )));
 
 
     //mapPotions(POTION BASE, INGREDIENT, RESULT);

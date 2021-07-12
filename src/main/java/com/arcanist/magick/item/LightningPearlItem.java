@@ -18,20 +18,20 @@ public class LightningPearlItem extends Item {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F);
 
-		user.getItemCooldownManager().set(this, 5);
+		user.getItemCooldownManager().set(this, 20);
 
         if (!world.isClient) {
             LightningPearlEntity lightningPearlEntity = new LightningPearlEntity(world, user);
             lightningPearlEntity.setItem(itemStack);
             lightningPearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
-            world.spawnEntity(lightningPearlEntity); // spawns entity
+            world.spawnEntity(lightningPearlEntity);
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1); // decrements itemStack if user is not in creative mode
+            itemStack.decrement(1);
         }
 
         return TypedActionResult.success(itemStack, world.isClient());

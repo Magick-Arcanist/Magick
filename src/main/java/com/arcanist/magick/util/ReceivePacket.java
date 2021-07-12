@@ -1,33 +1,15 @@
 package com.arcanist.magick.util;
 
 import com.arcanist.magick.Magick;
-import com.arcanist.magick.entity.AirPearlEntity;
-import com.arcanist.magick.entity.FirePearlEntity;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
-import com.arcanist.magick.registry.ModBlocks;
-import com.arcanist.magick.registry.ModEntities;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 
-import java.nio.file.Files;
 import java.util.UUID;
 
 public class ReceivePacket {

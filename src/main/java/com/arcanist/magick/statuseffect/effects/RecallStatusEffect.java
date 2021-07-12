@@ -1,18 +1,13 @@
 package com.arcanist.magick.statuseffect.effects;
 
 import com.arcanist.magick.entitydata.EntityProperties;
-import com.arcanist.magick.registry.ModEffects;
 import com.arcanist.magick.util.DimensionalPosition;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.entity.mob.EndermiteEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.world.World;
 
 public class RecallStatusEffect extends StatusEffect {
 

@@ -9,8 +9,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
-import java.awt.*;
-
 public class DimensionalPosition {
 
     private final double x, y, z;
