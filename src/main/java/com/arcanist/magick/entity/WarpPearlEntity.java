@@ -13,6 +13,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.Packet;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -38,12 +39,11 @@ public class WarpPearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    public float damage = PearlEffects.power(this.world, user);
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.magic(this, user), damage);
+        entity.damage(DamageSource.thrownProjectile(this, user), 2);
     }
 
     protected void onCollision(HitResult hitResult) {

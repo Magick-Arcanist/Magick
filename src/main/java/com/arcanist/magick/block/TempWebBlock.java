@@ -6,6 +6,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -31,7 +32,7 @@ public class TempWebBlock extends Block {
 
     @Override
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-            worldIn.getBlockTickScheduler().schedule(pos, this, 600);
+            worldIn.getBlockTickScheduler().schedule(pos, this, 3600);
             super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
     }
 
@@ -44,8 +45,6 @@ public class TempWebBlock extends Block {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.fullCube();
     }
-
-
 
 }
 

@@ -23,8 +23,6 @@ public class ClearEffectStatusEffect extends StatusEffect {
         if (!entity.world.isClient) {
             entity.clearStatusEffects();
         }
-        if (entity instanceof PlayerEntity) {
-            entity.clearStatusEffects();
-        }
+
     }
 }

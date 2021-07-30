@@ -22,11 +22,13 @@ public class LoveStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof AnimalEntity) {
-            ((AnimalEntity) entity).setLoveTicks(40);
-        }
-        if (entity instanceof PlayerEntity){
-            new PearlEffects().loveEffect( amplifier+1, entity, entity.getX(),entity.getY(),entity.getZ(), entity.world);
+        if (!entity.world.isClient) {
+            if (entity instanceof AnimalEntity) {
+                ((AnimalEntity) entity).setLoveTicks(40);
+            }
+            if (entity instanceof PlayerEntity) {
+                new PearlEffects().loveEffect(amplifier + 1, entity, entity.getX(), entity.getY(), entity.getZ(), entity.world);
+            }
         }
     }
 }

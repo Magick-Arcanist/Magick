@@ -26,12 +26,11 @@ public class GravityStatusEffect extends StatusEffect {
 
         @Override
         public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-            if (!entity.world.isClient && !entity.isOnGround()) {
-                entity.move(MovementType.SELF, new Vec3d(0, -1.0 * (amplifier + 1), 0));
+            if (!entity.world.isClient) {
+                if (!entity.isOnGround()) {
+                    entity.move(MovementType.SELF, new Vec3d(0, -1.0 * (amplifier + 1), 0));
+                }
             }
-            if (entity instanceof PlayerEntity) {
-                entity.move(MovementType.PLAYER, new Vec3d(0, -0.3 * (amplifier + 1), 0) );
-        }
 
     }
 }

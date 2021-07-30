@@ -12,18 +12,16 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 
-public class RedBlock extends Block {
+public class RedBlock extends AirBlock {
 
     public RedBlock(Settings settings) {
-        super(Settings.of(Material.AIR)
-                .noCollision()
-        );
+        super(settings);
     }
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(!world.isClient) {
-            world.removeBlock(pos, true);
+            world.removeBlock(pos, false);
         }
     }
 
@@ -31,16 +29,6 @@ public class RedBlock extends Block {
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         worldIn.getBlockTickScheduler().schedule(pos, this, 20);
         super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.empty();
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState blockState) {
-        return BlockRenderType.INVISIBLE;
     }
 
     @Override

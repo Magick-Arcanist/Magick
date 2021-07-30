@@ -1,6 +1,7 @@
 package com.arcanist.magick;
 
 import com.arcanist.magick.registry.ModBlocks;
+import com.arcanist.magick.registry.ModEffects;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.util.ReceivePacket;
 import net.fabricmc.api.ClientModInitializer;

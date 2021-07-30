@@ -23,6 +23,8 @@ public class OreSenseStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        new PearlEffects().oreSight( amplifier, entity, entity.getX(),entity.getY(),entity.getZ(), entity.world);
+        if (!entity.world.isClient) {
+            new PearlEffects().oreSight(amplifier, entity, entity.getX(), entity.getY(), entity.getZ(), entity.world);
+        }
     }
 }

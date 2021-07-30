@@ -98,6 +98,7 @@ public final class ModPotions {
 
     //mapPotions(POTION BASE, INGREDIENT, RESULT);
     public static void init() { RECIPES.forEach(RecipeToInit::init);
+
         //make luck brewable and inverting turns it into unluck and back
         mapPotions(Potions.AWKWARD, ModItems.EMERALD_DUST, Potions.LUCK);
         mapPotions(UNLUCK, Items.FERMENTED_SPIDER_EYE, Potions.LUCK);

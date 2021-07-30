@@ -57,10 +57,11 @@ public class LightningPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, user), 0);
+        entity.damage(DamageSource.thrownProjectile(this, user), 1F);
     }
 
-    protected void onCollision(HitResult hitResult) { // called on collision with a block
+
+    protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.world.isClient) {
             new PearlEffects().lightningPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);

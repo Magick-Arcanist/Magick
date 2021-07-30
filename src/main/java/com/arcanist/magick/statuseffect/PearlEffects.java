@@ -40,7 +40,7 @@ public class PearlEffects {
 
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*3;
-        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
+        DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).takeKnockback(radius*0.2F,entityX - entities.getX(),entityZ - entities.getZ());
@@ -50,9 +50,8 @@ public class PearlEffects {
         }
     }
 
-
     public void bombPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user){
-        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
+        DamageSource damageSource = DamageSource.explosion((LivingEntity) user);
         float radius = power(entityWorld, user);
         if (!entity.world.isClient) {
             entity.world.createExplosion(null, damageSource, null, entityX, entityY, entityZ, radius, false, Explosion.DestructionType.BREAK);
@@ -102,13 +101,18 @@ public class PearlEffects {
     }
 
     public void firePearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)+1;
+        double radius = power(entityWorld, user)*2;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.POWDER_SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW_BLOCK.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entity.world.setBlockState(blockPos, AbstractFireBlock.getState(entity.world, blockPos));
+                    } else if (entityWorld.getBlockState(blockPos) == Blocks.ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.PACKED_ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.FROSTED_ICE.getDefaultState()) {
+                        entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+                    }
+                    else if (entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) {
+                        entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -156,7 +160,7 @@ public class PearlEffects {
     }
 
     public void plantPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*2;
+        double radius = power(entityWorld, user)*3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
@@ -191,7 +195,7 @@ public class PearlEffects {
 
     public void vacPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         double radius = power(entityWorld, user)*3;
-        DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
+        DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).takeKnockback(radius*0.2F, entities.getX() - entityX, entities.getZ() - entityZ);
@@ -202,14 +206,13 @@ public class PearlEffects {
     }
 
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
-        float radius = power(entityWorld, user)*4;
-         DamageSource damageSource = DamageSource.magic(entity, user == null ? entity : user);
+        float radius = power(entityWorld, user)*5;
+         DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
             if(entities instanceof LivingEntity) {
                 entities.damage(damageSource, radius);
                 entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
             }
-
         }
     }
 
@@ -230,7 +233,7 @@ public class PearlEffects {
     }
 
     public void webPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*2;
+        double radius = power(entityWorld, user)*3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
@@ -306,7 +309,7 @@ public class PearlEffects {
 
     public void fearEffect(int amplifier, LivingEntity user, double entityX, double entityY, double entityZ, World entityWorld) {
         double radius = amplifier + 3;
-        DamageSource damageSource = DamageSource.magic(user, user);
+        DamageSource damageSource = DamageSource.mob(user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
                 ((LivingEntity) entities).setAttacker(user);

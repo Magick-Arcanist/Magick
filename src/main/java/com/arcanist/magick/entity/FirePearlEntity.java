@@ -45,8 +45,8 @@ public class FirePearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof SnowGolemEntity ? 6 : 0;
-        entity.damage(DamageSource.thrownProjectile(this, user), (float) i + damage);
+        float i = entity instanceof SnowGolemEntity ? 6 : 0;
+        entity.damage(DamageSource.thrownProjectile(this, user), i + damage);
         if (entity instanceof LivingEntity) {
             entity.setOnFireFor(200);
         }

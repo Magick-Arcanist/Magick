@@ -47,8 +47,8 @@ public class WaterPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
-        int i = entity instanceof BlazeEntity ? 6 : 0;// sets i to 6 if the Entity instance is an instance of BlazeEntity
-        entity.damage(DamageSource.thrownProjectile(this, user), (float) i + 1); // deals damage
+        float i = entity instanceof BlazeEntity ? 6 : 0;// sets i to 6 if the Entity instance is an instance of BlazeEntity
+        entity.damage(DamageSource.thrownProjectile(this, user),i + 1); // deals damage
         if (entity instanceof LivingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
             entity.extinguish();
             entity.playSound(SoundEvents.ENTITY_GENERIC_SPLASH, 1F, 1F); // plays a sound for the entity hit only

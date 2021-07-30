@@ -38,7 +38,7 @@ public class WebPearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    protected void onCollision(HitResult hitResult) { // called on collision with a block
+    protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.world.isClient) {
             new PearlEffects().webPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
