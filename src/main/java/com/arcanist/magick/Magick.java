@@ -10,11 +10,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 
 public class Magick implements ModInitializer {
 
     public static final String MOD_ID = "magick";
+
+    public static final Identifier PacketID = new Identifier(Magick.MOD_ID, "spawn_packet");
 
     //Creates Magick TAB
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(

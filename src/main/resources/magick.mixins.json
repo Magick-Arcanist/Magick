@@ -10,6 +10,10 @@
     "BrewRegistryMixin"
   ],
   "client": [
+    "BrewingRecipeRegistryAccessor",
+    "LivingEntityMixin",
+    "TemptGoalMixin",
+    "BrewRegistryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

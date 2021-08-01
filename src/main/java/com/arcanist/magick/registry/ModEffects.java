@@ -1,11 +1,16 @@
 package com.arcanist.magick.registry;
 
 import com.arcanist.magick.statuseffect.effects.*;
+import com.mojang.datafixers.FunctionType;
+import net.minecraft.client.texture.SpriteAtlasHolder;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class ModEffects {
+public class ModEffects extends StatusEffects {
 
         public static final StatusEffect FEAR = new FearStatusEffect();
         public static final StatusEffect GRAVITY = new GravityStatusEffect();
@@ -34,5 +39,6 @@ public class ModEffects {
                 Registry.register(Registry.STATUS_EFFECT, new Identifier("magick", "love"), LOVE);
                 Registry.register(Registry.STATUS_EFFECT, new Identifier("magick", "mana"), MANA);
         }
-}
 
+
+}

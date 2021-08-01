@@ -62,10 +62,9 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
     //Climbing
     @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
     public void SpiderClimbCheck(CallbackInfoReturnable<Boolean> info) {
-        if(this.getStatusEffect(ModEffects.SPIDERCLIMB) != null){
-            if(this.horizontalCollision)
-                info.setReturnValue(true);
-                }
+        if(this.getStatusEffect(ModEffects.SPIDERCLIMB) != null && this.horizontalCollision){
+            info.setReturnValue(true);
+        }
     }
 
 

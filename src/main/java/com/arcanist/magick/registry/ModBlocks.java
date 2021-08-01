@@ -12,7 +12,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
 
-    //Are you wondering why the Material is REPLACEABLE_PLANT instead of AIR?
+    //Are you wondering why the Material for the invisible reda nad white blocks is REPLACEABLE_PLANT instead of AIR?
     //Because AIR gets pushed by pistons unless you add .air() to the settings, but doing so makes the block not tick properly so the invisible blocks hang around forever.
     //is it a good solution? No. does it work? Yes. Am I happy about it? No. Could I fix it? Not without significantly more work for the same result.
 

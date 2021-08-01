@@ -16,9 +16,7 @@ public class LoveStatusEffect extends StatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return true;
-    }
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {return true;}
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
