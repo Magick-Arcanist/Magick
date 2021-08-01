@@ -1,8 +1,13 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.registry.ModEffects;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class SpiderClimbStatusEffect extends StatusEffect {
 
@@ -21,5 +26,9 @@ public class SpiderClimbStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         // This method is called when it applies the status effect. We implement custom functionality here. in this case there is none because its called from the LivingEntityMixin
+    }
+
+    public static boolean hasEffect(Entity entity) {
+        return ((LivingEntity) entity).hasStatusEffect(ModEffects.SPIDERCLIMB);
     }
 }

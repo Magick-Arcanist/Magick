@@ -1,6 +1,8 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.registry.ModEffects;
 import com.arcanist.magick.statuseffect.PearlEffects;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -20,13 +22,14 @@ public class LoveStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.world.isClient) {
             if (entity instanceof AnimalEntity) {
                 ((AnimalEntity) entity).setLoveTicks(40);
             }
             if (entity instanceof PlayerEntity) {
                 new PearlEffects().loveEffect(amplifier + 1, entity, entity.getX(), entity.getY(), entity.getZ(), entity.world);
             }
-        }
+    }
+    public static boolean hasEffect(Entity entity) {
+        return ((LivingEntity) entity).hasStatusEffect(ModEffects.LOVE);
     }
 }

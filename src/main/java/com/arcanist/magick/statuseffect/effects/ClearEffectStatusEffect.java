@@ -20,9 +20,7 @@ public class ClearEffectStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.world.isClient) {
-            entity.clearStatusEffects();
-        }
+        entity.clearStatusEffects();
 
     }
 }

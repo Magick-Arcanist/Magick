@@ -23,7 +23,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
         @Override
         public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-            if (!entity.world.isClient && entity instanceof PlayerEntity && isBrightlight(entity)) {
+            if (entity instanceof PlayerEntity && isBrightlight(entity)) {
                 ((PlayerEntity) entity).getHungerManager().add(1 << amplifier, 0f);
             }
         }

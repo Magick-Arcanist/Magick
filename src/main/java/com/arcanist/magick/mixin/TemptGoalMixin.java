@@ -1,6 +1,8 @@
 package com.arcanist.magick.mixin;
 
 import com.arcanist.magick.registry.ModEffects;
+import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
+import com.arcanist.magick.statuseffect.effects.LoveStatusEffect;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +18,7 @@ public abstract class TemptGoalMixin {
 
 	@Inject(method = "isTemptedBy", at = @At(value = "HEAD"), cancellable = true)
 	public void loveCheck(CallbackInfoReturnable<Boolean> info) {
-		if (closestPlayer != null && closestPlayer.getStatusEffect(ModEffects.LOVE) != null) {
+		if (closestPlayer != null && closestPlayer.hasStatusEffect(ModEffects.LOVE)) {
 			info.setReturnValue(true);
 		}
 	}
