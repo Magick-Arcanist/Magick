@@ -1,19 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#X",
-    "X#"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "magick:blackstone_dust"
     },
-    "X": {
+    {
+      "item": "magick:blackstone_dust"
+    },
+    {
+      "item": "magick:calcite_dust"
+    },
+    {
       "item": "magick:calcite_dust"
     }
-  },
+  ],
   "result": {
-    "item": "minecraft:basalt",
+    "item": "minecraft:tuff",
     "count": 1
   }
 }

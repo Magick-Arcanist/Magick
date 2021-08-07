@@ -39,13 +39,13 @@ public class AirPearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    public float power = PearlEffects.power(this.world, user)*3;
+    public float power = PearlEffects.power(this.world, user);
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         if(entity instanceof LivingEntity) {
-            ((LivingEntity) entity).takeKnockback(power*0.2F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
+            ((LivingEntity) entity).takeKnockback(power/4, this.getX() - entity.getX(), this.getZ() - entity.getZ());
             entity.damage(DamageSource.thrownProjectile(this, user), 0);
         }
     }

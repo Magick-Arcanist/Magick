@@ -12,6 +12,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -20,13 +21,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class PearlEffects {
 
     public static float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
-            float amplifier = ((((LivingEntity) owner).getStatusEffect(ModEffects.MANA).getAmplifier())+2);
+            float amplifier = ((Objects.requireNonNull(((LivingEntity) owner).getStatusEffect(ModEffects.MANA)).getAmplifier())+2);
             if (entityWorld.getDimension().hasEnderDragonFight()){
                 return amplifier*1.5F;
             }
@@ -39,11 +41,11 @@ public class PearlEffects {
     }
 
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)*3;
+        double radius = power(entityWorld, user)*4;
         DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(radius*0.2F,entityX - entities.getX(),entityZ - entities.getZ());
+                ((LivingEntity) entities).takeKnockback(radius/4,entityX - entities.getX(),entityZ - entities.getZ());
                 entities.damage(damageSource, 0);
            }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F); // makes the pearl play a sound when the effect happens
@@ -167,24 +169,12 @@ public class PearlEffects {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
                     if (entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         switch (new Random().nextInt(6 - 1 + 1) + 1) {
-                            case 1:
-                                entityWorld.setBlockState(blockPos, Blocks.OAK_LEAVES.getDefaultState());
-                                break;
-                            case 2:
-                                entityWorld.setBlockState(blockPos, Blocks.ACACIA_LEAVES.getDefaultState());
-                                break;
-                            case 3:
-                                entityWorld.setBlockState(blockPos, Blocks.BIRCH_LEAVES.getDefaultState());
-                                break;
-                            case 4:
-                                entityWorld.setBlockState(blockPos, Blocks.SPRUCE_LEAVES.getDefaultState());
-                                break;
-                            case 5:
-                                entityWorld.setBlockState(blockPos, Blocks.JUNGLE_LEAVES.getDefaultState());
-                                break;
-                            default:
-                                entityWorld.setBlockState(blockPos, Blocks.DARK_OAK_LEAVES.getDefaultState());
-                                break;
+                            case 1 -> entityWorld.setBlockState(blockPos, Blocks.OAK_LEAVES.getDefaultState());
+                            case 2 -> entityWorld.setBlockState(blockPos, Blocks.ACACIA_LEAVES.getDefaultState());
+                            case 3 -> entityWorld.setBlockState(blockPos, Blocks.BIRCH_LEAVES.getDefaultState());
+                            case 4 -> entityWorld.setBlockState(blockPos, Blocks.SPRUCE_LEAVES.getDefaultState());
+                            case 5 -> entityWorld.setBlockState(blockPos, Blocks.JUNGLE_LEAVES.getDefaultState());
+                            default -> entityWorld.setBlockState(blockPos, Blocks.DARK_OAK_LEAVES.getDefaultState());
                         }
                     }
                 }
@@ -194,11 +184,11 @@ public class PearlEffects {
     }
 
     public void vacPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
-        double radius = power(entityWorld, user)*3;
+        double radius = power(entityWorld, user)*4;
         DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(radius*0.2F, entities.getX() - entityX, entities.getZ() - entityZ);
+                ((LivingEntity) entities).takeKnockback(radius/4, entities.getX() - entityX, entities.getZ() - entityZ);
                 entities.damage(damageSource, 0);
             }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
@@ -211,8 +201,8 @@ public class PearlEffects {
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
             if(entities instanceof LivingEntity) {
                 entities.damage(damageSource, radius);
-                entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
             }
+            entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
         }
     }
 

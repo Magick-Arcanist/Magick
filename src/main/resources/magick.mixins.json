@@ -15,6 +15,12 @@
     "TemptGoalMixin",
     "BrewRegistryMixin"
   ],
+  "server": [
+    "BrewingRecipeRegistryAccessor",
+    "LivingEntityMixin",
+    "TemptGoalMixin",
+    "BrewRegistryMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

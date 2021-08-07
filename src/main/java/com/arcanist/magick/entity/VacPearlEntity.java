@@ -38,13 +38,13 @@ public class VacPearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    public float power = PearlEffects.power(this.world, user)*3;
+    public float power = PearlEffects.power(this.world, user);
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         if(entity instanceof LivingEntity) {
-            ((LivingEntity) entity).takeKnockback(power*0.2F, entity.getX() - this.getX(), entity.getZ() - this.getZ());
+            ((LivingEntity) entity).takeKnockback(power/4, entity.getX() - this.getX(), entity.getZ() - this.getZ());
             entity.damage(DamageSource.thrownProjectile(this, user), 0);
         }
     }

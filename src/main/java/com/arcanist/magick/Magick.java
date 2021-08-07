@@ -41,8 +41,6 @@ public class Magick implements ModInitializer {
           stacks.add(new ItemStack(ModItems.WEB_PEARL_ITEM));
       }).build();
 
-
-    // tells minecraft to initialise ModItems and ModBlocks
     @Override
     public void onInitialize() {
         ModItems.registerItems();

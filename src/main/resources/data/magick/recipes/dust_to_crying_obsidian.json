@@ -7,15 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "magick:piece_of_pearl"
+      "item": "magick:obsidian_dust"
     },
     "X": {
-      "item": "magick:calcite_dust"
+      "item": "minecraft:ghast_tear"
     }
   },
-
   "result": {
-    "item": "magick:vac_pearl",
+    "item": "minecraft:obsidian",
     "count": 1
   }
 }
