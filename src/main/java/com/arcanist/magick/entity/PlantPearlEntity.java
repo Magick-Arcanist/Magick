@@ -5,7 +5,7 @@ import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
-import com.arcanist.magick.statuseffect.PearlEffects;
+import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -49,7 +49,7 @@ public class PlantPearlEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) { // called on collision with a block
         super.onCollision(hitResult);
         if (!this.world.isClient) {
-            new PearlEffects().plantPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
+            new RadiusEffects().plantPearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
             this.discard();
         }
     }

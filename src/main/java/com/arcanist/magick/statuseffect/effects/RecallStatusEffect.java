@@ -6,14 +6,15 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
+
 import net.minecraft.entity.mob.EndermiteEntity;
 
 public class RecallStatusEffect extends StatusEffect {
 
     public RecallStatusEffect() {
         super(
-                StatusEffectType.NEUTRAL,
+                StatusEffectCategory.NEUTRAL,
                 0xc457ff);
     }
 

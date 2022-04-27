@@ -25,7 +25,7 @@ public class LightPearlItem extends Item {
         if (!world.isClient) {
             LightPearlEntity lightPearlEntity = new LightPearlEntity(world, user);
             lightPearlEntity.setItem(itemStack);
-            lightPearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            lightPearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(lightPearlEntity);
         }
 

@@ -25,7 +25,7 @@ public class WaterPearlItem extends Item {
         if (!world.isClient) {
             WaterPearlEntity waterPearlEntity = new WaterPearlEntity(world, user);
             waterPearlEntity.setItem(itemStack);
-            waterPearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            waterPearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(waterPearlEntity);
         }
 

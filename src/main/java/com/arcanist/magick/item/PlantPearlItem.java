@@ -25,7 +25,7 @@ public class PlantPearlItem extends Item {
         if (!world.isClient) {
             PlantPearlEntity plantPearlEntity = new PlantPearlEntity(world, user);
             plantPearlEntity .setItem(itemStack);
-            plantPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            plantPearlEntity .setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(plantPearlEntity );
         }
 

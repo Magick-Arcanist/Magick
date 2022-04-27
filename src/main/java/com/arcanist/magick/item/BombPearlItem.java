@@ -25,7 +25,7 @@ public class BombPearlItem extends Item {
         if (!world.isClient) {
             BombPearlEntity bombPearlEntity = new BombPearlEntity(world, user);
             bombPearlEntity .setItem(itemStack);
-            bombPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            bombPearlEntity .setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(bombPearlEntity );
         }
 

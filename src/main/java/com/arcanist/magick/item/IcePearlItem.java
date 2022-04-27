@@ -26,7 +26,7 @@ public class IcePearlItem extends Item {
         if (!world.isClient) {
             IcePearlEntity icePearlEntity = new IcePearlEntity(world, user);
             icePearlEntity.setItem(itemStack);
-            icePearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            icePearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(icePearlEntity);
         }
 

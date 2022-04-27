@@ -1,11 +1,9 @@
 package com.arcanist.magick.mixin;
 
 import com.arcanist.magick.entitydata.EntityProperties;
-import com.arcanist.magick.registry.ModEffects;
 import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
 import com.arcanist.magick.statuseffect.effects.SpiderClimbStatusEffect;
 import com.arcanist.magick.util.DimensionalPosition;
-import com.google.common.collect.Maps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,22 +13,16 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Map;
-import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements EntityProperties {
@@ -54,14 +46,32 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
     private final AttributeContainer attributes;
     static {HEALTH = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);}
 
-    public void setHealth(float health) {
-        this.dataTracker.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));
+   // public void setHealth(float health) {
+   //     this.dataTracker.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));
+   // }
+
+  /*
+    //Climbing
+    @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
+    public void SpiderClimbCheck(CallbackInfoReturnable<Boolean> info) {
+        if (SpiderClimbStatusEffect.hasEffect(this) && this.horizontalCollision ) {
+            info.setReturnValue(true);
+        }
     }
+    */
 
     //Climbing
     @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
     public void SpiderClimbCheck(CallbackInfoReturnable<Boolean> info) {
-        if (SpiderClimbStatusEffect.hasEffect(this) && this.horizontalCollision) {
+        double entityX = this.getX();
+        double entityY = this.getY();
+        double entityZ = this.getZ();
+        World entityWorld = this.getEntityWorld();
+        BlockPos blockPos1 = new BlockPos(entityX+1, entityY,entityZ);
+        BlockPos blockPos2 = new BlockPos(entityX-1, entityY,entityZ);
+        BlockPos blockPos3 = new BlockPos(entityX, entityY,entityZ+1);
+        BlockPos blockPos4 = new BlockPos(entityX, entityY,entityZ-1);
+        if (SpiderClimbStatusEffect.hasEffect(this) && (!entityWorld.getBlockState(blockPos1).isAir() || !entityWorld.getBlockState(blockPos2).isAir() || !entityWorld.getBlockState(blockPos3).isAir() || !entityWorld.getBlockState(blockPos4).isAir())) {
             info.setReturnValue(true);
         }
     }

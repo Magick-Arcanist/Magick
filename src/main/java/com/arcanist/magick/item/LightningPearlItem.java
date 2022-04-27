@@ -25,7 +25,7 @@ public class LightningPearlItem extends Item {
         if (!world.isClient) {
             LightningPearlEntity lightningPearlEntity = new LightningPearlEntity(world, user);
             lightningPearlEntity.setItem(itemStack);
-            lightningPearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            lightningPearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(lightningPearlEntity);
         }
 

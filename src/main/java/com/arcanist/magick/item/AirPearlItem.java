@@ -24,8 +24,8 @@ public class AirPearlItem extends Item {
 
         if (!world.isClient) {
             AirPearlEntity airPearlEntity = new AirPearlEntity(world, user);
-            airPearlEntity .setItem(itemStack);
-            airPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            airPearlEntity.setItem(itemStack);
+            airPearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(airPearlEntity ); // spawns entity
         }
 

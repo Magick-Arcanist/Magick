@@ -2,7 +2,8 @@ package com.arcanist.magick.statuseffect.effects;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
+
 import net.minecraft.entity.player.PlayerEntity;
 
 
@@ -10,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
         public PhotosynthesisStatusEffect() {
             super(
-                    StatusEffectType.BENEFICIAL,
+                    StatusEffectCategory.BENEFICIAL,
                     0x21ff21
             );
         }

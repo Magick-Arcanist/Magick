@@ -5,7 +5,7 @@ import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
-import com.arcanist.magick.statuseffect.PearlEffects;
+import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LightningRodBlock;
@@ -64,7 +64,7 @@ public class LightningPearlEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.world.isClient) {
-            new PearlEffects().lightningPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
+            new RadiusEffects().lightningPearlEffect(this, this.getX(), this.getY(), this.getZ(), this.world, user);
             this.discard();
         }
     }

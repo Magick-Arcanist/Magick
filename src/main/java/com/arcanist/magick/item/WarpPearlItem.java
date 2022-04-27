@@ -25,7 +25,7 @@ public class WarpPearlItem extends Item {
         if (!world.isClient) {
             WarpPearlEntity warpPearlEntity = new WarpPearlEntity(world, user);
             warpPearlEntity .setItem(itemStack);
-            warpPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            warpPearlEntity .setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(warpPearlEntity );
         }
 

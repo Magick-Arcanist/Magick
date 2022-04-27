@@ -23,7 +23,7 @@ public class EarthPearlItem extends Item {
         if (!world.isClient) {
             EarthPearlEntity earthPearlEntity = new EarthPearlEntity(world, user);
             earthPearlEntity.setItem(itemStack);
-            earthPearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            earthPearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(earthPearlEntity);
         }
 

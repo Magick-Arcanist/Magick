@@ -25,7 +25,7 @@ public class VacPearlItem extends Item {
         if (!world.isClient) {
             VacPearlEntity vacPearlEntity = new VacPearlEntity(world, user);
             vacPearlEntity .setItem(itemStack);
-            vacPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            vacPearlEntity .setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(vacPearlEntity );
         }
 

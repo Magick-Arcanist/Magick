@@ -2,14 +2,13 @@ package com.arcanist.magick.statuseffect.effects;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class ClearEffectStatusEffect extends StatusEffect {
 
     public ClearEffectStatusEffect() {
         super(
-                StatusEffectType.HARMFUL,
+                StatusEffectCategory.HARMFUL,
                 0xffffff);
     }
 

@@ -4,13 +4,14 @@ import com.arcanist.magick.registry.ModEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
+
 
 public class ImmortalStatusEffect extends StatusEffect {
 
     public ImmortalStatusEffect() {
         super(
-                StatusEffectType.BENEFICIAL,
+                StatusEffectCategory.BENEFICIAL,
                 0xa0a1a3);
     }
 

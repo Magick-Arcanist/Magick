@@ -5,7 +5,7 @@ import com.arcanist.magick.MagickClient;
 import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
-import com.arcanist.magick.statuseffect.PearlEffects;
+import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -40,7 +40,7 @@ public class FirePearlEntity extends ThrownItemEntity {
 
     public Entity user = this.getOwner();
 
-    public float damage = PearlEffects.power(this.world, user);
+    public float damage = RadiusEffects.power(this.world, user);
 
     protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
         super.onEntityHit(entityHitResult);
@@ -55,7 +55,7 @@ public class FirePearlEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) { // called on collision with a block
         super.onCollision(hitResult);
         if (!this.world.isClient) {
-            new PearlEffects().firePearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
+            new RadiusEffects().firePearlEffect(this, this.getX(),this.getY(),this.getZ(), this.world, user);
             this.discard(); }
     }
 

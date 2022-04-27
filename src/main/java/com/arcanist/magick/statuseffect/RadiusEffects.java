@@ -3,16 +3,15 @@ package com.arcanist.magick.statuseffect;
 import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEffects;
 import net.minecraft.block.AbstractFireBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.Fertilizable;
+import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +23,7 @@ import net.minecraft.world.explosion.Explosion;
 import java.util.Objects;
 import java.util.Random;
 
-public class PearlEffects {
+public class RadiusEffects {
 
     public static float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
@@ -39,6 +38,7 @@ public class PearlEffects {
         }
         else return 1;
     }
+
 
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*4;
@@ -61,39 +61,32 @@ public class PearlEffects {
     }
 
     public void earthPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)+1;
+        double radius = power(entityWorld, user)+2;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getDimension().isUltrawarm()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        switch (new Random().nextInt(4 - 1 + 1) + 1) {
-                            case 1:
-                                entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
-                                break;
-                            default:
-                                entityWorld.setBlockState(blockPos, Blocks.NETHERRACK.getDefaultState());
-                                break;
-                        }
-                    }
-                    else if ((entityWorld.getDimension().hasEnderDragonFight()) &&(entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        switch (new Random().nextInt(4 - 1 + 1) + 1) {
-                            case 1:
+                    if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                       if ((entityWorld.getDimension().isUltrawarm())){
+                           if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
+                               entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
+                           } else {
+                               entityWorld.setBlockState(blockPos, Blocks.NETHERRACK.getDefaultState());
+                           }
+                       }
+                        if ((entityWorld.getDimension().hasEnderDragonFight())){
+                            if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                 entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
-                                break;
-                            default:
+                            } else {
                                 entityWorld.setBlockState(blockPos, Blocks.END_STONE.getDefaultState());
-                                break;
+                            }
                         }
-                    }
-                    else if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        switch (new Random().nextInt(4 - 1 + 1) + 1) {
-                            case 1:
+                        else if ((!entityWorld.getDimension().hasEnderDragonFight()) || !(entityWorld.getDimension().isUltrawarm())){
+                            if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                 entityWorld.setBlockState(blockPos, Blocks.STONE.getDefaultState());
-                                break;
-                            default:
+                            } else {
                                 entityWorld.setBlockState(blockPos, Blocks.DIRT.getDefaultState());
-                                break;
+                            }
                         }
                     }
                 }
@@ -108,12 +101,21 @@ public class PearlEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.POWDER_SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW_BLOCK.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ((entityWorld.getBlockState(blockPos).isAir()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entity.world.setBlockState(blockPos, AbstractFireBlock.getState(entity.world, blockPos));
-                    } else if (entityWorld.getBlockState(blockPos) == Blocks.ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.PACKED_ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.FROSTED_ICE.getDefaultState()) {
+                    }
+                }
+            }
+        }
+        double radius2 = power(entityWorld, user)*3;
+        for (int x = (int) -radius2 - 1; x <= radius2; x++) {
+            for (int y = (int) -radius2 - 1; y <= radius2; y++) {
+                for (int z = (int) -radius2 - 1; z <= radius2; z++) {
+                    BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2 && entityWorld.getBlockState(blockPos) == Blocks.ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.PACKED_ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.FROSTED_ICE.getDefaultState()) {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
                     }
-                    else if (entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) {
+                    else if(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2 && entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.POWDER_SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW_BLOCK.getDefaultState()) {
                         entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                     }
                 }
@@ -123,17 +125,28 @@ public class PearlEffects {
     }
 
     public void icePearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        double radius = power(entityWorld, user)+1;
+        double radius = power(entityWorld, user);
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
-                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         if (entityWorld.getBlockState(blockPos).isAir()) {
                             entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
-                        } else if (entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState()) {
+                        }
+                    }
+                }
+            }
+        }
+        double radius2 = power(entityWorld, user)+2;
+        for (int x = (int) -radius2 - 1; x <= radius2; x++) {
+            for (int y = (int) -radius2 - 1; y <= radius2; y++) {
+                for (int z = (int) -radius2 - 1; z <= radius2; z++) {
+                    BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
+                    if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2) {
+                        if (entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.ICE.getDefaultState());
-                        } else if (entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) {
+                        }else if (entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
                         }
                     }
@@ -147,6 +160,7 @@ public class PearlEffects {
         BlockPos blockPos = new BlockPos(entityX, entityY, entityZ);
         if (((entity.world.isThundering()) || (power(entityWorld, user)>1.5)) && entity.world.isSkyVisible(blockPos)) {
             LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(entity.world);
+            assert lightningEntity != null;
             lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(blockPos));
             entity.world.spawnEntity(lightningEntity);
         }
@@ -161,6 +175,7 @@ public class PearlEffects {
         }
     }
 
+    /*
     public void plantPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
@@ -182,6 +197,30 @@ public class PearlEffects {
         }
         entity.playSound(SoundEvents.ITEM_CROP_PLANT, 2F, 1F);
     }
+     */
+
+    public void plantPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
+        double radius = power(entityWorld, user)*3;
+        for (int x = (int) -radius - 1; x <= radius; x++) {
+            for (int y = (int) -radius - 1; y <= radius; y++) {
+                for (int z = (int) -radius - 1; z <= radius; z++) {
+                    BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
+                    if ((entityWorld.getBlockState(blockPos).getBlock() instanceof Fertilizable) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                        BlockState blockState = entityWorld.getBlockState(blockPos);
+                        Fertilizable fertilizable = (Fertilizable)blockState.getBlock();
+                        if (fertilizable.isFertilizable(entityWorld, blockPos, blockState, entityWorld.isClient)) {
+                                if (fertilizable.canGrow(entityWorld, entityWorld.random, blockPos, blockState)) {
+                                    fertilizable.grow((ServerWorld)entityWorld, entityWorld.random, blockPos, blockState);
+                                }
+                            entityWorld.syncWorldEvent(1505, blockPos, 0);
+                        }
+
+                    }
+                }
+            }
+        }
+        entity.playSound(SoundEvents.ITEM_CROP_PLANT, 2F, 1F);
+    }
 
     public void vacPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         double radius = power(entityWorld, user)*4;
@@ -196,14 +235,15 @@ public class PearlEffects {
     }
 
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
-        float radius = power(entityWorld, user)*5;
+        float damage = power(entityWorld, user)*5;
          DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
             if(entities instanceof LivingEntity) {
-                entities.damage(damageSource, radius);
+                entities.damage(damageSource, damage);
             }
             entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
         }
+        redGlowEffect(1,entityX,entityY,entityZ,entityWorld);
     }
 
     public void waterPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
@@ -214,9 +254,8 @@ public class PearlEffects {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
                     if (!entityWorld.getDimension().isUltrawarm() && entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
-                        entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
                     }
-                    else entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
+                    entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
                 }
             }
         }
@@ -237,7 +276,7 @@ public class PearlEffects {
         }
     }
 
-    // other radius based effects below
+// enchantment and status effect radius'
 
     public void whiteGlowEffect(int amplifier, Entity entity, double entityX, double entityY, double entityZ, World entityWorld) {
         double radius = amplifier*3;
@@ -256,7 +295,7 @@ public class PearlEffects {
         }
     }
 
-    public void redGlowEffect(int amplifier, Entity entity, double entityX, double entityY, double entityZ, World entityWorld) {
+    public void redGlowEffect(int amplifier, double entityX, double entityY, double entityZ, World entityWorld) {
         double radius = amplifier*3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
@@ -272,24 +311,42 @@ public class PearlEffects {
         }
     }
 
-    public void oreSight(int amplifier, Entity entity, double entityX, double entityY, double entityZ, World entityWorld) {
+    public void oreSight(int amplifier, double entityX, double entityY, double entityZ, World entityWorld) {
         double radius = amplifier + 3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
                     if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        if (entityWorld.getBlockState(blockPos) == (Blocks.GOLD_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.NETHER_GOLD_ORE.getDefaultState())) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_GOLD_ORE.getDefaultState()))){
-                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 0.8F, 1f);
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.COAL_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_COAL_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_BASS, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.COPPER_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_COPPER_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_CHIME, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.LAPIS_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_LAPIS_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.IRON_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_IRON_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_BIT, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.REDSTONE_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_REDSTONE_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_XYLOPHONE, SoundCategory.BLOCKS, 0.8F, 1f);
                         }
                         if (entityWorld.getBlockState(blockPos) == Blocks.DIAMOND_ORE.getDefaultState() || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState()))){
                             entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_HARP, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == (Blocks.GOLD_ORE.getDefaultState()) || (entityWorld.getBlockState(blockPos) == (Blocks.NETHER_GOLD_ORE.getDefaultState())) || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_GOLD_ORE.getDefaultState()))){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 0.8F, 1f);
                         }
                         if (entityWorld.getBlockState(blockPos) == Blocks.EMERALD_ORE.getDefaultState() || (entityWorld.getBlockState(blockPos) == (Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState()))){
                             entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_DIDGERIDOO, SoundCategory.BLOCKS, 0.8F, 1f);
                         }
                         if (entityWorld.getBlockState(blockPos) == Blocks.ANCIENT_DEBRIS.getDefaultState() ){
                             entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_BANJO, SoundCategory.BLOCKS, 0.8F, 1f);
+                        }
+                        if (entityWorld.getBlockState(blockPos) == Blocks.NETHER_QUARTZ_ORE.getDefaultState() ){
+                            entityWorld.playSound(null, blockPos, SoundEvents.BLOCK_NOTE_BLOCK_SNARE, SoundCategory.BLOCKS, 0.8F, 1f);
                         }
                     }
                 }

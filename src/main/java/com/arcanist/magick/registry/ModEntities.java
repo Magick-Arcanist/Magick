@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ModEntities {
 
+
     public static final EntityType<FirePearlEntity> FirePearlEntityType = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(Magick.MOD_ID, "fire_pearl"),

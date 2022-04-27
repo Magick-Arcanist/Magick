@@ -25,7 +25,7 @@ public class WebPearlItem extends Item {
         if (!world.isClient) {
             WebPearlEntity webPearlEntity = new WebPearlEntity(world, user);
             webPearlEntity .setItem(itemStack);
-            webPearlEntity .setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            webPearlEntity .setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(webPearlEntity );
         }
 

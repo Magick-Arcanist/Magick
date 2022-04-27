@@ -1,16 +1,17 @@
 package com.arcanist.magick.statuseffect.effects;
 
-import com.arcanist.magick.statuseffect.PearlEffects;
+import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
+
 
 
 public class OreSenseStatusEffect extends StatusEffect {
 
     public OreSenseStatusEffect() {
         super(
-                StatusEffectType.BENEFICIAL,
+                StatusEffectCategory.BENEFICIAL,
                 0x000000
         );
     }
@@ -23,6 +24,6 @@ public class OreSenseStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-            new PearlEffects().oreSight(amplifier, entity, entity.getX(), entity.getY(), entity.getZ(), entity.world);
+            new RadiusEffects().oreSight(amplifier, entity.getX(), entity.getY(), entity.getZ(), entity.world);
     }
 }

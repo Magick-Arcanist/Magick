@@ -4,7 +4,7 @@ package com.arcanist.magick.statuseffect.effects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
@@ -13,7 +13,7 @@ public class GravityStatusEffect extends StatusEffect {
 
         public GravityStatusEffect() {
             super(
-                    StatusEffectType.HARMFUL,
+                    StatusEffectCategory.HARMFUL,
                     0x5400ad
             );
 

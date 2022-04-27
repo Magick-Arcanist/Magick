@@ -25,7 +25,7 @@ public class FirePearlItem extends Item {
         if (!world.isClient) {
             FirePearlEntity firePearlEntity = new FirePearlEntity(world, user);
             firePearlEntity.setItem(itemStack);
-            firePearlEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
+            firePearlEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0F);
             world.spawnEntity(firePearlEntity);
         }
 

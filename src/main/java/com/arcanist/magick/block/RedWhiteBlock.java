@@ -29,7 +29,7 @@ public class RedWhiteBlock extends AirBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        worldIn.getBlockTickScheduler().schedule(pos, this, 20);
+        worldIn.createAndScheduleBlockTick(pos, this, 20);
         super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
     }
 
