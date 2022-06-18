@@ -1,23 +1,21 @@
 package com.arcanist.magick;
 
-import com.arcanist.magick.registry.ModBlocks;
-import com.arcanist.magick.registry.ModEffects;
-import com.arcanist.magick.registry.ModItems;
-import com.arcanist.magick.registry.ModPotions;
+import com.arcanist.magick.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 
 
 public class Magick implements ModInitializer {
 
     public static final String MOD_ID = "magick";
 
-    public static final Identifier PacketID = new Identifier(Magick.MOD_ID, "spawn_packet");
+    public static Identifier identifier(String path) {
+        return new Identifier(Magick.MOD_ID, path);
+    }
 
     //Creates Magick TAB
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(

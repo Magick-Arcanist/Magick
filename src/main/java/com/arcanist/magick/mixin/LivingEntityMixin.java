@@ -15,6 +15,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,21 +45,9 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
         return this.attributes;
     }
     private final AttributeContainer attributes;
-    static {HEALTH = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);}
+    static {HEALTH = DataTracker.registerData(LivingEntityMixin.class, TrackedDataHandlerRegistry.FLOAT);}
 
-   // public void setHealth(float health) {
-   //     this.dataTracker.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));
-   // }
-
-  /*
-    //Climbing
-    @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
-    public void SpiderClimbCheck(CallbackInfoReturnable<Boolean> info) {
-        if (SpiderClimbStatusEffect.hasEffect(this) && this.horizontalCollision ) {
-            info.setReturnValue(true);
-        }
-    }
-    */
+   // public void setHealth(float health) { this.dataTracker.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));}
 
     //Climbing
     @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
@@ -71,7 +60,7 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
         BlockPos blockPos2 = new BlockPos(entityX-1, entityY,entityZ);
         BlockPos blockPos3 = new BlockPos(entityX, entityY,entityZ+1);
         BlockPos blockPos4 = new BlockPos(entityX, entityY,entityZ-1);
-        if (SpiderClimbStatusEffect.hasEffect(this) && (!entityWorld.getBlockState(blockPos1).isAir() || !entityWorld.getBlockState(blockPos2).isAir() || !entityWorld.getBlockState(blockPos3).isAir() || !entityWorld.getBlockState(blockPos4).isAir())) {
+        if (SpiderClimbStatusEffect.hasEffect(this) && ((entityWorld.getBlockState(blockPos1).isSolidBlock(world, blockPos1)) || (entityWorld.getBlockState(blockPos2).isSolidBlock(world, blockPos2)) || (entityWorld.getBlockState(blockPos3).isSolidBlock(world, blockPos3)) || (entityWorld.getBlockState(blockPos4).isSolidBlock(world, blockPos4)))) {
             info.setReturnValue(true);
         }
     }
@@ -100,7 +89,7 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
     }
 
     //Recall clear data
-    @Inject(at = @At("HEAD"), method = "clearStatusEffects", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "clearStatusEffects")
     public void clearRecallPosition(CallbackInfoReturnable<Boolean> info) {
         Entity entity = this;
         ((EntityProperties) entity).setRecallData(null);

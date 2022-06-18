@@ -1,8 +1,6 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.MagickClient;
-import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.RadiusEffects;
@@ -12,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.network.Packet;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -31,10 +28,6 @@ public class WarpPearlEntity extends ThrownItemEntity {
     protected Item getDefaultItem() {
         return ModItems.WARP_PEARL_ITEM;
     }
-    @Override
-    public Packet createSpawnPacket() {
-        return EntitySpawnPacket.create(this, MagickClient.PacketID);
-    }
 
     public Entity user = this.getOwner();
 
@@ -42,7 +35,7 @@ public class WarpPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, user), 2);
+        entity.damage(DamageSource.thrownProjectile(this, user), RadiusEffects.power(this.world, user)*7);
     }
 
     protected void onCollision(HitResult hitResult) {

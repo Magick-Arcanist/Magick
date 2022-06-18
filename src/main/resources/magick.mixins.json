@@ -2,24 +2,25 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.arcanist.magick.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingRecipeRegistryAccessor",
+    "BrewRegistryMixin",
+    "CobwebMixin",
     "LivingEntityMixin",
-    "TemptGoalMixin",
-    "BrewRegistryMixin"
+    "TemptGoalMixin"
   ],
   "client": [
     "BrewingRecipeRegistryAccessor",
+    "BrewRegistryMixin",
     "LivingEntityMixin",
-    "TemptGoalMixin",
-    "BrewRegistryMixin"
+    "TemptGoalMixin"
   ],
   "server": [
     "BrewingRecipeRegistryAccessor",
+    "BrewRegistryMixin",
     "LivingEntityMixin",
-    "TemptGoalMixin",
-    "BrewRegistryMixin"
+    "TemptGoalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

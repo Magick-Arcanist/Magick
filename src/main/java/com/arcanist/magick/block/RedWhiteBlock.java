@@ -16,21 +16,23 @@ import java.util.Random;
 
 public class RedWhiteBlock extends AirBlock {
 
-    public RedWhiteBlock(Settings settings) {
+    public RedWhiteBlock(AbstractBlock.Settings settings) {
         super(settings);
     }
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(!world.isClient) {
-            world.removeBlock(pos, false);
-        }
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
+        world.removeBlock(pos, false);
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        worldIn.createAndScheduleBlockTick(pos, this, 20);
-        super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        world.createAndScheduleBlockTick(pos, this, 20);
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
+        world.removeBlock(pos, false);
     }
 
     @Override

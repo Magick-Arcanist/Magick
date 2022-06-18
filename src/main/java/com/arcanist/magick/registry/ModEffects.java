@@ -3,13 +3,14 @@ package com.arcanist.magick.registry;
 import com.arcanist.magick.Magick;
 import com.arcanist.magick.statuseffect.effects.*;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ModEffects{
+public class ModEffects extends StatusEffects {
 
         private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
 

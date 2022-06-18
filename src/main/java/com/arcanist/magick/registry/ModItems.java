@@ -3,6 +3,7 @@ package com.arcanist.magick.registry;
 
 import com.arcanist.magick.Magick;
 import com.arcanist.magick.item.*;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;

@@ -2,6 +2,7 @@ package com.arcanist.magick.statuseffect.effects;
 
 import com.arcanist.magick.entitydata.EntityProperties;
 import com.arcanist.magick.util.DimensionalPosition;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
@@ -9,6 +10,10 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 import net.minecraft.entity.mob.EndermiteEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
+
+import static net.minecraft.world.dimension.DimensionTypes.*;
 
 public class RecallStatusEffect extends StatusEffect {
 
@@ -43,11 +48,13 @@ public class RecallStatusEffect extends StatusEffect {
                     entity.stopRiding();
                     if (!pos.getWorldId().equals(entity.getEntityWorld().getRegistryKey().getValue())) {
                         EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(entity.world);
+                        assert endermiteEntity != null;
                         endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
                         entity.world.spawnEntity(endermiteEntity);
 
                     } else {
                         entity.teleport(pos.getX(), pos.getY(), pos.getZ());
+
                     }
                 }
             } finally {

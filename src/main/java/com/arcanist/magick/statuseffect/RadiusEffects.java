@@ -2,15 +2,14 @@ package com.arcanist.magick.statuseffect;
 
 import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEffects;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Fertilizable;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -23,22 +22,23 @@ import net.minecraft.world.explosion.Explosion;
 import java.util.Objects;
 import java.util.Random;
 
+import static net.minecraft.world.dimension.DimensionTypes.*;
+
 public class RadiusEffects {
 
     public static float power(World entityWorld, Entity owner){
         if (owner != null && (((LivingEntity) owner).hasStatusEffect(ModEffects.MANA) )){
             float amplifier = ((Objects.requireNonNull(((LivingEntity) owner).getStatusEffect(ModEffects.MANA)).getAmplifier())+2);
-            if (entityWorld.getDimension().hasEnderDragonFight()){
+            if (entityWorld.getDimensionKey().equals(THE_END)){
                 return amplifier*1.5F;
             }
             else return amplifier;
         }
-        if (entityWorld.getDimension().hasEnderDragonFight()){
+        if (entityWorld.getDimensionKey().equals(THE_END)){
             return 1.5F;
         }
         else return 1;
     }
-
 
     public void airPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         double radius = power(entityWorld, user)*4;
@@ -54,7 +54,7 @@ public class RadiusEffects {
 
     public void bombPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user){
         DamageSource damageSource = DamageSource.explosion((LivingEntity) user);
-        float radius = power(entityWorld, user);
+        float radius = power(entityWorld, user)*1.5F;
         if (!entity.world.isClient) {
             entity.world.createExplosion(null, damageSource, null, entityX, entityY, entityZ, radius, false, Explosion.DestructionType.BREAK);
         }
@@ -66,22 +66,23 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                       if ((entityWorld.getDimension().isUltrawarm())){
+                    if ((entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState() || (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)) || (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+
+                        if ((entityWorld.getDimensionKey().equals(THE_NETHER))){
                            if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
                            } else {
                                entityWorld.setBlockState(blockPos, Blocks.NETHERRACK.getDefaultState());
                            }
                        }
-                        if ((entityWorld.getDimension().hasEnderDragonFight())){
+                        if ((entityWorld.getDimensionKey().equals(THE_END))){
                             if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                 entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
                             } else {
                                 entityWorld.setBlockState(blockPos, Blocks.END_STONE.getDefaultState());
                             }
                         }
-                        else if ((!entityWorld.getDimension().hasEnderDragonFight()) || !(entityWorld.getDimension().isUltrawarm())){
+                        else if (!(((entityWorld.getDimensionKey().equals(THE_END))) || (entityWorld.getDimensionKey().equals(THE_NETHER)))){
                             if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                 entityWorld.setBlockState(blockPos, Blocks.STONE.getDefaultState());
                             } else {
@@ -111,12 +112,14 @@ public class RadiusEffects {
         for (int x = (int) -radius2 - 1; x <= radius2; x++) {
             for (int y = (int) -radius2 - 1; y <= radius2; y++) {
                 for (int z = (int) -radius2 - 1; z <= radius2; z++) {
-                    BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2 && entityWorld.getBlockState(blockPos) == Blocks.ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.PACKED_ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.FROSTED_ICE.getDefaultState()) {
-                        entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
-                    }
-                    else if(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2 && entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.POWDER_SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW_BLOCK.getDefaultState()) {
-                        entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                    BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2) {
+                        if (entityWorld.getBlockState(blockPos) == Blocks.ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.PACKED_ICE.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.FROSTED_ICE.getDefaultState()) {
+                            entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+                        }
+                        if (entityWorld.getBlockState(blockPos) == Blocks.WATER.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.POWDER_SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW.getDefaultState() || entityWorld.getBlockState(blockPos) == Blocks.SNOW_BLOCK.getDefaultState()||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))) {
+                            entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                        }
                     }
                 }
             }
@@ -146,7 +149,14 @@ public class RadiusEffects {
                     if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2) {
                         if (entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.ICE.getDefaultState());
-                        }else if (entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) {
+                        }
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)) {
+                            entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
+                        }
+                        if ((entityWorld.getBlockState(blockPos) == FireBlock.getState(entity.world, blockPos)) || (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) {
+                            entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                        }
+                        else if (entityWorld.getBlockState(blockPos) == Blocks.LAVA.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
                         }
                     }
@@ -227,7 +237,7 @@ public class RadiusEffects {
         DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(null, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(radius/4, entities.getX() - entityX, entities.getZ() - entityZ);
+                ((LivingEntity) entities).takeKnockback(radius/2, entities.getX() - entityX, entities.getZ() - entityZ);
                 entities.damage(damageSource, 0);
             }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
@@ -241,9 +251,9 @@ public class RadiusEffects {
             if(entities instanceof LivingEntity) {
                 entities.damage(damageSource, damage);
             }
-            entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 2F, 2F);
+            redGlowEffect(1,entity, entityX, entityY, entityZ, entityWorld);
+            entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 1F, 2F);
         }
-        redGlowEffect(1,entityX,entityY,entityZ,entityWorld);
     }
 
     public void waterPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
@@ -252,10 +262,10 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (!entityWorld.getDimension().isUltrawarm() && entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if (!entityWorld.getDimension().ultrawarm() && entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
                     }
-                    entity.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 2F, 1F);
+                    entity.playSound(SoundEvents.AMBIENT_UNDERWATER_EXIT, 0.2F, 0F);
                 }
             }
         }
@@ -269,7 +279,7 @@ public class RadiusEffects {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
                     if (entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entityWorld.setBlockState(blockPos, ModBlocks.TEMP_WEB_BLOCK.getDefaultState());
-                        entity.playSound(SoundEvents.ENTITY_SPIDER_AMBIENT, 1F, -1F);
+                        entity.playSound(SoundEvents.ENTITY_SPIDER_AMBIENT, 0.4F, -1F);
                     }
                 }
             }
@@ -284,27 +294,32 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        entityWorld.setBlockState(blockPos, ModBlocks.WHITE_BLOCK.getDefaultState());
-                    }
-                    else if (entityWorld.getBlockState(blockPos) == ModBlocks.RED_BLOCK.getDefaultState()) {
-                        entityWorld.setBlockState(blockPos, ModBlocks.RED_WHITE_BLOCK.getDefaultState());
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius){
+                        if (entityWorld.getBlockState(blockPos)== Blocks.AIR.getDefaultState() || entityWorld.getBlockState(blockPos)== Blocks.VOID_AIR.getDefaultState() || entityWorld.getBlockState(blockPos)== Blocks.CAVE_AIR.getDefaultState()) {
+                            entityWorld.setBlockState(blockPos, ModBlocks.WHITE_BLOCK.getDefaultState());
+                        }
+                        else if (entityWorld.getBlockState(blockPos) == ModBlocks.RED_BLOCK.getDefaultState()) {
+                            entityWorld.setBlockState(blockPos, ModBlocks.RED_WHITE_BLOCK.getDefaultState());
+                        }
                     }
                 }
             }
         }
     }
 
-    public void redGlowEffect(int amplifier, double entityX, double entityY, double entityZ, World entityWorld) {
+    public void redGlowEffect(int amplifier, Entity entity, double entityX, double entityY, double entityZ, World entityWorld) {
         double radius = amplifier*3;
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (entityWorld.getBlockState(blockPos).isAir()) {
-                        entityWorld.setBlockState(blockPos, ModBlocks.RED_BLOCK.getDefaultState());
-                    } else if (entityWorld.getBlockState(blockPos) == ModBlocks.WHITE_BLOCK.getDefaultState()) {
-                        entityWorld.setBlockState(blockPos, ModBlocks.RED_WHITE_BLOCK.getDefaultState());
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius){
+                        if (entityWorld.getBlockState(blockPos)== Blocks.AIR.getDefaultState() || entityWorld.getBlockState(blockPos)== Blocks.VOID_AIR.getDefaultState() || entityWorld.getBlockState(blockPos)== Blocks.CAVE_AIR.getDefaultState()) {
+                            entityWorld.setBlockState(blockPos, ModBlocks.RED_BLOCK.getDefaultState());
+                        }
+                        else if (entityWorld.getBlockState(blockPos) == ModBlocks.WHITE_BLOCK.getDefaultState()) {
+                            entityWorld.setBlockState(blockPos, ModBlocks.RED_WHITE_BLOCK.getDefaultState());
+                        }
                     }
                 }
             }

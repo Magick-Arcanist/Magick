@@ -23,7 +23,7 @@ public class RedLightStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.world.isClient) {
-            new RadiusEffects().redGlowEffect( amplifier+1, entity.getX(),entity.getY(),entity.getZ(), entity.world);
+            new RadiusEffects().redGlowEffect( amplifier+1, entity, entity.getX(),entity.getY(),entity.getZ(), entity.world);
         }
     }
 

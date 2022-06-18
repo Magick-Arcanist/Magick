@@ -1,8 +1,6 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.MagickClient;
-import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.RadiusEffects;
@@ -13,7 +11,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -33,11 +30,6 @@ public class IcePearlEntity extends ThrownItemEntity {
     @Override
     protected Item getDefaultItem() {
         return ModItems.ICE_PEARL_ITEM;
-    }
-
-    @Override
-    public Packet createSpawnPacket() {
-        return EntitySpawnPacket.create(this, MagickClient.PacketID);
     }
 
     public Entity user = this.getOwner();

@@ -1,10 +1,17 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.registry.ModBlocks;
 import com.arcanist.magick.registry.ModEffects;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CobwebBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 
 public class SpiderClimbStatusEffect extends StatusEffect {

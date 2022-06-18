@@ -1,8 +1,6 @@
 package com.arcanist.magick.entity;
 
 
-import com.arcanist.magick.MagickClient;
-import com.arcanist.magick.entitydata.EntitySpawnPacket;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.RadiusEffects;
@@ -13,7 +11,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -28,7 +25,6 @@ public class WaterPearlEntity extends ThrownItemEntity {
     }
 
     public WaterPearlEntity(World world, LivingEntity owner) {
-
         super(ModEntities.WaterPearlEntityType, owner, world);
     }
 
@@ -37,10 +33,6 @@ public class WaterPearlEntity extends ThrownItemEntity {
         return ModItems.WATER_PEARL_ITEM;
     }
 
-    @Override
-    public Packet createSpawnPacket() {
-        return EntitySpawnPacket.create(this, MagickClient.PacketID);
-    }
 
     public Entity user = this.getOwner();
 
@@ -51,7 +43,6 @@ public class WaterPearlEntity extends ThrownItemEntity {
         entity.damage(DamageSource.thrownProjectile(this, user),i + 1); // deals damage
         if (entity instanceof LivingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
             entity.extinguish();
-            entity.playSound(SoundEvents.ENTITY_GENERIC_SPLASH, 1F, 1F); // plays a sound for the entity hit only
         }
     }
 

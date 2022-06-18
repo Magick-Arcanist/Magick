@@ -20,7 +20,6 @@ public class LightOrb extends Block {
         );
     }
 
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         return VoxelShapes.cuboid(0.375f, 0.375f, 0.375f, 0.625f, 0.625f, 0.625f);
