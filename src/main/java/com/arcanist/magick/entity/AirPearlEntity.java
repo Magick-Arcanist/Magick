@@ -3,6 +3,8 @@ package com.arcanist.magick.entity;
 import com.arcanist.magick.registry.ModEntities;
 import com.arcanist.magick.registry.ModItems;
 import com.arcanist.magick.statuseffect.RadiusEffects;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -14,13 +16,12 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
 public class AirPearlEntity extends ThrownItemEntity {
-
     public AirPearlEntity(EntityType<? extends AirPearlEntity> entityType, World world) {
         super(entityType, world);
     }
 
     public AirPearlEntity(World world, LivingEntity owner) {
-        super(ModEntities.AirPearlEntityType, owner, world);
+        super(ModEntities.AIR_PEARL_ENTITY, owner, world);
     }
 
     protected Item getDefaultItem() {

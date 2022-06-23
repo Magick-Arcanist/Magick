@@ -21,7 +21,7 @@ public class BombPearlEntity extends ThrownItemEntity {
     }
 
     public BombPearlEntity(World world, LivingEntity owner) {
-        super(ModEntities.BombPearlEntityType, owner, world);
+        super(ModEntities.BOMB_PEARL_ENTITY, owner, world);
     }
 
     @Override

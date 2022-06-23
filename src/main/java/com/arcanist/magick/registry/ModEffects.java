@@ -1,6 +1,7 @@
 package com.arcanist.magick.registry;
 
 import com.arcanist.magick.Magick;
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import com.arcanist.magick.statuseffect.effects.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
@@ -12,23 +13,23 @@ import java.util.Map;
 
 public class ModEffects extends StatusEffects {
 
-        private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
+    private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
 
-        public static final StatusEffect FEAR = create("fear", new FearStatusEffect());
-        public static final StatusEffect GRAVITY = create("gravity", new GravityStatusEffect());
-        public static final StatusEffect PHOTOSYNTHESIS = create("photosynthesis", new PhotosynthesisStatusEffect());
-        public static final StatusEffect SPIDERCLIMB = create("spiderclimb", new SpiderClimbStatusEffect());
-        public static final StatusEffect IMMORTAL = create("immortal", new ImmortalStatusEffect());
-        public static final StatusEffect REMOVE_EFFECTS = create("remove_effects", new ClearEffectStatusEffect());
-        public static final StatusEffect ORE_SENSE = create("ore_sense", new OreSenseStatusEffect());
-        public static final StatusEffect RECALL = create("recall", new RecallStatusEffect());
-        public static final StatusEffect RED_LIGHT = create("red_light", new RedLightStatusEffect());
-        public static final StatusEffect WHITE_LIGHT = create("white_light", new WhiteLightStatusEffect());
-        public static final StatusEffect LOVE = create("love", new LoveStatusEffect());
-        public static final StatusEffect MANA = create("mana", new ManaStatusEffect());
+    public static final ModStatusEffect FEAR = create("fear", new FearStatusEffect());
+    public static final ModStatusEffect GRAVITY = create("gravity", new GravityStatusEffect());
+    public static final ModStatusEffect PHOTOSYNTHESIS = create("photosynthesis", new PhotosynthesisStatusEffect());
+    public static final ModStatusEffect SPIDERCLIMB = create("spiderclimb", new SpiderClimbStatusEffect());
+    public static final ModStatusEffect IMMORTAL = create("immortal", new ImmortalStatusEffect());
+    public static final ModStatusEffect REMOVE_EFFECTS = create("remove_effects", new ClearEffectStatusEffect());
+    public static final ModStatusEffect ORE_SENSE = create("ore_sense", new OreSenseStatusEffect());
+    public static final ModStatusEffect RECALL = create("recall", new RecallStatusEffect());
+    public static final ModStatusEffect RED_LIGHT = create("red_light", new RedLightStatusEffect());
+    public static final ModStatusEffect WHITE_LIGHT = create("white_light", new WhiteLightStatusEffect());
+    public static final ModStatusEffect LOVE = create("love", new LoveStatusEffect());
+    public static final ModStatusEffect MANA = create("mana", new ManaStatusEffect());
 
-    private static <T extends StatusEffect> T create(String name, T effect) {
-        STATUS_EFFECTS.put(effect, new Identifier(Magick.MOD_ID, name));
+    private static <T extends ModStatusEffect> T create(String name, T effect) {
+        STATUS_EFFECTS.put(effect, new Identifier( Magick.MOD_ID, name));
         return effect;
     }
 

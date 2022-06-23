@@ -22,7 +22,7 @@ public class LightPearlEntity extends ThrownItemEntity {
 
     public LightPearlEntity(World world, LivingEntity owner) {
 
-        super(ModEntities.LightPearlEntityType, owner, world);
+        super(ModEntities.LIGHT_PEARL_ENTITY, owner, world);
     }
 
     @Override

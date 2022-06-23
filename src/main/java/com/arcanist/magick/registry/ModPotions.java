@@ -1,6 +1,7 @@
 package com.arcanist.magick.registry;
 
 import com.arcanist.magick.Magick;
+import com.arcanist.magick.mixin.BrewRegistryMixin;
 import com.arcanist.magick.mixin.BrewingRecipeRegistryAccessor;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -187,12 +188,8 @@ public final class ModPotions {
         Identifier id = Registry.POTION.getId(potion);
         Optional<Potion> lengthy = Registry.POTION.getOrEmpty(new Identifier(id.getNamespace(), "long_" + id.getPath()));
         Optional<Potion> strong = Registry.POTION.getOrEmpty(new Identifier(id.getNamespace(), "strong_" + id.getPath()));
-        if(lengthy.isPresent()) {
-            BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.REDSTONE, lengthy.get());
-        }
-        if(strong.isPresent()) {
-            BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.GLOWSTONE_DUST, strong.get());
-        }
+        lengthy.ifPresent(value -> BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.REDSTONE, value));
+        strong.ifPresent(value -> BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.GLOWSTONE_DUST, value));
     }
 
     private static class RecipeToInit {

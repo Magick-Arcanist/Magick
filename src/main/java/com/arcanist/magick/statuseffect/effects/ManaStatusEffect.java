@@ -1,12 +1,13 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 
 
-public class ManaStatusEffect extends StatusEffect {
+public class ManaStatusEffect extends ModStatusEffect {
 
     public ManaStatusEffect() {
         super(

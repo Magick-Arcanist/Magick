@@ -3,6 +3,7 @@ package com.arcanist.magick;
 import com.arcanist.magick.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,10 +13,6 @@ import net.minecraft.util.Identifier;
 public class Magick implements ModInitializer {
 
     public static final String MOD_ID = "magick";
-
-    public static Identifier identifier(String path) {
-        return new Identifier(Magick.MOD_ID, path);
-    }
 
     //Creates Magick TAB
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -45,6 +42,7 @@ public class Magick implements ModInitializer {
         ModBlocks.registerBlocks();
         ModPotions.init();
         ModEffects.registerEffects();
+        ModEntities.registerEntities();
     }
 
 }

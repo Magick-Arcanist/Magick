@@ -1,13 +1,14 @@
 package com.arcanist.magick.statuseffect.effects;
 
 import com.arcanist.magick.registry.ModEffects;
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 
-public class ImmortalStatusEffect extends StatusEffect {
+public class ImmortalStatusEffect extends ModStatusEffect {
 
     public ImmortalStatusEffect() {
         super(

@@ -24,7 +24,7 @@ public class IcePearlEntity extends ThrownItemEntity {
 
     public IcePearlEntity(World world, LivingEntity owner) {
 
-        super(ModEntities.IcePearlEntityType, owner, world);
+        super(ModEntities.ICE_PEARL_ENTITY, owner, world);
     }
 
     @Override
@@ -41,7 +41,6 @@ public class IcePearlEntity extends ThrownItemEntity {
         entity.damage(DamageSource.thrownProjectile(this, user), (float) i + 1);
         if (entity instanceof LivingEntity) {
             entity.extinguish();
-            entity.playSound(SoundEvents.ENTITY_GENERIC_SPLASH, 1F, 1F);
         }
     }
 

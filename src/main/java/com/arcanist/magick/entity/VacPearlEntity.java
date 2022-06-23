@@ -21,7 +21,7 @@ public class VacPearlEntity extends ThrownItemEntity {
 
     public VacPearlEntity(World world, LivingEntity owner) {
 
-        super(ModEntities.VacPearlEntityType, owner, world);
+        super(ModEntities.VAC_PEARL_ENTITY, owner, world);
     }
 
     @Override

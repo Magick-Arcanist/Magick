@@ -1,6 +1,7 @@
 package com.arcanist.magick.statuseffect.effects;
 
 
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.effect.StatusEffect;
@@ -9,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
 
-public class GravityStatusEffect extends StatusEffect {
+public class GravityStatusEffect extends ModStatusEffect {
 
         public GravityStatusEffect() {
             super(

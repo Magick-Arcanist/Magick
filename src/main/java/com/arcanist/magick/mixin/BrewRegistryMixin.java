@@ -18,7 +18,7 @@ public abstract class BrewRegistryMixin {
 	@Shadow private static void registerPotionRecipe(Potion input, Item item, Potion output) {}
 	
 	@Inject(method = "registerDefaults", at = @At("HEAD"))
-	private static void overrideDefaults(CallbackInfo cb) {
+	private static void overrideDefaultRecipes(CallbackInfo cb) {
 		registerPotionRecipe(Potions.LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.SLOW_FALLING);
 		registerPotionRecipe(Potions.LONG_LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.LONG_SLOW_FALLING);
 		registerPotionRecipe(Potions.STRONG_LEAPING, Items.FERMENTED_SPIDER_EYE, Potions.SLOW_FALLING);

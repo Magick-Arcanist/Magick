@@ -1,9 +1,9 @@
 package com.arcanist.magick.mixin;
 
-import com.arcanist.magick.entitydata.EntityProperties;
+import com.arcanist.magick.util.EntityRecallProperties;
 import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
 import com.arcanist.magick.statuseffect.effects.SpiderClimbStatusEffect;
-import com.arcanist.magick.util.DimensionalPosition;
+import com.arcanist.magick.util.DimensionPosition;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,8 +15,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,14 +24,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements EntityProperties {
+public abstract class LivingEntityMixin extends Entity implements EntityRecallProperties {
 
     public LivingEntityMixin(EntityType<?> type, World world, AttributeContainer attributes) {
         super(type, world);
         this.attributes = attributes;
     }
 
-    private DimensionalPosition recallPosition = null;
+    private DimensionPosition recallPosition = null;
     private static final TrackedData<Float> HEALTH;
     public final float getMaxHealth() {
         return (float)this.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
@@ -77,7 +75,7 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
     @Inject(at = @At("TAIL"), method = "readCustomDataFromNbt")
     public void readNbt(NbtCompound tag, CallbackInfo cb) {
         if (tag.contains("recallPosition")) {
-            recallPosition = DimensionalPosition.fromTag(tag.getCompound("recallPosition"));
+            recallPosition = DimensionPosition.fromTag(tag.getCompound("recallPosition"));
         }
     }
     //Recall write injection
@@ -92,16 +90,16 @@ public abstract class LivingEntityMixin extends Entity implements EntityProperti
     @Inject(at = @At("HEAD"), method = "clearStatusEffects")
     public void clearRecallPosition(CallbackInfoReturnable<Boolean> info) {
         Entity entity = this;
-        ((EntityProperties) entity).setRecallData(null);
+        ((EntityRecallProperties) entity).setRecallPos(null);
     }
 
     @Override
-    public DimensionalPosition getRecallPosition() {
+    public DimensionPosition getRecallPos() {
         return recallPosition;
     }
 
     @Override
-    public void setRecallData(DimensionalPosition pos) {
+    public void setRecallPos(DimensionPosition pos) {
         recallPosition = pos;
     }
 

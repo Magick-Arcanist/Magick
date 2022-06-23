@@ -22,7 +22,7 @@ public class EarthPearlEntity extends ThrownItemEntity {
     }
 
     public EarthPearlEntity(World world, LivingEntity owner) {
-        super(ModEntities.EarthPearlEntityType, owner, world);
+        super(ModEntities.EARTH_PEARL_ENTITY, owner, world);
     }
 
     @Override

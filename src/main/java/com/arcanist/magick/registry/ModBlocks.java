@@ -13,7 +13,7 @@ public class ModBlocks {
     public static final RedBlock RED_BLOCK = new RedBlock(FabricBlockSettings.of(Material.AIR).noCollision().ticksRandomly().air());
     public static final RedWhiteBlock RED_WHITE_BLOCK = new RedWhiteBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> {return 10;}).ticksRandomly().air());
     public static final LightOrb LIGHT_ORB = new LightOrb(FabricBlockSettings.of(Material.AIR));
-    public static final TempWebBlock TEMP_WEB_BLOCK = new TempWebBlock(FabricBlockSettings.of(Material.COBWEB).noCollision().requiresTool().strength(2.0F).nonOpaque().ticksRandomly());
+    public static final TempWebBlock TEMP_WEB_BLOCK = new TempWebBlock(FabricBlockSettings.of(Material.COBWEB).noCollision().strength(1.0F).ticksRandomly());
 
     public static void registerBlocks() {
         Registry.register(Registry.BLOCK, new Identifier(Magick.MOD_ID, "light_orb"), LIGHT_ORB);

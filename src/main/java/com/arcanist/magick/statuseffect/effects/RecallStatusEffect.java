@@ -1,21 +1,20 @@
 package com.arcanist.magick.statuseffect.effects;
 
-import com.arcanist.magick.entitydata.EntityProperties;
-import com.arcanist.magick.util.DimensionalPosition;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import com.arcanist.magick.statuseffect.ModStatusEffect;
+import com.arcanist.magick.util.EntityRecallProperties;
+import com.arcanist.magick.util.DimensionPosition;
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
-import net.minecraft.entity.mob.EndermiteEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
 
-import static net.minecraft.world.dimension.DimensionTypes.*;
+import java.util.Objects;
 
-public class RecallStatusEffect extends StatusEffect {
+public class RecallStatusEffect extends ModStatusEffect {
 
     public RecallStatusEffect() {
         super(
@@ -25,12 +24,9 @@ public class RecallStatusEffect extends StatusEffect {
 
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer abstractEntityAttributeContainer, int i) {
-        EntityProperties ep = (EntityProperties) entity;
-        if (ep.getRecallPosition() == null) {
-            ep.setRecallData(new DimensionalPosition(entity));
-        }
-        else {
-            ep.getRecallPosition();
+        EntityRecallProperties ep = (EntityRecallProperties) entity;
+        if (ep.getRecallPos() == null) {
+            ep.setRecallPos(new DimensionPosition(entity));
         }
     }
 
@@ -42,27 +38,20 @@ public class RecallStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.world.isClient) {
-            DimensionalPosition pos = ((EntityProperties) entity).getRecallPosition();
+            DimensionPosition dp = ((EntityRecallProperties) entity).getRecallPos();
             try {
-                if (pos != null) {
+                if (dp != null) {
                     entity.stopRiding();
-                    if (!pos.getWorldId().equals(entity.getEntityWorld().getRegistryKey().getValue())) {
-                        EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(entity.world);
-                        assert endermiteEntity != null;
-                        endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
-                        entity.world.spawnEntity(endermiteEntity);
-
-                    } else {
-                        entity.teleport(pos.getX(), pos.getY(), pos.getZ());
-
+                    if (!dp.getWorldId().equals(entity.getEntityWorld().getRegistryKey().getValue())) {
+                            entity.moveToWorld((ServerWorld) dp.getWorld(Objects.requireNonNull(entity.getServer())));
                     }
+                    entity.requestTeleport(dp.getX(), dp.getY(), dp.getZ());
                 }
             } finally {
-                ((EntityProperties) entity).setRecallData(null);
+                ((EntityRecallProperties) entity).setRecallPos(null);
+                entity.damage(DamageSource.FALL, 5.0F);
             }
         }
     }
-
-
 }
 

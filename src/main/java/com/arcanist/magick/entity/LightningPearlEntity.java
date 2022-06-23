@@ -27,7 +27,7 @@ public class LightningPearlEntity extends ThrownItemEntity {
 
     public LightningPearlEntity(World world, LivingEntity owner) {
 
-        super(ModEntities.LightningPearlEntityType, owner, world);
+        super(ModEntities.LIGHTNING_PEARL_ENTITY, owner, world);
     }
 
     @Override

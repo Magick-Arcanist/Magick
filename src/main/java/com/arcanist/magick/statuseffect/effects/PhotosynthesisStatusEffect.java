@@ -1,5 +1,6 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -7,7 +8,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 
 
-    public class PhotosynthesisStatusEffect extends StatusEffect {
+    public class PhotosynthesisStatusEffect extends ModStatusEffect {
 
         public PhotosynthesisStatusEffect() {
             super(

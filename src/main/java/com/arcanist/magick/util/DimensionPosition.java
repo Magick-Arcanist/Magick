@@ -4,28 +4,29 @@ package com.arcanist.magick.util;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
-public class DimensionalPosition {
+public class DimensionPosition {
 
     private final double x, y, z;
     private final Identifier world;
 
-    public DimensionalPosition(double x, double y, double z, Identifier world) {
+    public DimensionPosition(double x, double y, double z, Identifier world) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.world = world;
     }
 
-    public DimensionalPosition(double x, double y, double z, World world) {
+    public DimensionPosition(double x, double y, double z, World world) {
         this(x, y, z, world.getRegistryKey().getValue());
     }
 
-    public DimensionalPosition(Entity entity) {
+    public DimensionPosition(Entity entity) {
         this(entity.getPos().x, entity.getPos().y, entity.getPos().z, entity.getEntityWorld());
     }
 
@@ -49,8 +50,8 @@ public class DimensionalPosition {
         return server.getWorld(RegistryKey.of(Registry.WORLD_KEY, world));
     }
 
-    public static DimensionalPosition fromTag(NbtCompound tag) {
-        return new DimensionalPosition(tag.getDouble("x"), tag.getDouble("y"), tag.getDouble("z"), new Identifier(tag.getString("world")));
+    public static DimensionPosition fromTag(NbtCompound tag) {
+        return new DimensionPosition(tag.getDouble("x"), tag.getDouble("y"), tag.getDouble("z"), new Identifier(tag.getString("world")));
     }
 
     public NbtCompound toTag() {

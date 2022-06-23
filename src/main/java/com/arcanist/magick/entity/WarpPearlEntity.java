@@ -21,7 +21,7 @@ public class WarpPearlEntity extends ThrownItemEntity {
 
     public WarpPearlEntity(World world, LivingEntity owner) {
 
-        super(ModEntities.WarpPearlEntityType, owner, world);
+        super(ModEntities.WARP_PEARL_ENTITY, owner, world);
     }
 
     @Override

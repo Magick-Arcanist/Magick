@@ -21,7 +21,6 @@ public abstract class CobwebMixin {
             entity.slowMovement(state, new Vec3d(0.D, 0.0D, 0.0D));
         }
     } catch (Exception ignored) {
-
       }
     }
 }

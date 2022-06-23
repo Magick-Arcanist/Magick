@@ -1,6 +1,7 @@
 package com.arcanist.magick.statuseffect.effects;
 
 import com.arcanist.magick.registry.ModEffects;
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -10,7 +11,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class LoveStatusEffect extends StatusEffect {
+public class LoveStatusEffect extends ModStatusEffect {
 
     public LoveStatusEffect() {
         super(

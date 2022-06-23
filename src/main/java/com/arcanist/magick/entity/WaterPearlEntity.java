@@ -25,7 +25,7 @@ public class WaterPearlEntity extends ThrownItemEntity {
     }
 
     public WaterPearlEntity(World world, LivingEntity owner) {
-        super(ModEntities.WaterPearlEntityType, owner, world);
+        super(ModEntities.WATER_PEARL_ENTITY, owner, world);
     }
 
     @Override

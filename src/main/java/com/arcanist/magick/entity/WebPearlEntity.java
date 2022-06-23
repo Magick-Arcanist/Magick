@@ -20,7 +20,7 @@ public class WebPearlEntity extends ThrownItemEntity {
     }
 
     public WebPearlEntity(World world, LivingEntity owner) {
-        super(ModEntities.WebPearlEntityType, owner, world);
+        super(ModEntities.WEB_PEARL_ENTITY, owner, world);
     }
 
     @Override

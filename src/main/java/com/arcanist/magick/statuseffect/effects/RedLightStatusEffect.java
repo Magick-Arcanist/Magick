@@ -1,5 +1,6 @@
 package com.arcanist.magick.statuseffect.effects;
 
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import com.arcanist.magick.statuseffect.RadiusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -7,7 +8,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 
 
 
-public class RedLightStatusEffect extends StatusEffect {
+public class RedLightStatusEffect extends ModStatusEffect {
 
     public RedLightStatusEffect() {
         super(
