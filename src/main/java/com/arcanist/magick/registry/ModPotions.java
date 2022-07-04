@@ -86,8 +86,8 @@ public final class ModPotions {
     public static final Potion LONG_ORE_SENSE= register("long_ore_sense", new Potion(new StatusEffectInstance(ModEffects.ORE_SENSE, 9600 )));
     public static final Potion STRONG_ORE_SENSE = register("strong_ore_sense", new Potion(new StatusEffectInstance(ModEffects.ORE_SENSE, 1800, 1 )));
 
-    public static final Potion RECALL = register("recall", new Potion(new StatusEffectInstance(ModEffects.RECALL, 400)), Items.CHORUS_FRUIT, Potions.AWKWARD);
-    public static final Potion LONG_RECALL = register("long_recall", new Potion(new StatusEffectInstance(ModEffects.RECALL, 9600)));
+    public static final Potion RETURNING = register("returning", new Potion(new StatusEffectInstance(ModEffects.RETURNING, 400)), Items.CHORUS_FRUIT, Potions.AWKWARD);
+    public static final Potion LONG_RETURNING = register("long_returning", new Potion(new StatusEffectInstance(ModEffects.RETURNING, 9600)));
 
     public static final Potion LOVE = register("love", new Potion(new StatusEffectInstance(ModEffects.LOVE, 400 )), Items.WHEAT, Potions.AWKWARD);
     public static final Potion LONG_LOVE = register("long_love", new Potion(new StatusEffectInstance(ModEffects.LOVE, 800 )));

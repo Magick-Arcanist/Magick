@@ -22,7 +22,7 @@ public class ModEffects extends StatusEffects {
     public static final ModStatusEffect IMMORTAL = create("immortal", new ImmortalStatusEffect());
     public static final ModStatusEffect REMOVE_EFFECTS = create("remove_effects", new ClearEffectStatusEffect());
     public static final ModStatusEffect ORE_SENSE = create("ore_sense", new OreSenseStatusEffect());
-    public static final ModStatusEffect RECALL = create("recall", new RecallStatusEffect());
+    public static final ModStatusEffect RETURNING = create("returning", new ReturningStatusEffect());
     public static final ModStatusEffect RED_LIGHT = create("red_light", new RedLightStatusEffect());
     public static final ModStatusEffect WHITE_LIGHT = create("white_light", new WhiteLightStatusEffect());
     public static final ModStatusEffect LOVE = create("love", new LoveStatusEffect());

@@ -1,6 +1,6 @@
 package com.arcanist.magick.mixin;
 
-import com.arcanist.magick.util.EntityRecallProperties;
+import com.arcanist.magick.util.EntityReturnProperties;
 import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
 import com.arcanist.magick.statuseffect.effects.SpiderClimbStatusEffect;
 import com.arcanist.magick.util.DimensionPosition;
@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements EntityRecallProperties {
+public abstract class LivingEntityMixin extends Entity implements EntityReturnProperties {
 
     public LivingEntityMixin(EntityType<?> type, World world, AttributeContainer attributes) {
         super(type, world);
@@ -71,14 +71,14 @@ public abstract class LivingEntityMixin extends Entity implements EntityRecallPr
         }
     }
 
-    //Recall read injection
+    //Returning read injection
     @Inject(at = @At("TAIL"), method = "readCustomDataFromNbt")
     public void readNbt(NbtCompound tag, CallbackInfo cb) {
         if (tag.contains("recallPosition")) {
             recallPosition = DimensionPosition.fromTag(tag.getCompound("recallPosition"));
         }
     }
-    //Recall write injection
+    //Returning write injection
     @Inject(at = @At("TAIL"), method = "writeCustomDataToNbt")
     public void writeNbt(NbtCompound tag, CallbackInfo cb) {
         if (recallPosition != null) {
@@ -86,20 +86,20 @@ public abstract class LivingEntityMixin extends Entity implements EntityRecallPr
         }
     }
 
-    //Recall clear data
+    //Returning clear data
     @Inject(at = @At("HEAD"), method = "clearStatusEffects")
-    public void clearRecallPosition(CallbackInfoReturnable<Boolean> info) {
+    public void clearReturningPosition(CallbackInfoReturnable<Boolean> info) {
         Entity entity = this;
-        ((EntityRecallProperties) entity).setRecallPos(null);
+        ((EntityReturnProperties) entity).setReturnPos(null);
     }
 
     @Override
-    public DimensionPosition getRecallPos() {
+    public DimensionPosition getReturnPos() {
         return recallPosition;
     }
 
     @Override
-    public void setRecallPos(DimensionPosition pos) {
+    public void setReturnPos(DimensionPosition pos) {
         recallPosition = pos;
     }
 

@@ -51,7 +51,7 @@ public class RadiusEffects {
                 ((LivingEntity) entities).takeKnockback(radius/4,entityX - entities.getX(),entityZ - entities.getZ());
                 entities.damage(damageSource, 0);
            }
-            entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F); // makes the pearl play a sound when the effect happens
+            entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);
         }
     }
 
@@ -215,7 +215,7 @@ public class RadiusEffects {
         DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(user, new Box(entityX-radius, entityY-radius, entityZ-radius, entityX+radius, entityY+radius, entityZ+radius))) {
             if(entities instanceof LivingEntity) {
-                ((LivingEntity) entities).takeKnockback(radius/2, entities.getX() - entityX, entities.getZ() - entityZ);
+                ((LivingEntity) entities).takeKnockback(radius/4, entities.getX() - entityX, entities.getZ() - entityZ);
                 entities.damage(damageSource, 0);
             }
             entity.playSound(SoundEvents.ENTITY_PHANTOM_FLAP, 4F, 2F);

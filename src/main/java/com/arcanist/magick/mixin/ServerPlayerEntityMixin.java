@@ -1,20 +1,20 @@
 package com.arcanist.magick.mixin;
 
-import java.util.Iterator;
-
-import com.arcanist.magick.registry.ModEffects;
-import com.arcanist.magick.statuseffect.effects.RecallStatusEffect;
-import com.arcanist.magick.util.EntityRecallProperties;
+import com.arcanist.magick.util.EntityReturnProperties;
 import com.mojang.authlib.GameProfile;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.network.encryption.PlayerPublicKey;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryKey;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.entity.Entity;
@@ -36,7 +36,6 @@ import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProperties;
 import net.minecraft.world.biome.source.BiomeAccess;
-import org.spongepowered.asm.mixin.injection.callback.CancellationException;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
@@ -45,6 +44,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         super(world, pos, yaw, gameProfile, publicKey);
     }
 
+    // This class is not currently used because it does not work on servers when travelling from the Nether to the Overworld
+/*
     @Shadow
     private boolean inTeleportationState;
     @Shadow
@@ -71,28 +72,28 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "moveToWorld", at = @At("HEAD"), cancellable = true)
     public void moveToWorld(ServerWorld destination, CallbackInfoReturnable<Entity> ci) {
         this.inTeleportationState = true;
-        ServerWorld serverWorld = this.getWorld();
-        RegistryKey<World> registryKey = serverWorld.getRegistryKey();
-        EntityRecallProperties ep = (EntityRecallProperties) this;
-           if (!(ep.getRecallPos() == null) && (registryKey == World.END && destination.getRegistryKey() == World.OVERWORLD)) {
+        ServerWorld startingWorld = this.getWorld();
+        RegistryKey<World> registryKey = startingWorld.getRegistryKey();
+        EntityReturnProperties ep = (EntityReturnProperties) this;
+           if (!(ep.getReturnPos() == null) && (registryKey == World.END && destination.getRegistryKey() == World.OVERWORLD)) {
                WorldProperties worldProperties = destination.getLevelProperties();
                this.networkHandler.sendPacket(new PlayerRespawnS2CPacket(destination.getDimensionKey(), destination.getRegistryKey(), BiomeAccess.hashSeed(destination.getSeed()), this.interactionManager.getGameMode(), this.interactionManager.getPreviousGameMode(), destination.isDebugWorld(), destination.isFlat(), true, this.getLastDeathPos()));
                this.networkHandler.sendPacket(new DifficultyS2CPacket(worldProperties.getDifficulty(), worldProperties.isDifficultyLocked()));
                PlayerManager playerManager = this.server.getPlayerManager();
                playerManager.sendCommandTree((ServerPlayerEntity) (Object) this);
-               serverWorld.removePlayer((ServerPlayerEntity) (Object) this, RemovalReason.CHANGED_DIMENSION);
+               startingWorld.removePlayer((ServerPlayerEntity) (Object) this, RemovalReason.CHANGED_DIMENSION);
                this.unsetRemoved();
                TeleportTarget teleportTarget = this.getTeleportTarget(destination);
                if (teleportTarget != null) {
-                   serverWorld.getProfiler().push("moving");
-                   serverWorld.getProfiler().pop();
-                   serverWorld.getProfiler().push("placing");
+                   startingWorld.getProfiler().push("moving");
+                   startingWorld.getProfiler().pop();
+                   startingWorld.getProfiler().push("placing");
                    this.setWorld(destination);
                    destination.onPlayerChangeDimension((ServerPlayerEntity) (Object) this);
                    this.setRotation(teleportTarget.yaw, teleportTarget.pitch);
                    this.refreshPositionAfterTeleport(teleportTarget.position.x, teleportTarget.position.y, teleportTarget.position.z);
-                   serverWorld.getProfiler().pop();
-                   this.worldChanged(serverWorld);
+                   startingWorld.getProfiler().pop();
+                   this.worldChanged(startingWorld);
                    this.networkHandler.sendPacket(new PlayerAbilitiesS2CPacket(this.getAbilities()));
                    playerManager.sendWorldInfo((ServerPlayerEntity) (Object) this, destination);
                    playerManager.sendPlayerStatus((ServerPlayerEntity) (Object) this);
@@ -107,4 +108,6 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                ci.setReturnValue((ServerPlayerEntity) (Object) this);
            }
     }
+
+ */
 }

@@ -4,7 +4,6 @@ package com.arcanist.magick.util;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -65,15 +64,6 @@ public class DimensionPosition {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("DPos[");
-        sb.append(x);
-        sb.append(", ");
-        sb.append(y);
-        sb.append(", ");
-        sb.append(z);
-        sb.append(" @ ");
-        sb.append(world);
-        sb.append("]");
-        return sb.toString();
+        return "DimensionPos[" + x + ", " + y + ", " + z + " @ " + world + "]";
     }
 }
