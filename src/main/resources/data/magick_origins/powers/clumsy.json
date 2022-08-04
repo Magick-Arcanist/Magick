@@ -3,7 +3,7 @@
   "item_condition": {
     "type": "origins:ingredient",
     "ingredient": {
-      "tag": "magick:clumsy"
+      "tag": "magick_origins:clumsy"
     }
   },
   	"name": "Clumsy",
