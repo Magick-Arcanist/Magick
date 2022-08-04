@@ -1,5 +1,7 @@
 package com.arcanist.magick.mixin;
 
+import com.arcanist.magick.registry.ModEffects;
+import com.arcanist.magick.statuseffect.ModStatusEffect;
 import com.arcanist.magick.util.EntityReturnProperties;
 import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
 import com.arcanist.magick.statuseffect.effects.SpiderClimbStatusEffect;
@@ -10,13 +12,20 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -25,6 +34,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements EntityReturnProperties {
+
+    @Shadow @Final public static double GRAVITY;
+
+    @Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+
+    @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
+
+    @Shadow public abstract boolean damage(DamageSource source, float amount);
 
     public LivingEntityMixin(EntityType<?> type, World world, AttributeContainer attributes) {
         super(type, world);
@@ -103,4 +120,32 @@ public abstract class LivingEntityMixin extends Entity implements EntityReturnPr
         recallPosition = pos;
     }
 
+    //Make opposite effects counter each other
+    @Inject(at = @At("TAIL"), method = "tickStatusEffects")
+    public void counterEffects(CallbackInfo ci){
+        if (this.hasStatusEffect(ModEffects.GRAVITY) & this.hasStatusEffect(StatusEffects.LEVITATION)){
+            this.removeStatusEffect(ModEffects.GRAVITY); this.removeStatusEffect((StatusEffects.LEVITATION));
+        }
+        if (this.hasStatusEffect(StatusEffects.SPEED) & this.hasStatusEffect(StatusEffects.SLOWNESS)){
+                this.removeStatusEffect((StatusEffects.SPEED)); this.removeStatusEffect(StatusEffects.SLOWNESS);
+        }
+        if (this.hasStatusEffect(StatusEffects.HASTE) & this.hasStatusEffect(StatusEffects.MINING_FATIGUE)){
+                this.removeStatusEffect((StatusEffects.HASTE)); this.removeStatusEffect(StatusEffects.MINING_FATIGUE);
+        }
+        if (this.hasStatusEffect(StatusEffects.LUCK) & this.hasStatusEffect(StatusEffects.UNLUCK)){
+                this.removeStatusEffect((StatusEffects.LUCK)); this.removeStatusEffect(StatusEffects.UNLUCK);
+        }
+        if (this.hasStatusEffect(StatusEffects.NIGHT_VISION) & this.hasStatusEffect(StatusEffects.BLINDNESS)){
+                this.removeStatusEffect((StatusEffects.NIGHT_VISION)); this.removeStatusEffect(StatusEffects.BLINDNESS);
+        }
+        if (this.hasStatusEffect(StatusEffects.STRENGTH) & this.hasStatusEffect(StatusEffects.WEAKNESS)){
+                this.removeStatusEffect((StatusEffects.STRENGTH)); this.removeStatusEffect(StatusEffects.WEAKNESS);
+        }
+        if (this.hasStatusEffect(StatusEffects.GLOWING) & this.hasStatusEffect(StatusEffects.INVISIBILITY)){
+                this.removeStatusEffect((StatusEffects.GLOWING)); this.removeStatusEffect(StatusEffects.INVISIBILITY);
+        }
+        if (this.hasStatusEffect(ModEffects.FEAR) & this.hasStatusEffect(ModEffects.LOVE)) {
+                this.removeStatusEffect((ModEffects.FEAR)); this.removeStatusEffect(ModEffects.LOVE);
+        }
+    }
 }

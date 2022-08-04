@@ -6,9 +6,10 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 
 
-    public class PhotosynthesisStatusEffect extends ModStatusEffect {
+public class PhotosynthesisStatusEffect extends ModStatusEffect {
 
         public PhotosynthesisStatusEffect() {
             super(
@@ -19,7 +20,6 @@ import net.minecraft.entity.player.PlayerEntity;
 
         @Override
         public boolean canApplyUpdateEffect(int remainingTicks, int amplifier) {
-
             return remainingTicks % 60 == 0;
         }
 
@@ -29,11 +29,10 @@ import net.minecraft.entity.player.PlayerEntity;
                 ((PlayerEntity) entity).getHungerManager().add(1 << amplifier, 0f);
             }
         }
-        // torches wont activate photosynthesis but glowstone and lava will.
+        // torches won't activate photosynthesis but glowstone and lava will.
         private static boolean isBrightlight(LivingEntity entity) {
-                float LightLevel = entity.getBrightnessAtEyes();
+            float LightLevel = entity.world.getLightLevel(entity.getBlockPos());
             return LightLevel > .65f;
         }
-
 
     }
