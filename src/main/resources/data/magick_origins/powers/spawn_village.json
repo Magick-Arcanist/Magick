@@ -1,0 +1,8 @@
+{
+  "type": "origins:modify_player_spawn",
+  "dimension": "minecraft:overworld",
+  "structure": "minecraft:village_plains",
+  "spawn_strategy": "center",
+  "name":"Village spawn",
+  "description":"You spawn in a village."
+}

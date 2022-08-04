@@ -1,0 +1,11 @@
+{
+  "name":"No Magick",
+  "description": "You can't use pearls.",
+  "type": "origins:prevent_item_use",
+  "item_condition": {
+    "type": "origins:ingredient",
+    "ingredient": {
+      "tag": "magick:pearl_tag"
+    }
+  }
+}

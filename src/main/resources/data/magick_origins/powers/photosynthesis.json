@@ -1,0 +1,62 @@
+{
+	"type": "origins:multiple",
+	"speed_haste": {
+		"type": "origins:stacking_status_effect",
+		"min_stacks": 0,
+		"max_stacks": 10,
+		"duration_per_stack": 10,
+		"effects": [{
+				"effect": "minecraft:speed",
+				"duration": 10,
+				"amplifier": 0,
+				"is_ambient": true,
+				"show_particles": false,
+				"show_icon": false
+			},
+			{
+				"effect": "minecraft:haste",
+				"duration": 10,
+				"amplifier": 0,
+				"is_ambient": true,
+				"show_particles": false,
+				"show_icon": false
+			}
+		],
+		"condition": {
+			"type": "origins:brightness",
+			"comparison": ">",
+			"compare_to": 0.7
+		}
+	},
+
+	"photosynthesis": {
+		"type": "origins:action_over_time",
+		"entity_action": {
+			"type": "origins:feed",
+			"food": 1,
+			"saturation": 0.1
+		},
+		"interval": 50,
+		"condition": {
+			"type": "origins:brightness",
+			"comparison": ">",
+			"compare_to": 0.6
+		}
+	},
+
+	"plant_walk_hunger": {
+		"type": "origins:action_over_time",
+		"entity_action": {
+			"type": "origins:feed",
+			"food": -1,
+			"saturation": -1
+		},
+		"interval": 15,
+		"condition": {
+			"type": "origins:power_active",
+			"power": "magick_origins:toggle"
+		}
+	},
+	"name": "Photosynthesis",
+	"description": "Bright light feeds you and makes you faster."
+}

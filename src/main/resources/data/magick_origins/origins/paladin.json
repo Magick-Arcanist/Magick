@@ -1,0 +1,15 @@
+{
+	"powers": [
+		"magick_origins:spawn_village",
+	"magick_origins:heal",
+	"magick_origins:pacifist",
+	"magick_origins:craft_light_pearl",
+	"origins:vegetarian",
+	"magick_origins:weakness_nether"
+	],
+	"icon": "magick:light_pearl",
+	"order": 5,
+	"impact": 2,
+	"name": "Paladin",
+	"description": "Beacons of radiant energy, they can heal allies and light up the darkness. "
+}

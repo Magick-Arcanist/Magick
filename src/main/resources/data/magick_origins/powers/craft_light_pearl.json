@@ -1,0 +1,27 @@
+{
+	"type": "origins:recipe",
+	"recipe": {
+		"id": "magick:paladin/light_pearl",
+		"type": "minecraft:crafting_shaped",
+		"pattern": [
+			"###",
+			"#X#",
+			"###"
+		],
+		"key": {
+			"#": {
+				"item": "magick:quartz_dust"
+			},
+			"X": {
+				"item": "minecraft:torch"
+			}
+		},
+
+		"result": {
+			"item": "magick:light_pearl",
+			"count": 1
+		}
+	},
+	"name": "Light the way",
+	"description": "You can craft light pearls from torches and quartz dust."
+}

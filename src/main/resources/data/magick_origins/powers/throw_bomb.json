@@ -1,0 +1,19 @@
+{
+  "type": "origins:fire_projectile",
+  "cooldown": 80,
+  "hud_render": {
+	"should_render": true,
+    "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_01.png",
+    "bar_index": 16
+  },
+  "entity_type": "magick:bomb_pearl",
+  "sound": "minecraft:entity.ender_pearl.throw",
+  "speed": 1.5,
+  "divergence": 1,
+  "key": {
+    "key": "key.origins.primary_active",
+    "continuous": false
+  },
+    "name": "Grenade",
+	"description": "You can throw bomb pearls with your active ability."
+}

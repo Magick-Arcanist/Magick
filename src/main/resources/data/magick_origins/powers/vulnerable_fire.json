@@ -1,0 +1,13 @@
+{
+  "type": "origins:modify_damage_taken",
+  "damage_condition": {
+    "type": "origins:name",
+	"name": "fire"    
+  },
+  "modifier": {
+    "operation": "multiply_base",
+    "value": 0.5
+  },
+  	"name": "Fire Vulnerability",
+	"description": "You take more damage from fire."  
+}

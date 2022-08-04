@@ -8,11 +8,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class Magick implements ModInitializer {
 
     public static final String MOD_ID = "magick";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     //Creates Magick TAB
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(

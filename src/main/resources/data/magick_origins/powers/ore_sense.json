@@ -1,0 +1,22 @@
+{
+	"type": "origins:action_over_time",
+	"entity_action": {
+		"type": "origins:apply_effect",
+		"effect": {
+			"effect": "magick:ore_sense",
+			"duration": 300,
+			"amplifier": 0,
+			"is_ambient": true,
+			"show_particles": false,
+			"show_icon": false
+		}
+	},
+	"interval": 180,
+	"condition": {
+		"type": "origins:brightness",
+		"comparison": "<",
+		"compare_to": 1
+	},
+	"name": "Ore Sense",
+	"description": "You can sense when you are near precious ores."
+}

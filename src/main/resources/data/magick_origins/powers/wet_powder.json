@@ -1,0 +1,32 @@
+{
+  "type": "origins:stacking_status_effect",
+  "min_stacks": 0,
+  "max_stacks": 8,
+  "duration_per_stack": 20,
+  "effects": [
+		{
+			"effect": "minecraft:weakness",
+			"duration": 1,
+			"amplifier": 1,
+			"is_ambient": true,
+			"show_particles": false,
+			"show_icon": false
+		}
+	],
+	 "condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:fluid_height",
+                "fluid": "minecraft:water",
+                "comparison": ">",
+                "compare_to": 0.0
+            },
+            {
+                "type": "origins:in_rain"
+            }
+        ]
+    },
+	"name": "Wet Powder",
+	"description": "You are much weaker when wet."
+}

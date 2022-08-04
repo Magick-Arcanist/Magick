@@ -1,0 +1,14 @@
+{
+	"powers": [
+	"magick_origins:immune_magic",
+	"magick_origins:no_pearls",
+	"magick_origins:no_enchanting",
+	"magick_origins:no_experience",
+	"magick_origins:calm_down"
+	],
+	"icon": "magick:air_pearl",
+	"order": 1,
+	"impact": 2,
+	"name": "Atheist",
+	"description": "Their lack of belief is so strong they're immune to magic. They can even make others doubt its effects."
+}

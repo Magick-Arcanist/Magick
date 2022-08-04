@@ -1,0 +1,25 @@
+{
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+        "type": "origins:or",
+        "conditions":
+        [{
+            "type": "origins:name",
+            "name": "sweetBerryBush"
+          }, 
+          {
+            "type": "origins:name",
+            "name": "cactus"
+          }, 
+          {
+            "type": "origins:name",
+            "name": "sting"
+          } ]
+      },
+      "modifier": {
+        "operation":"multiply_total",
+        "value": -1
+      },
+      "name": "Natures Ally",
+      "description": "You're not hurt by bushes, bees, or cacti."
+}

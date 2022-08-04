@@ -1,0 +1,91 @@
+{ "type": "origins:multiple",
+
+"nether_wart_block":{
+    "key": {
+        "key": "key.use",
+        "continuous": true
+    },
+    "type": "origins:active_self",
+    "cooldown": 45,
+    "hud_render": {
+        "should_render": false
+    },
+	"condition": {
+		"type": "origins:equipped_item",
+		"equipment_slot": "mainhand",
+		"item_condition": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:nether_wart_block"
+			}
+		}
+	},
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+			{
+				"type": "origins:equipped_item_action",
+				"equipment_slot": "mainhand",
+				"action": {
+					"type": "origins:consume",
+					"amount": 1
+				}
+			},
+			{	"type": "origins:change_resource",
+				"resource": "magick_origins:resource_wart",
+				"change": 9
+			},
+			{
+			"type": "origins:play_sound",
+			"sound": "minecraft:entity.generic.eat"
+			}
+        ]
+    },
+    "hidden": true
+},
+
+"nether_wart":{
+    "key": {
+        "key": "key.use",
+        "continuous": true
+    },
+    "type": "origins:active_self",
+    "cooldown": 45,
+    "hud_render": {
+        "should_render": false
+    },
+	"condition": {
+		"type": "origins:equipped_item",
+		"equipment_slot": "mainhand",
+		"item_condition": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:nether_wart"
+			}
+		}
+	},
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+			{
+				"type": "origins:equipped_item_action",
+				"equipment_slot": "mainhand",
+				"action": {
+					"type": "origins:consume",
+					"amount": 1
+				}
+			},
+			{	"type": "origins:change_resource",
+				"resource": "magick_origins:resource_wart",
+				"change": 1
+			},
+			{
+			"type": "origins:play_sound",
+			"sound": "minecraft:entity.generic.eat"
+			}
+        ]
+    },
+    "hidden": true
+},
+"hidden": true
+}

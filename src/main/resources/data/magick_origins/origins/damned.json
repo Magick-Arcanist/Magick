@@ -1,0 +1,20 @@
+{
+	"powers": [
+	"magick_origins:spawn_nether",
+	"magick_origins:group_undead",
+	"magick_origins:planeshift",
+	"magick_origins:feed_on_living",
+	"magick_origins:eat_flesh",
+	"magick_origins:no_cake",
+	"magick_origins:start_with_crown",
+	"origins:fragile",
+	"magick_origins:burn_daylight",
+	"magick_origins:immune_suffocation",
+	"magick_origins:immune_hunger"
+	],
+	"icon": "minecraft:rotten_flesh",
+	"order": 8,
+	"impact": 3,
+	"name": "Damned",
+	"description": "Through dark magic the Damned can teleport between worlds."
+}

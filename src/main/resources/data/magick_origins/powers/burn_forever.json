@@ -1,0 +1,13 @@
+{
+    "type": "origins:action_over_time",
+    "entity_action": {
+        "type": "origins:set_on_fire",
+        "duration": 4
+    },
+    "interval": 20,
+    "condition": {
+        "type": "origins:on_fire"
+    },
+  "name": "Flammable",
+  "description": "You're so flammable that once you catch fire you won't extinguish over time, you must get into water to put out the fire."
+}

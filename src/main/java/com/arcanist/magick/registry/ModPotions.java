@@ -128,7 +128,7 @@ public final class ModPotions {
         mapPotions(Potions.AWKWARD, Items.COD, Potions.WATER_BREATHING);
         mapPotions(Potions.AWKWARD, Items.TROPICAL_FISH, Potions.WATER_BREATHING);
 
-        mapPotions(Potions.AWKWARD, ModItems.QUARTZ_DUST, Potions.INVISIBILITY);
+        mapPotions(Potions.AWKWARD, ModItems.CALCITE_DUST, Potions.INVISIBILITY);
         mapPotions(Potions.INVISIBILITY, Items.FERMENTED_SPIDER_EYE, GLOWING);
         mapPotions(Potions.LONG_INVISIBILITY, Items.FERMENTED_SPIDER_EYE, LONG_GLOWING);
         mapPotions(GLOWING, Items.FERMENTED_SPIDER_EYE, Potions.INVISIBILITY);

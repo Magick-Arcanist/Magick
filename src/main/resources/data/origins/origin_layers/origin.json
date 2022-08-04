@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "origins": [
+	"magick_origins:atheist",
+	"magick_origins:boomer",
+	"magick_origins:dryad",
+	"magick_origins:duergar",
+	"magick_origins:alchemist",
+	"magick_origins:damned",
+	"magick_origins:paladin",
+	"magick_origins:warlock"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+	"type": "origins:prevent_block_use",
+    "block_condition": {
+        "type": "origins:block",
+        "block": "minecraft:enchanting_table"
+        },
+    "name":"No Enchanting",
+    "description":"You can't use enchanting tables."
+}

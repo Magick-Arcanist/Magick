@@ -1,0 +1,8 @@
+{
+  "type": "origins:modify_player_spawn",
+  "dimension": "minecraft:the_nether",
+  "biome": "minecraft:crimson_forest",
+  "spawn_strategy": "center",
+  "name":"Nether spawn",
+  "description":"You spawn in The Nether."
+}

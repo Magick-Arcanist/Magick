@@ -57,7 +57,7 @@ public class RadiusEffects {
 
     public void bombPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user){
         DamageSource damageSource = DamageSource.explosion((LivingEntity) user);
-        float radius = power(entityWorld, user)*1.5F;
+        float radius = power(entityWorld, user)+1F;
         if (!entity.world.isClient) {
             entity.world.createExplosion(null, damageSource, null, entityX, entityY, entityZ, radius, false, Explosion.DestructionType.BREAK);
         }
@@ -110,7 +110,7 @@ public class RadiusEffects {
                 }
             }
         }
-        float radius2 = power(entityWorld, user)*3;
+        float radius2 = radius+2;
         for (int x = (int) -radius2 - 1; x <= radius2; x++) {
             for (int y = (int) -radius2 - 1; y <= radius2; y++) {
                 for (int z = (int) -radius2 - 1; z <= radius2; z++) {
@@ -143,7 +143,7 @@ public class RadiusEffects {
                 }
             }
         }
-        float radius2 = power(entityWorld, user)+2;
+        float radius2 = radius+2;
         for (int x = (int) -radius2 - 1; x <= radius2; x++) {
             for (int y = (int) -radius2 - 1; y <= radius2; y++) {
                 for (int z = (int) -radius2 - 1; z <= radius2; z++) {
@@ -225,7 +225,7 @@ public class RadiusEffects {
      public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         float damage = power(entityWorld, user)*5;
          DamageSource damageSource = DamageSource.magic(entity, user);
-        for(Entity entities : entityWorld.getOtherEntities(user, new Box(entityX-2, entityY-2, entityZ-2, entityX+2, entityY+2, entityZ+2))) {
+        for(Entity entities : entityWorld.getOtherEntities(user, new Box(entityX-3, entityY-3, entityZ-3, entityX+3, entityY+3, entityZ+3))) {
             if(entities instanceof LivingEntity) {
                 entities.damage(damageSource, damage);
             }

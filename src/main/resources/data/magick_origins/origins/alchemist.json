@@ -1,0 +1,15 @@
+{
+	"powers": [
+		"magick_origins:resource_wart",
+		"magick_origins:eat_wart",
+		"magick_origins:alchemy",
+		"magick_origins:frail",
+		"magick_origins:sickness"
+		
+	],
+	"icon": "minecraft:potion",
+	"order": 3,
+	"impact": 2,
+	"name": "Alchemist",
+	"description": "Having altered their biology Alchemists don't need a brewing stand to gain the effects from potion ingredients."
+}

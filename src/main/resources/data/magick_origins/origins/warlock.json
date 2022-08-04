@@ -1,0 +1,14 @@
+{
+	"powers": [
+		"magick_origins:give_mana",
+		"magick_origins:levitate",
+		"magick_origins:craft_pearl_pieces",
+		"magick_origins:attunement",
+		"magick_origins:vulnerable_magic"
+	],
+	"icon": "magick:warp_pearl",
+	"order": 2,
+	"impact": 2,
+	"name": "Warlock",
+	"description": "Warlocks specialize in using the Mana effect to make the best use of Pearls."
+}

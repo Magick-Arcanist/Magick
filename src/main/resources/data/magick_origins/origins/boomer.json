@@ -1,0 +1,13 @@
+{
+"powers": [
+	"magick_origins:throw_bomb",
+	"magick_origins:immune_explosion",
+	"magick_origins:wet_powder",
+	"magick_origins:burn_forever"
+	],
+	"icon": "magick:bomb_pearl",
+	"order": 4,
+	"impact": 1,
+	"name": "Boomer",
+	"description": "These blast resistant Boomers have gunpowder in their bones."
+}

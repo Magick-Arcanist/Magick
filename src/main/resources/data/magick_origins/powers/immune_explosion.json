@@ -1,0 +1,22 @@
+{
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+		"type": "origins:or",
+		"conditions": [{
+				"type": "origins:name",
+				"name": "explosion"
+			},
+			{
+				"type": "origins:name",
+				"name": "explosion.player"
+			}
+		]
+	},
+    "modifier": {
+        "name": "Blast-proof",
+        "operation": "multiply_total",
+        "value": -1
+    },
+	"name": "Blast-proof",
+	"description": "You are undamaged by explosions."
+}

@@ -1,0 +1,12 @@
+{
+  "type": "origins:starting_equipment",
+  "stacks": [
+    {
+      "item": "minecraft:golden_helmet",
+      "amount": 1,
+      "slot": 39
+    }
+  ],
+  "name":"Crowned",
+  "description":"You start with a golden helmet."
+}

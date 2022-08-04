@@ -1,0 +1,30 @@
+{
+	"type": "origins:multiple",
+	"kill_undead": {
+		"type": "origins:target_action_on_hit",
+		"target_condition": {
+			"type": "origins:entity_group",
+			"group": "undead"
+		},
+		"entity_action": {
+			"type": "origins:set_on_fire",
+			"duration": 5
+		},
+		"cooldown": 0
+	},
+	
+	"living": {
+		"type": "origins:modify_damage_dealt",
+		"target_condition": {
+			"type": "origins:entity_group",
+			"group": "undead",
+			"inverted": true
+			},
+		"modifier": {
+			"operation": "multiply_base",
+			"value": -0.2
+		}
+	},
+	"name": "Pacifist",
+	"description": "Your holy power sets undead ablaze, but you deal less damage to fellow living creatures."
+}

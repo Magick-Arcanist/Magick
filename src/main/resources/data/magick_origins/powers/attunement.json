@@ -1,0 +1,108 @@
+{
+	"type": "origins:multiple",
+
+	"iron": {
+		"type": "origins:conditioned_restrict_armor",
+		"head": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:iron_helmet"
+			}
+		},
+		"chest": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:iron_chestplate"
+			}
+		},
+		"legs": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:iron_leggings"
+			}
+		},
+		"feet": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:iron_boots"
+			}
+		},
+		"condition": {
+			"type": "origins:xp_levels",
+			"comparison": "<",
+			"compare_to": 10
+		},
+		"tick_rate": 80
+	},
+
+	"diamond": {
+		"type": "origins:conditioned_restrict_armor",
+		"head": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:diamond_helmet"
+			}
+		},
+		"chest": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:diamond_chestplate"
+			}
+		},
+		"legs": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:diamond_leggings"
+			}
+		},
+		"feet": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:diamond_boots"
+			}
+		},
+		"condition": {
+			"type": "origins:xp_levels",
+			"comparison": "<",
+			"compare_to": 30
+		},
+		"tick_rate": 80
+	},
+
+	"netherite": {
+		"type": "origins:conditioned_restrict_armor",
+		"head": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:netherite_helmet"
+			}
+		},
+		"chest": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:netherite_chestplate"
+			}
+		},
+		"legs": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:netherite_leggings"
+			}
+		},
+		"feet": {
+			"type": "origins:ingredient",
+			"ingredient": {
+				"item": "minecraft:netherite_boots"
+			}
+		},
+		"condition": {
+			"type": "origins:xp_levels",
+			"comparison": "<",
+			"compare_to": 60
+		},
+		"tick_rate": 80
+	},
+
+	"name": "Attunement",
+	"description": "You must be at least level 10 to wear iron armor, level 30 to wear diamond, and level 60 to wear netherite."
+}

@@ -11,18 +11,6 @@
     "ServerPlayerEntityMixin",
     "TemptGoalMixin"
   ],
-  "client": [
-    "BrewingRecipeRegistryAccessor",
-    "BrewRegistryMixin",
-    "LivingEntityMixin",
-    "TemptGoalMixin"
-  ],
-  "server": [
-    "BrewingRecipeRegistryAccessor",
-    "BrewRegistryMixin",
-    "LivingEntityMixin",
-    "TemptGoalMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }

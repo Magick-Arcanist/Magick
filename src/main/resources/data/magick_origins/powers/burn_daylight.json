@@ -1,0 +1,20 @@
+{
+  "type": "origins:burn",
+  "interval": 20,
+  "burn_duration": 4,
+  "condition": {
+    "type": "origins:and",
+    "conditions": [
+      {
+        "type": "origins:exposed_to_sun"
+      },
+      {
+        "type": "origins:food_level",
+		"comparison": "<=",
+		"compare_to": 6
+      }
+    ]
+  },
+  "name": "Hunger",
+  "description": "When you get hungry you burn in sunlight."
+}

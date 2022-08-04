@@ -1,0 +1,23 @@
+{
+  "type": "origins:modify_break_speed",
+  "block_condition": {
+    "type": "origins:in_tag",
+    "tag": "minecraft:mineable/pickaxe"
+  },
+"condition": {
+  "type": "origins:equipped_item",
+  "equipment_slot": "mainhand",
+  "item_condition": {
+    "type": "origins:ingredient",
+    "ingredient": {
+        "item": "minecraft:air"
+    }
+  }
+},
+  "modifier": {
+    "value": 12,
+    "operation": "multiply_base"
+  },
+  "name": "Burrow",
+  "description": "You can dig through most rock with your bare hands much faster than normal. Blocks mined in this way wont be dropped."
+}

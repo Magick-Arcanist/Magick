@@ -1,0 +1,834 @@
+{
+	"type": "origins:active_self",
+	"entity_action": {
+		"type": "origins:and",
+		"actions": [
+			{
+				"type": "origins:if_else_list",
+				"actions": [
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:sugar"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:speed",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:clay_ball"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:slowness",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:rabbit_foot"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:jump_boost",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:phantom_membrane"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:slow_falling",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:stone_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:gravity",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:end_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:levitation",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:diamond_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:haste",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:obsidian_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:mining_fatigue",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:emerald_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:luck",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:nether_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:unluck",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:glistering_melon_slice"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:instant_health",
+								"duration": 1,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:amethyst_shard"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:instant_damage",
+								"duration": 1,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:golden_carrot"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:night_vision",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:ink_sac"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:blindness",
+								"duration": 640,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:ghast_tear"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:regeneration",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:wither_rose"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:wither",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:blaze_powder"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:strength",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:fermented_spider_eye"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:weakness",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:calcite_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:invisibility",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:glow_ink_sac"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:glowing",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:sunflower"
+								}
+							}
+						},
+
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:photosynthesis",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "magick:blackstone_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:ore_sense",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"tag": "magick_origins:raw_fish"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:water_breathing",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:redstone"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:red_light",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:lapis_lazuli"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:mana",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:enchanted_golden_apple"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:immortal",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:glowstone_dust"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:white_light",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:poisonous_potato"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:nausea",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:magma_cream"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:fire_resistance",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:sweet_berries"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:fear",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:paper"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:remove_effects",
+								"duration": 40,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:nautilus_shell"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:resistance",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:golden_apple"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:health_boost",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:chorus_fruit"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:returning",
+								"duration": 80,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:spider_eye"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "minecraft:poison",
+								"duration": 160,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:cobweb"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:spiderclimb",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					},
+					{
+						"condition": {
+							"type": "origins:equipped_item",
+							"equipment_slot": "offhand",
+							"item_condition": {
+								"type": "origins:ingredient",
+								"ingredient": {
+									"item": "minecraft:wheat"
+								}
+							}
+						},
+						"action": {
+							"type": "origins:apply_effect",
+							"effect": {
+								"effect": "magick:love",
+								"duration": 320,
+								"show_particles": false,
+								"amplifier": 0
+							}
+						}
+					}
+				]
+			},
+			{
+				"type": "origins:play_sound",
+				"sound": "minecraft:entity.witch.drink"
+			},
+			{
+				"type": "origins:change_resource",
+				"resource": "magick_origins:resource_wart",
+				"change": -4
+			},
+			{
+				"type": "origins:equipped_item_action",
+				"equipment_slot": "offhand",
+				"action": {
+					"type": "origins:consume",
+					"amount": 1
+				}
+			}
+		]
+	},
+	"condition": {
+		"type": "origins:and",
+		"conditions": [{
+				"type": "origins:resource",
+				"resource": "magick_origins:resource_wart",
+				"comparison": ">=",
+				"compare_to": 4
+			},
+			{
+				"type": "origins:equipped_item",
+				"equipment_slot": "offhand",
+				"item_condition": {
+					"type": "origins:ingredient",
+					"ingredient": {
+						"tag": "magick_origins:potion_ingredient"
+					}
+				}
+			}
+		]
+	},
+	"cooldown": 0,
+	"hud_render": {
+		"should_render": false
+	},
+	"name": "Alchemy",
+	"description": "Using your primary key while holding a potion ingredient in your off-hand consumes the ingredient and gives you the effect associated with it."
+}

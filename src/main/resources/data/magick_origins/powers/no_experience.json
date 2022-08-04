@@ -1,0 +1,33 @@
+{
+	"type": "origins:action_over_time",
+	"entity_action": {
+		"type": "origins:and",
+		"actions": [{
+				"type": "origins:heal",
+				"amount": 1
+			},
+			{
+				"type": "origins:add_xp",
+				"levels": -1
+			}
+		]
+	},
+	"interval": 80,
+	"condition": {
+		"type": "origins:and",
+		"conditions": [
+			{
+				"type": "origins:xp_levels",
+				"comparison": ">=",
+				"compare_to": 1
+			},
+			{
+				"type": "origins:health",
+				"comparison": "<",
+				"compare_to": 20
+			}
+		]
+	},
+	"name":"Healthy experience",
+	"description": "Experience will automatically be converted into health when you take damage."
+}

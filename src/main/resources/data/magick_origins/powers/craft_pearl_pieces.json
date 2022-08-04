@@ -1,0 +1,27 @@
+{ 
+	"type": "origins:recipe",
+	"recipe": {
+
+	"id":"warlock_pieces_of_pearl",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "magick:quartz_dust"
+    },
+    "X": {
+      "item": "magick:obsidian_dust"
+    }
+  },
+  "result": {
+    "item": "magick:piece_of_pearl",
+    "count": 2
+  }
+},
+	"name": "Master crafter",
+	"description": "You can make twice as many pieces of pearl from quartz and obsidian."
+}

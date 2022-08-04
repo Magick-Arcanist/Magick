@@ -1,0 +1,17 @@
+{
+	"type": "origins:self_action_on_hit",
+	"entity_action": {
+		"type": "origins:feed",
+		"food": 1,
+		"saturation": 0.5
+
+	},
+	"target_condition": {
+		"type": "origins:entity_group",
+		"group": "undead",
+		"inverted": true
+	},
+	"cooldown": 0,
+	"name": "Feed",
+	"description": "You regenerate hunger by attacking living creatures, the only food you can stomach is rotten flesh. You're immune to poison."
+}

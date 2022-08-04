@@ -1,0 +1,79 @@
+{
+	"type": "origins:multiple",
+
+	"phasing": {
+		"type": "origins:phasing",
+		"view_distance": 20,
+		"block_condition": {
+			"type": "origins:in_tag",
+			"tag": "minecraft:leaves"
+		},
+		"phase_down_condition": {
+			"type": "origins:and",
+			"conditions": [{
+					"type": "origins:sneaking"
+				},
+				{
+					"type": "origins:on_block"
+				}
+			]
+		},
+		"condition": {
+			"type": "origins:power_active",
+			"power": "magick_origins:toggle"
+		}
+	},
+
+	"climb": {
+		"type": "origins:active_self",
+		"condition": {
+			"type": "origins:in_block_anywhere",
+			"block_condition": {
+				"type": "origins:in_tag",
+				"tag": "minecraft:leaves"
+			},
+			"comparison": ">",
+			"compare_to": 0
+		},
+		"entity_action": {
+			"type": "origins:apply_effect",
+			"effect": {
+				"effect": "minecraft:levitation",
+				"is_ambient": true,
+				"show_particles": false,
+				"show_icon": false,
+				"amplifier": 3,
+				"duration": 4
+			}
+		},
+		"cooldown": 0,
+		"key": {
+			"key": "key.jump",
+			"continuous": true
+		},
+		"hud_render": {
+			"should_render": false
+		}
+	},
+
+	"overlay":{
+		"type": "apoli:overlay",
+		"hidden": true,
+		"texture": "minecraft:textures/misc/nausea.png",
+		"red": 0.2,
+		"green": 1,
+		"blue": 0.2,
+		"strength": 0.7,
+		"draw_mode": "nausea",
+		"draw_phase": "above_hud",
+		"visible_in_third_person": true,
+		"hide_with_hud": true,
+		"condition": {
+			"type": "origins:power_active",
+			"power": "magick_origins:toggle"
+		}
+	},
+
+	"name": "Plant walk",
+	"description": "You can walk through the leaves of the forest unimpeded. Using this power drains your hunger."
+}

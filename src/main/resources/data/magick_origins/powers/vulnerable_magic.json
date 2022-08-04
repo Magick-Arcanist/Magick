@@ -1,0 +1,22 @@
+{
+  "type": "origins:modify_damage_taken",
+  "damage_condition": {
+	  "type": "origins:or",
+        "conditions":
+        [{
+			"type": "origins:name",
+			"name": "magic"
+		},
+		{
+			"type": "origins:name",
+			"name": "indirectMagic"
+		}]
+  },
+  "modifier": {
+    "operation": "multiply_base",
+	    "value": 0.5
+  },
+  
+		"name": "Magic Vulnerability",
+		"description": "You take more damage from magic, such as from harm potions and warp pearls."
+}

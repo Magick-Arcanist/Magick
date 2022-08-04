@@ -1,0 +1,17 @@
+{
+"powers": [
+	"magick_origins:photosynthesis",
+	"magick_origins:natures_ally",
+	"magick_origins:toggle",
+	"magick_origins:plant_walk",
+	"magick_origins:no_food",
+	"magick_origins:no_cake",
+	"magick_origins:weakness_dark",
+	"magick_origins:vulnerable_fire"
+	],
+	"icon": "magick:plant_pearl",
+	"order": 6,
+	"impact": 3,
+	"name": "Dryad",
+	"description": "Creatures of the forest, Dryads photosynthesize light and can move freely through thick foliage."
+}

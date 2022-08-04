@@ -1,0 +1,22 @@
+{
+    "type": "origins:multiple",
+    "weak":{
+        "type": "origins:modify_damage_dealt",
+        "modifier":
+        {
+            "operation": "multiply_base",
+            "value": -0.2
+        }
+    },
+    "fragile":{
+        "type": "origins:attribute",
+        "modifier": {
+            "name": "Frail health reduction",
+            "attribute": "minecraft:generic.max_health",
+            "value": -4.0,
+            "operation": "addition"
+        }
+    },
+    "name": "Frail",
+    "description": "You're body is weaker than normal, you have less health and deal less damage"
+}

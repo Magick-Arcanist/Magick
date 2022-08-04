@@ -1,0 +1,15 @@
+{
+"powers": [
+	"magick_origins:cave_spawn",
+	"magick_origins:dark_vision",
+	"magick_origins:burrow",
+	"magick_origins:ore_sense",
+	"magick_origins:clumsy",
+	"magick_origins:weakness_light"
+	],
+	"icon": "minecraft:coal",
+	"order": 7,
+	"impact": 3,
+	"name": "Duergar",
+	"description": "Creatures of the caves that can burrow through stone with ease and sense nearby ores."
+}

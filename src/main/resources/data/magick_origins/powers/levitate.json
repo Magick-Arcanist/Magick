@@ -1,0 +1,29 @@
+{
+   "type": "origins:active_self",
+   "condition": {
+			"type": "origins:status_effect",
+			"effect": "magick:mana",
+			"min_amplifier": 0
+		},
+		"entity_action": {
+			"type": "origins:apply_effect",
+			"effect": {
+				"effect": "minecraft:levitation",
+				"is_ambient": true,
+				"show_particles": false,
+				"show_icon": false,
+				"amplifier": 3,
+				"duration": 2
+			}
+		},
+    "cooldown": 0,
+    "key": {
+        "key": "key.jump",
+        "continuous": true
+    },
+    "hud_render": {
+        "should_render": false
+    },
+	"name": "Levitate",
+	"description": "While you have the mana effect you can hold jump to levitate."
+}
