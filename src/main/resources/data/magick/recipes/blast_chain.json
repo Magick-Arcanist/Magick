@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "minecraft:iron_bars"
+    "item": "minecraft:chain"
   },
   "result": "minecraft:iron_nugget",
   "experience": 0.1,
