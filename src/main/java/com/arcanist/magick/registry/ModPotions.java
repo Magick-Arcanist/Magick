@@ -1,7 +1,6 @@
 package com.arcanist.magick.registry;
 
 import com.arcanist.magick.Magick;
-import com.arcanist.magick.mixin.BrewRegistryMixin;
 import com.arcanist.magick.mixin.BrewingRecipeRegistryAccessor;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -9,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
