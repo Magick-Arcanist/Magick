@@ -61,9 +61,11 @@ public final class ModPotions {
 
     public static final Potion LIGHT= register("white_light", new Potion(new StatusEffectInstance(ModEffects.WHITE_LIGHT, 1800)), Items.GLOWSTONE_DUST, Potions.AWKWARD);
     public static final Potion LONG_LIGHT= register("long_white_light", new Potion(new StatusEffectInstance(ModEffects.WHITE_LIGHT, 4800)));
+    public static final Potion STRONG_LIGHT= register("strong_white_light", new Potion(new StatusEffectInstance(ModEffects.WHITE_LIGHT, 900, 1)));
 
     public static final Potion RED_LIGHT = register("red_light", new Potion(new StatusEffectInstance(ModEffects.RED_LIGHT, 1800)), Items.REDSTONE, Potions.AWKWARD);
-    public static final Potion STRONG_RED_LIGHT = register("strong_red_light", new Potion(new StatusEffectInstance(ModEffects.RED_LIGHT, 4800)));
+    public static final Potion LONG_RED_LIGHT = register("long_red_light", new Potion(new StatusEffectInstance(ModEffects.RED_LIGHT, 4800)));
+    public static final Potion STRONG_RED_LIGHT = register("strong_red_light", new Potion(new StatusEffectInstance(ModEffects.RED_LIGHT, 900, 1)));
 
     public static final Potion FEAR = register("fear", new Potion(new StatusEffectInstance(ModEffects.FEAR, 400)), Items.SWEET_BERRIES, Potions.AWKWARD);
     public static final Potion LONG_FEAR = register("long_fear", new Potion(new StatusEffectInstance(ModEffects.FEAR, 800)));
@@ -146,6 +148,13 @@ public final class ModPotions {
         mapPotions(MINING_FATIGUE, Items.FERMENTED_SPIDER_EYE, HASTE);
         mapPotions(LONG_MINING_FATIGUE, Items.FERMENTED_SPIDER_EYE, LONG_HASTE);
         mapPotions(STRONG_MINING_FATIGUE, Items.FERMENTED_SPIDER_EYE, STRONG_HASTE);
+
+        mapPotions(RED_LIGHT, Items.FERMENTED_SPIDER_EYE, LIGHT);
+        mapPotions(LONG_RED_LIGHT, Items.FERMENTED_SPIDER_EYE, LONG_LIGHT);
+        mapPotions(STRONG_RED_LIGHT, Items.FERMENTED_SPIDER_EYE, STRONG_LIGHT);
+        mapPotions(LIGHT, Items.FERMENTED_SPIDER_EYE, RED_LIGHT);
+        mapPotions(LONG_LIGHT, Items.FERMENTED_SPIDER_EYE, LONG_RED_LIGHT);
+        mapPotions(STRONG_LIGHT, Items.FERMENTED_SPIDER_EYE, STRONG_RED_LIGHT);
 
         mapPotions(PHOTOSYNTHESIS, Items.FERMENTED_SPIDER_EYE, ORE_SENSE);
         mapPotions(LONG_PHOTOSYNTHESIS, Items.FERMENTED_SPIDER_EYE, LONG_ORE_SENSE);

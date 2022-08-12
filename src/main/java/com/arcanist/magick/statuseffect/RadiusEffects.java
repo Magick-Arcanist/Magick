@@ -150,7 +150,7 @@ public class RadiusEffects {
                         if (entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()) {
                             entityWorld.setBlockState(blockPos, Blocks.ICE.getDefaultState());
                         }
-                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)) {
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)){
                             entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
                         }
                         if ((entityWorld.getBlockState(blockPos) == FireBlock.getState(entity.world, blockPos)) || (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) {
@@ -183,10 +183,11 @@ public class RadiusEffects {
 
     public void lightPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         BlockPos blockPos = new BlockPos(entityX ,entityY ,entityZ );
-        if (entityWorld.getBlockState(blockPos).isAir()) {
+        if (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER) || entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()){
             entityWorld.setBlockState(blockPos, ModBlocks.LIGHT_ORB.getDefaultState());
-            entity.playSound(SoundEvents.BLOCK_SHROOMLIGHT_STEP, 2F, 1F);
         }
+
+        entity.playSound(SoundEvents.BLOCK_SHROOMLIGHT_STEP, 2F, 1F);
     }
 
     public void plantPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
