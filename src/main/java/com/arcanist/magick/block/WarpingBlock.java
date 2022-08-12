@@ -1,6 +1,10 @@
 package com.arcanist.magick.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.AirBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -9,17 +13,18 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.AreaHelper;
 
 
-public class RedBlock extends AirBlock {
+public class WarpingBlock extends AirBlock {
 
-    public RedBlock(AbstractBlock.Settings settings) {
+    public WarpingBlock(Settings settings) {
         super(settings);
     }
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-            world.removeBlock(pos, false);
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        world.removeBlock(pos, false);
     }
 
     @Override
@@ -28,8 +33,8 @@ public class RedBlock extends AirBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-            world.removeBlock(pos, false);
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        world.removeBlock(pos, false);
     }
 
     @Override
@@ -52,11 +57,10 @@ public class RedBlock extends AirBlock {
                     double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetX() * 0.6D;
                     double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetY() * 0.6D;
                     double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetZ() * 0.6D;
-                    world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + f, 0.0D, 0.0D, 0.0D);
+                    world.addParticle(ParticleTypes.PORTAL, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + f, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
     }
-    
 }
 

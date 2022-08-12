@@ -9,9 +9,10 @@ import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
 
-    public static final WhiteBlock WHITE_BLOCK = new WhiteBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> {return 10;}).ticksRandomly().air());
+    public static final WhiteBlock WHITE_BLOCK = new WhiteBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> 10).ticksRandomly().air());
     public static final RedBlock RED_BLOCK = new RedBlock(FabricBlockSettings.of(Material.AIR).noCollision().ticksRandomly().air());
-    public static final RedWhiteBlock RED_WHITE_BLOCK = new RedWhiteBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> {return 10;}).ticksRandomly().air());
+    public static final RedWhiteBlock RED_WHITE_BLOCK = new RedWhiteBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> 10).ticksRandomly().air());
+    public static final WarpingBlock WARPING_BLOCK = new WarpingBlock(FabricBlockSettings.of(Material.AIR).noCollision().luminance((state) -> 10).ticksRandomly().air());
     public static final LightOrb LIGHT_ORB = new LightOrb(FabricBlockSettings.of(Material.AIR));
     public static final TempWebBlock TEMP_WEB_BLOCK = new TempWebBlock(FabricBlockSettings.of(Material.COBWEB).noCollision().strength(1.0F).ticksRandomly());
 
@@ -21,5 +22,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(Magick.MOD_ID, "red_block"), RED_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(Magick.MOD_ID, "white_block"), WHITE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(Magick.MOD_ID, "red_white_block"), RED_WHITE_BLOCK);
+        Registry.register(Registry.BLOCK, new Identifier(Magick.MOD_ID, "warping_block"), WARPING_BLOCK);
     }
 }

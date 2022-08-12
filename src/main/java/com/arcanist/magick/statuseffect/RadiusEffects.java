@@ -9,6 +9,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -167,13 +168,17 @@ public class RadiusEffects {
 
     public void lightningPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user)  {
         BlockPos blockPos = new BlockPos(entityX, entityY, entityZ);
-        if (((entity.world.isThundering()) || (power(entityWorld, user)>1.5)) && entity.world.isSkyVisible(blockPos)) {
+        float power = power(entityWorld, user);
+        if ((entity.world.isSkyVisible(blockPos) && ((entity.world.isThundering() || entity.world.isRaining() || power>1))) || ((entity.world.isThundering() || entity.world.isRaining()) && power>1) || (power>2)) {
             LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(entity.world);
             assert lightningEntity != null;
             lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(blockPos));
             entity.world.spawnEntity(lightningEntity);
+            entity.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 1F, 1F);
         }
-        else {entity.playSound(SoundEvents.BLOCK_DISPENSER_FAIL, 1F, 3F);}
+        else {
+            entity.playSound(SoundEvents.BLOCK_DISPENSER_FAIL, 1F, 3F);
+        }
     }
 
     public void lightPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
@@ -219,8 +224,9 @@ public class RadiusEffects {
         }
     }
 
-     public void warpPearlEffect( Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
+     public void warpPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user ) {
         float damage = power(entityWorld, user)*5;
+        float radius = 4;
          DamageSource damageSource = DamageSource.magic(entity, user);
         for(Entity entities : entityWorld.getOtherEntities(user, new Box(entityX-3, entityY-3, entityZ-3, entityX+3, entityY+3, entityZ+3))) {
             if(entities instanceof LivingEntity) {
@@ -229,6 +235,23 @@ public class RadiusEffects {
             redGlowEffect(1,entity, entityX, entityY, entityZ, entityWorld);
             entity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 1F, 2F);
         }
+         for (int x = (int) -radius - 1; x <= radius; x++) {
+             for (int y = (int) -radius - 1; y <= radius; y++) {
+                 for (int z = (int) -radius - 1; z <= radius; z++) {
+                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
+                     if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                         if(entityWorld.getBlockState(blockPos).isAir())entityWorld.setBlockState(blockPos, ModBlocks.WARPING_BLOCK.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.NETHER_WART_BLOCK.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_WART_BLOCK.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_NYLIUM.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_NYLIUM.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_STEM.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_STEM.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_ROOTS.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_ROOTS.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_NYLIUM.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_NYLIUM.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_HYPHAE.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_HYPHAE.getDefaultState());
+                         if(entityWorld.getBlockState(blockPos)== Blocks.CRIMSON_FUNGUS.getDefaultState())entityWorld.setBlockState(blockPos, Blocks.WARPED_FUNGUS.getDefaultState());
+                     }
+                 }
+             }
+         }
     }
 
     public void waterPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
