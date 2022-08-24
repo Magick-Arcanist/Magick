@@ -3,6 +3,7 @@ package com.arcanist.magick.registry;
 
 import com.arcanist.magick.Magick;
 import com.arcanist.magick.item.*;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -63,5 +64,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "warp_pearl"), WARP_PEARL_ITEM);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "water_pearl"), WATER_PEARL_ITEM);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "web_pearl"), WEB_PEARL_ITEM);
+        FuelRegistry.INSTANCE.add(NETHER_DUST, 50);
     }
 }
