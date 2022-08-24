@@ -22,6 +22,7 @@ import net.minecraft.world.explosion.Explosion;
 import java.util.Objects;
 import java.util.Random;
 
+import static net.minecraft.tag.BlockTags.REPLACEABLE_PLANTS;
 import static net.minecraft.world.dimension.DimensionTypes.*;
 
 public class RadiusEffects {
@@ -183,7 +184,7 @@ public class RadiusEffects {
 
     public void lightPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         BlockPos blockPos = new BlockPos(entityX ,entityY ,entityZ );
-        if (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER) || entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()){
+        if (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS) || entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER) || entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()){
             entityWorld.setBlockState(blockPos, ModBlocks.LIGHT_ORB.getDefaultState());
         }
 
