@@ -46,11 +46,11 @@ public class ModMiscRegistries {
     private static final Identifier PILLAGER_OUTPOST = new Identifier("minecraft", "chests/pillager_outpost");
     private static final Identifier RUINED_PORTAL = new Identifier("minecraft", "chests/ruined_portal");
     private static final Identifier BASTION_OTHER = new Identifier("minecraft", "chests/bastion_other");
+    private static final Identifier DESERT_PYRAMID = new Identifier("minecraft", "chests/desert_pyramid");
 
 
     public static void registerLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-
             if (SHIPWRECK_TREASURE.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
@@ -96,6 +96,17 @@ public class ModMiscRegistries {
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 6.0f)).build());
                 tableBuilder.pool(poolBuilder);
             }
+            else
+            if (DESERT_PYRAMID.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.5F))
+                        .with(ItemEntry.builder(ModItems.EARTH_PEARL_ITEM))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 6.0f)).build());
+                tableBuilder.pool(poolBuilder);
+            }
+
+
         });
     }
 }
