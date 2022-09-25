@@ -64,6 +64,5 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "warp_pearl"), WARP_PEARL_ITEM);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "water_pearl"), WATER_PEARL_ITEM);
         Registry.register(Registry.ITEM, new Identifier(Magick.MOD_ID, "web_pearl"), WEB_PEARL_ITEM);
-        FuelRegistry.INSTANCE.add(NETHER_DUST, 50);
     }
 }

@@ -29,7 +29,7 @@ public class WarpingBlock extends AirBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.createAndScheduleBlockTick(pos, this, 20);
+        world.createAndScheduleBlockTick(pos, this, 10);
     }
 
     @Override
@@ -48,17 +48,15 @@ public class WarpingBlock extends AirBlock {
     }
 
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (random.nextInt(5) == 0) {
-            Direction direction = Direction.random(random);
-            if (direction != Direction.UP) {
-                BlockPos blockPos = pos.offset(direction);
-                BlockState blockState = world.getBlockState(blockPos);
-                if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
-                    double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetX() * 0.6D;
-                    double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetY() * 0.6D;
-                    double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetZ() * 0.6D;
-                    world.addParticle(ParticleTypes.PORTAL, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + f, 0.0D, 0.0D, 0.0D);
-                }
+        Direction direction = Direction.random(random);
+        if (direction != Direction.UP) {
+            BlockPos blockPos = pos.offset(direction);
+            BlockState blockState = world.getBlockState(blockPos);
+            if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
+                double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetX() * 0.6D;
+                double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetY() * 0.6D;
+                double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double)direction.getOffsetZ() * 0.6D;
+                world.addParticle(ParticleTypes.REVERSE_PORTAL, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + f, 0.0D, 0.0D, 0.0D);
             }
         }
     }

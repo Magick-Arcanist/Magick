@@ -70,7 +70,7 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isOf(Blocks.WATER)||entityWorld.getBlockState(blockPos).isOf(Blocks.LAVA)||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ((entityWorld.getBlockState(blockPos).isAir()||(entityWorld.getFluidState(blockPos).isOf(Fluids.WATER))||(entityWorld.getFluidState(blockPos).isOf(Fluids.LAVA))||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         if ((entityWorld.getDimensionKey().equals(THE_NETHER))){
                            if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
@@ -286,9 +286,20 @@ public class RadiusEffects {
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
-                    BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (!entityWorld.getDimension().ultrawarm()&&(entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))&&Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                        if (!entityWorld.getDimension().ultrawarm() && (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS) || entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))) {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+                        }
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.LAVA)) {
+                            entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
+                        }
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA)){
+                            entityWorld.setBlockState(blockPos, Blocks.COBBLESTONE.getDefaultState());
+                        }
+                        if (entityWorld.getBlockState(blockPos).isOf(Blocks.FIRE)||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) {
+                            entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                        }
                     }
                     entity.playSound(SoundEvents.AMBIENT_UNDERWATER_EXIT, 0.2F, 0F);
                 }

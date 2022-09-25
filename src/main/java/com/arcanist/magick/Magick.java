@@ -45,6 +45,9 @@ public class Magick implements ModInitializer {
         ModPotions.init();
         ModEffects.registerEffects();
         ModEntities.registerEntities();
+        ModMiscRegistries.registerFuel();
+        ModMiscRegistries.registerCustomTrades();
+        ModMiscRegistries.registerLootTables();
     }
 
 }
