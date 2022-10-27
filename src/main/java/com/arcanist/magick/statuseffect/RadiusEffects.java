@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import static net.minecraft.block.SweetBerryBushBlock.AGE;
-import static net.minecraft.tag.BlockTags.REPLACEABLE_PLANTS;
+import static net.minecraft.tag.BlockTags.*;
 import static net.minecraft.world.dimension.DimensionTypes.*;
 
 public class RadiusEffects {
@@ -70,7 +70,8 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getBlockState(blockPos).isAir()||(entityWorld.getFluidState(blockPos).isOf(Fluids.WATER))||(entityWorld.getFluidState(blockPos).isOf(Fluids.LAVA))||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius){
+                    if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getFluidState(blockPos).isOf(Fluids.WATER)||entityWorld.getFluidState(blockPos).isOf(Fluids.LAVA)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA)||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)||entityWorld.getBlockState(blockPos).isOf(Blocks.SNOW)){
                         if ((entityWorld.getDimensionKey().equals(THE_NETHER))){
                            if (new Random().nextInt(5 - 1 + 1) + 1 == 1) {
                                entityWorld.setBlockState(blockPos, Blocks.BASALT.getDefaultState());
@@ -96,6 +97,7 @@ public class RadiusEffects {
                 }
             }
         }
+        }
         entity.playSound(SoundEvents.BLOCK_STONE_PLACE, 3F, 1F);
     }
 
@@ -105,8 +107,10 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if ((entityWorld.getBlockState(blockPos).isAir()||entityWorld.getFluidState(blockPos).isOf(Fluids.WATER)) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        entity.world.setBlockState(blockPos, AbstractFireBlock.getState(entity.world, blockPos));
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius){
+                        if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)){
+                            entity.world.setBlockState(blockPos, AbstractFireBlock.getState(entity.world, blockPos));
+                        }
                     }
                 }
             }
@@ -120,7 +124,7 @@ public class RadiusEffects {
                         if (entityWorld.getBlockState(blockPos).isOf(Blocks.ICE)||entityWorld.getBlockState(blockPos).isOf(Blocks.PACKED_ICE)||entityWorld.getBlockState(blockPos).isOf(Blocks.FROSTED_ICE)) {
                             entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
                         }
-                        if (entityWorld.getBlockState(blockPos).isOf(Blocks.POWDER_SNOW)||entityWorld.getBlockState(blockPos).isOf(Blocks.SNOW)||entityWorld.getBlockState(blockPos).isOf(Blocks.SNOW_BLOCK)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getBlockState(blockPos).isOf(Blocks.KELP)||entityWorld.getBlockState(blockPos).isOf(Blocks.KELP_PLANT)||entityWorld.getBlockState(blockPos).isOf(Blocks.SEAGRASS)||entityWorld.getBlockState(blockPos).isOf(Blocks.TALL_SEAGRASS)) {
+                        if (entityWorld.getBlockState(blockPos).isIn(SNOW)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getFluidState(blockPos).isOf(Fluids.WATER)){
                             entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                         }
                     }
@@ -131,33 +135,36 @@ public class RadiusEffects {
     }
 
     public void icePearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
-        float radius = power(entityWorld, user)/2;
+        float radius = power(entityWorld, user);
         for (int x = (int) -radius - 1; x <= radius; x++) {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
                     if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        if (entityWorld.getBlockState(blockPos).isAir()) {
+                        if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)){
                             entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
                         }
                     }
                 }
             }
         }
-        float radius2 = radius*3;
+        float radius2 = radius*2;
         for (int x = (int) -radius2 - 1; x <= radius2; x++) {
             for (int y = (int) -radius2 - 1; y <= radius2; y++) {
                 for (int z = (int) -radius2 - 1; z <= radius2; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
                     if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2) {
-                        if (entityWorld.getBlockState(blockPos).isOf(Blocks.WATER)) {
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.WATER)) {
                             entityWorld.setBlockState(blockPos, Blocks.ICE.getDefaultState());
                         }
-                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)){
-                            entityWorld.setBlockState(blockPos, Blocks.POWDER_SNOW.getDefaultState());
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getBlockState(blockPos).isOf(Blocks.SNOW)){
+                            entityWorld.setBlockState(blockPos, Blocks.SNOW_BLOCK.getDefaultState());
                         }
-                        if (entityWorld.getBlockState(blockPos).isOf(Blocks.FIRE)||(entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA))) {
+                        if (entityWorld.getBlockState(blockPos).isIn(FIRE)) {
                             entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                        }
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_LAVA)) {
+                            entityWorld.setBlockState(blockPos, Blocks.COBBLESTONE.getDefaultState());
                         }
                         else if (entityWorld.getBlockState(blockPos).isOf(Blocks.LAVA)) {
                             entityWorld.setBlockState(blockPos, Blocks.OBSIDIAN.getDefaultState());
@@ -186,7 +193,7 @@ public class RadiusEffects {
 
     public void lightPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
         BlockPos blockPos = new BlockPos(entityX ,entityY ,entityZ );
-        if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getBlockState(blockPos)== Blocks.WATER.getDefaultState()){
+        if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)||entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)||entityWorld.getFluidState(blockPos).isOf(Fluids.WATER)){
             entityWorld.setBlockState(blockPos, ModBlocks.LIGHT_ORB.getDefaultState());
         }
 
@@ -235,7 +242,7 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
-                    if (entityWorld.getBlockState(blockPos).isOf(Blocks.FIRE) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if (entityWorld.getBlockState(blockPos).isIn(FIRE) && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
                         entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                     }
                 }
@@ -288,7 +295,7 @@ public class RadiusEffects {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
                     if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
-                        if (!entityWorld.getDimension().ultrawarm() && (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS) || entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER))) {
+                        if (!entityWorld.getDimension().ultrawarm() && (entityWorld.getBlockState(blockPos).isAir() || entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS))) {
                         entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
                         }
                         if (entityWorld.getFluidState(blockPos).isOf(Fluids.LAVA)) {
@@ -301,10 +308,23 @@ public class RadiusEffects {
                             entityWorld.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                         }
                     }
-                    entity.playSound(SoundEvents.AMBIENT_UNDERWATER_EXIT, 0.2F, 0F);
                 }
             }
         }
+        float radius2 = radius*4;
+        for (int x = (int) -radius2 - 1; x <= radius2; x++) {
+            for (int y = (int) -radius2 - 1; y <= radius2; y++) {
+                for (int z = (int) -radius2 - 1; z <= radius2; z++) {
+                    BlockPos blockPos = new BlockPos(entityX + x, entityY + y, entityZ + z);
+                    if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius2) {
+                        if (entityWorld.getFluidState(blockPos).isOf(Fluids.FLOWING_WATER)) {
+                            entityWorld.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+                        }
+                    }
+                }
+            }
+        }
+        entity.playSound(SoundEvents.AMBIENT_UNDERWATER_EXIT, 0.1F, 0F);
     }
 
     public void webPearlEffect(Entity entity, double entityX, double entityY, double entityZ, World entityWorld, Entity user) {
@@ -313,8 +333,10 @@ public class RadiusEffects {
             for (int y = (int) -radius - 1; y <= radius; y++) {
                 for (int z = (int) -radius - 1; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(entityX + x,entityY + y,entityZ + z);
-                    if (entityWorld.getBlockState(blockPos).isAir() && Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius) {
+                    if ( Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)) <= radius){
+                        if (entityWorld.getBlockState(blockPos).isAir()||entityWorld.getBlockState(blockPos).isIn(REPLACEABLE_PLANTS)||entityWorld.getBlockState(blockPos).isOf(Blocks.SNOW)) {
                         entityWorld.setBlockState(blockPos, ModBlocks.TEMP_WEB_BLOCK.getDefaultState());
+                        }
                     }
                 }
             }
