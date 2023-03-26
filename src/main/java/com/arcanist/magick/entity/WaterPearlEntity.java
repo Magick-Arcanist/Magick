@@ -40,7 +40,7 @@ public class WaterPearlEntity extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
         float i = entity instanceof BlazeEntity ? 6 : 0;// sets i to 6 if the Entity instance is an instance of BlazeEntity
-        entity.damage(DamageSource.thrownProjectile(this, user),i + 1); // deals damage
+        entity.damage(this.getDamageSources().thrown(this, user), i + 1);// deals damage
         if (entity instanceof LivingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
             entity.extinguish();
         }

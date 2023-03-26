@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magick:items/blackstone_dust"
+    "layer0": "magick:item/blackstone_dust"
   }
 }

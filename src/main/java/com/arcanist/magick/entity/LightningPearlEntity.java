@@ -50,7 +50,7 @@ public class LightningPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, user), 1F);
+        entity.damage(this.getDamageSources().thrown(this, user), 1);
     }
 
 

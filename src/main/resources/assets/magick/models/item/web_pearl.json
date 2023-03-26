@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magick:items/web_pearl"
+    "layer0": "magick:item/web_pearl"
   }
 }

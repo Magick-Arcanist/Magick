@@ -1,7 +1,6 @@
 package com.arcanist.magick.mixin;
 
 import com.arcanist.magick.registry.ModEffects;
-import com.arcanist.magick.statuseffect.ModStatusEffect;
 import com.arcanist.magick.util.EntityReturnProperties;
 import com.arcanist.magick.statuseffect.effects.ImmortalStatusEffect;
 import com.arcanist.magick.statuseffect.effects.SpiderClimbStatusEffect;
@@ -17,13 +16,11 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -60,21 +57,20 @@ public abstract class LivingEntityMixin extends Entity implements EntityReturnPr
     private final AttributeContainer attributes;
     static {HEALTH = DataTracker.registerData(LivingEntityMixin.class, TrackedDataHandlerRegistry.FLOAT);}
 
-   // public void setHealth(float health) { this.dataTracker.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));}
-
-    //Climbing
     @Inject(at = @At("HEAD"), method = "isClimbing", cancellable = true)
     public void SpiderClimbCheck(CallbackInfoReturnable<Boolean> info) {
         double entityX = this.getX();
         double entityY = this.getY();
         double entityZ = this.getZ();
         World entityWorld = this.getEntityWorld();
-        BlockPos blockPos1 = new BlockPos(entityX+1, entityY,entityZ);
-        BlockPos blockPos2 = new BlockPos(entityX-1, entityY,entityZ);
-        BlockPos blockPos3 = new BlockPos(entityX, entityY,entityZ+1);
-        BlockPos blockPos4 = new BlockPos(entityX, entityY,entityZ-1);
-        if (SpiderClimbStatusEffect.hasEffect(this) && ((entityWorld.getBlockState(blockPos1).isSolidBlock(world, blockPos1)) || (entityWorld.getBlockState(blockPos2).isSolidBlock(world, blockPos2)) || (entityWorld.getBlockState(blockPos3).isSolidBlock(world, blockPos3)) || (entityWorld.getBlockState(blockPos4).isSolidBlock(world, blockPos4)))) {
-            info.setReturnValue(true);
+
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                BlockPos blockPos = new BlockPos(MathHelper.floor(entityX) + x, MathHelper.floor(entityY), MathHelper.floor(entityZ) + z);
+                if (SpiderClimbStatusEffect.hasEffect(this) && entityWorld.getBlockState(blockPos).isSolidBlock(entityWorld, blockPos)) {
+                    info.setReturnValue(true);
+                }
+            }
         }
     }
 
@@ -117,6 +113,7 @@ public abstract class LivingEntityMixin extends Entity implements EntityReturnPr
     public void setReturnPos(DimensionPosition pos) {
         recallPosition = pos;
     }
+
 
     //Make opposite effects counter each other
     @Inject(at = @At("TAIL"), method = "tickStatusEffects")

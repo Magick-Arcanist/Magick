@@ -35,7 +35,7 @@ public class WarpPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, user), RadiusEffects.power(this.world, user)*7);
+        entity.damage(this.getDamageSources().thrown(this, user), RadiusEffects.power(this.world, user)*7);
     }
 
     protected void onCollision(HitResult hitResult) {

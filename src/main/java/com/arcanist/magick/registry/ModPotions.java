@@ -8,10 +8,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
-import net.minecraft.tag.ItemTags;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -169,21 +168,21 @@ public final class ModPotions {
     }
 
     private static Potion register(String id, Potion potion) {
-        return Registry.register(Registry.POTION, new Identifier(Magick.MOD_ID, id), potion);
+        return Registry.register(Registries.POTION, new Identifier(Magick.MOD_ID, id), potion);
     }
 
     private static Potion register(String id, Potion potion, Item ingredient, Potion from) {
         RECIPES.add(new RecipeToInit(from, ingredient, potion));
-        return Registry.register(Registry.POTION, new Identifier(Magick.MOD_ID, id), potion);
+        return Registry.register(Registries.POTION, new Identifier(Magick.MOD_ID, id), potion);
     }
 
     private static void mapPotions(Potion in, Item ingredient, Potion result) {
-        Identifier potionInId = Registry.POTION.getId(in);
-        Identifier potionOutId = Registry.POTION.getId(result);
-        Optional<Potion> inLong = Registry.POTION.getOrEmpty(new Identifier(potionInId.getNamespace(), "long_" + potionInId.getPath()));
-        Optional<Potion> inStrong = Registry.POTION.getOrEmpty(new Identifier(potionInId.getNamespace(), "strong_" + potionInId.getPath()));
-        Optional<Potion> outLong = Registry.POTION.getOrEmpty(new Identifier(potionOutId.getNamespace(), "long_" + potionOutId.getPath()));
-        Optional<Potion> outStrong = Registry.POTION.getOrEmpty(new Identifier(potionOutId.getNamespace(), "strong_" + potionOutId.getPath()));
+        Identifier potionInId = Registries.POTION.getId(in);
+        Identifier potionOutId = Registries.POTION.getId(result);
+        Optional<Potion> inLong = Registries.POTION.getOrEmpty(new Identifier(potionInId.getNamespace(), "long_" + potionInId.getPath()));
+        Optional<Potion> inStrong = Registries.POTION.getOrEmpty(new Identifier(potionInId.getNamespace(), "strong_" + potionInId.getPath()));
+        Optional<Potion> outLong = Registries.POTION.getOrEmpty(new Identifier(potionOutId.getNamespace(), "long_" + potionOutId.getPath()));
+        Optional<Potion> outStrong = Registries.POTION.getOrEmpty(new Identifier(potionOutId.getNamespace(), "strong_" + potionOutId.getPath()));
         if(outLong.isPresent() && inLong.isPresent()) {
             BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(inLong.get(), ingredient, outLong.get());
         }
@@ -194,9 +193,9 @@ public final class ModPotions {
     }
 
     private static void variantRecipes(Potion potion) {
-        Identifier id = Registry.POTION.getId(potion);
-        Optional<Potion> lengthy = Registry.POTION.getOrEmpty(new Identifier(id.getNamespace(), "long_" + id.getPath()));
-        Optional<Potion> strong = Registry.POTION.getOrEmpty(new Identifier(id.getNamespace(), "strong_" + id.getPath()));
+        Identifier id = Registries.POTION.getId(potion);
+        Optional<Potion> lengthy = Registries.POTION.getOrEmpty(new Identifier(id.getNamespace(), "long_" + id.getPath()));
+        Optional<Potion> strong = Registries.POTION.getOrEmpty(new Identifier(id.getNamespace(), "strong_" + id.getPath()));
         lengthy.ifPresent(value -> BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.REDSTONE, value));
         strong.ifPresent(value -> BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(potion, Items.GLOWSTONE_DUST, value));
     }

@@ -6,7 +6,6 @@ import com.mojang.authlib.GameProfile;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryKey;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,7 +40,7 @@ import net.minecraft.world.biome.source.BiomeAccess;
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile, @Nullable PlayerPublicKey publicKey) {
-        super(world, pos, yaw, gameProfile, publicKey);
+        super(world, pos, yaw, gameProfile);
     }
 
     // This class is not currently used because it does not work on servers when travelling from the Nether to the Overworld

@@ -28,7 +28,7 @@ public class WhiteBlock extends AirBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.createAndScheduleBlockTick(pos, this, 20);
+        world.scheduleBlockTick(pos, this, 20);
     }
 
     @Override

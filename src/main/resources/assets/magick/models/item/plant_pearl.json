@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magick:items/plant_pearl"
+    "layer0": "magick:item/plant_pearl"
   }
 }

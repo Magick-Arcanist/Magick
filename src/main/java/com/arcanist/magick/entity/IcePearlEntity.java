@@ -37,8 +37,8 @@ public class IcePearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof BlazeEntity ? 8 : 0;
-        entity.damage(DamageSource.thrownProjectile(this, user), (float) i + 1);
+        float i = entity instanceof BlazeEntity ? 8 : 0;
+        entity.damage(this.getDamageSources().thrown(this, user),i + 1);
         if (entity instanceof LivingEntity) {
             entity.extinguish();
         }

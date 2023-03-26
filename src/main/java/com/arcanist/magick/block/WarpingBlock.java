@@ -13,7 +13,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.AreaHelper;
 
 
 public class WarpingBlock extends AirBlock {
@@ -29,7 +28,7 @@ public class WarpingBlock extends AirBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.createAndScheduleBlockTick(pos, this, 10);
+        world.scheduleBlockTick(pos, this, 10);
     }
 
     @Override

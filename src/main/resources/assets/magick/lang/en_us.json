@@ -1,4 +1,6 @@
-{ "effect.magick.fear": "Fear",
+{ "itemGroup.magick.pearls": "Pearls",
+  "itemGroup.magick.dust": "Dust",
+  "effect.magick.fear": "Fear",
   "effect.magick.love": "Love",
   "effect.magick.gravity": "Gravity",
   "effect.magick.returning": "Returning",

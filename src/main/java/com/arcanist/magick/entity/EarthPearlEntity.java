@@ -37,7 +37,7 @@ public class EarthPearlEntity extends ThrownItemEntity {
         Entity entity = entityHitResult.getEntity();
         if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).takeKnockback(1.5F, this.getX() - entity.getX(), this.getZ() - entity.getZ());
-            entity.damage(DamageSource.thrownProjectile(this, user), 0);
+            entity.damage(this.getDamageSources().thrown(this, user), 0);
         }
     }
 

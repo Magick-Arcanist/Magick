@@ -19,17 +19,17 @@ public class RedBlock extends AirBlock {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-            world.removeBlock(pos, false);
+        world.removeBlock(pos, false);
     }
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.createAndScheduleBlockTick(pos, this, 20);
+        world.scheduleBlockTick(pos, this, 20);
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-            world.removeBlock(pos, false);
+        world.removeBlock(pos, false);
     }
 
     @Override

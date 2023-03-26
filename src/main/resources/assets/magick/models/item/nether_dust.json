@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magick:items/nether_dust"
+    "layer0": "magick:item/nether_dust"
   }
 }

@@ -8,8 +8,9 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ModEntities {
 
@@ -39,22 +40,24 @@ public class ModEntities {
         WARP_PEARL_ENTITY = FabricEntityTypeBuilder.<WarpPearlEntity>create(SpawnGroup.MISC, WarpPearlEntity::new).dimensions(EntityDimensions.fixed(0.25f, 0.25f)).trackRangeBlocks(64).trackedUpdateRate(10).build();
         WATER_PEARL_ENTITY = FabricEntityTypeBuilder.<WaterPearlEntity>create(SpawnGroup.MISC, WaterPearlEntity::new).dimensions(EntityDimensions.fixed(0.25f, 0.25f)).trackRangeBlocks(64).trackedUpdateRate(10).build();
         WEB_PEARL_ENTITY = FabricEntityTypeBuilder.<WebPearlEntity>create(SpawnGroup.MISC, WebPearlEntity::new).dimensions(EntityDimensions.fixed(0.25f, 0.25f)).trackRangeBlocks(64).trackedUpdateRate(10).build();
+
     }
 
     public static void registerEntities() {
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "air_pearl"), AIR_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "bomb_pearl"), BOMB_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "earth_pearl"), EARTH_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "fire_pearl"), FIRE_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "ice_pearl"), ICE_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "lightning_pearl"), LIGHTNING_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "light_pearl"), LIGHT_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "plant_pearl"), PLANT_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "vac_pearl"), VAC_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "warp_pearl"), WARP_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "water_pearl"), WATER_PEARL_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "web_pearl"), WEB_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "air_pearl"), AIR_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "bomb_pearl"), BOMB_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "earth_pearl"), EARTH_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "fire_pearl"), FIRE_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "ice_pearl"), ICE_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "lightning_pearl"), LIGHTNING_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "light_pearl"), LIGHT_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "plant_pearl"), PLANT_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "vac_pearl"), VAC_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "warp_pearl"), WARP_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "water_pearl"), WATER_PEARL_ENTITY);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(Magick.MOD_ID, "web_pearl"), WEB_PEARL_ENTITY);
     }
+
 
     public static void renderEntities() {
         EntityRendererRegistry.register(ModEntities.AIR_PEARL_ENTITY, FlyingItemEntityRenderer::new);
@@ -69,6 +72,7 @@ public class ModEntities {
         EntityRendererRegistry.register(ModEntities.WARP_PEARL_ENTITY, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.WATER_PEARL_ENTITY, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.WEB_PEARL_ENTITY, FlyingItemEntityRenderer::new);
+
     }
 
 }

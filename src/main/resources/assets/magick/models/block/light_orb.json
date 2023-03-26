@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"0": "magick:blocks/white",
-		"particle": "magick:blocks/white"
+		"particle": "magick:block/white"
 	},
 	"credit": "Made with Blockbench",
 	"elements": [

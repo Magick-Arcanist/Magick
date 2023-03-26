@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magick:items/calcite_dust"
+    "layer0": "magick:item/calcite_dust"
   }
 }

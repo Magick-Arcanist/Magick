@@ -35,7 +35,7 @@ public class PlantPearlEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, user), 0);
+        entity.damage(this.getDamageSources().thrown(this, user), 0);
     }
 
     protected void onCollision(HitResult hitResult) { // called on collision with a block

@@ -52,7 +52,8 @@ public class ReturningStatusEffect extends ModStatusEffect {
                     }
                 }
             } finally {
-                entity.damage(DamageSource.FALL, 5.0F);
+               // entity.damage(DamageSource.FALL, 5.0F);
+                entity.damage(entity.getDamageSources().fall(),5);
                 ((EntityReturnProperties) entity).setReturnPos(null);
             }
         }

@@ -25,7 +25,7 @@ public class TempWebBlock extends CobwebBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.createAndScheduleBlockTick(pos, this, 2000);
+        world.scheduleBlockTick(pos, this, 2000);
     }
 
 }
